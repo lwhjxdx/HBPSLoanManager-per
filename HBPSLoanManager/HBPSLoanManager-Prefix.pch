@@ -1,0 +1,24 @@
+//
+//  HBPSLoanManager-Prefix.pch
+//  HBPSLoanManager
+//
+//  Created by YM on 15/3/9.
+//  Copyright (c) 2015年 YM. All rights reserved.
+//
+
+#ifndef HBPSLoanManager_HBPSLoanManager_Prefix_pch
+#define HBPSLoanManager_HBPSLoanManager_Prefix_pch
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "HBUserModel.h"
+#import "HBParameter.h"
+#import "DateUtils.h"
+#import "MathUtils.h"
+#import "Define.h"
+#import "HBRequest.h"
+
+#endif
+
