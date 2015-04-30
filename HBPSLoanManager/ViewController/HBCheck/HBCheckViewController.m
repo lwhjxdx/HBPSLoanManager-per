@@ -29,7 +29,7 @@
 - (IBAction)PersonageSearch:(id)sender {
     [self pushQiandaoVC:NSClassFromString(@"LoanPersonageController")];
 
-    LoanPersonageController *loanPersonageVC = [[LoanPersonageController alloc] init];
+//    LoanPersonageController *loanPersonageVC = [[LoanPersonageController alloc] init];
 //    [self pushViewController:loanPersonageVC animated:YES];
 }
 - (IBAction)PersonageCarSearch:(id)sender {
