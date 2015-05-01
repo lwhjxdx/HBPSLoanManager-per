@@ -13,6 +13,7 @@
 #import "HBinspect/HBinspectViewController.h"
 #import "HBCFirstViewController.h"
 #import "HBSignInController.h"
+//#import "HBRepeatListViewController.h"
 
 @interface HBCheckDetailViewController ()
 {
@@ -21,11 +22,12 @@
     NSArray *conPaperIdList;
     NSString *conPaperString;
     UIWebView *phoneCallWebView;
+    NSString *interfaceString;
 }
 @end
 
 @implementation HBCheckDetailViewController
-
+#pragma mark - 初始化界面，回调网络数据，时时更新
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"检查";
@@ -34,31 +36,55 @@
     
 }
 
-//从网络请求数据获取数据编号
-- (void)requestFromNetWorking{
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setTabbarViewHide:@"YES"];
+}
 
-    NSMutableDictionary *dic = [self markParams];
-    if (!dic) {
-        return;
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self configUIWithDic];
+    [self requestFromNetWorking];
+}
+- (void)configUIWithDic{
+    if (self.customerDic) {
+        self.enterpriseName.text = self.customerDic[@"enterpriseName"];
+        self.enterpriseAddr.text = self.customerDic[@"enterpriseAddr"];
+        self.legalPerson.text = self.customerDic[@"legalPerson"];
+        self.legalPersonTel.text = self.customerDic[@"legalPersonTel"];
+        self.enterpriseLink.text = self.customerDic[@"enterpriseLink"];
+        self.linkManTel.text = self.customerDic[@"linkManTel"];
+        self.danger.text = self.customerDic[@"danger"];
+        self.mainBiz.text = self.customerDic[@"mainBiz"];
+        conNoList = [self.customerDic[@"conNo"] componentsSeparatedByString:@","];
+        self.conNo.text = conNoList[0];
+        conNoString = self.conNo.text;
     }
-    [HBRequest RequestDataJointStr:kfindGetParperInfo parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-        [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
-        [self handleData:nil];
+    
+}
 
-    }];
+-(void)setCheckType:(CheckType)checkType
+{
+    _checkType = checkType;
+    
+    switch (checkType) {
+        case ChechTypeGerenchedai:
+            interfaceString = kQueryPersonalBaseInfo;
+            break;
+        case CheckTypeGerenshangdai:
+            interfaceString = kfindGetParperInfo;
+            break;
+            case CheckTypeXiaoqiyefaren:
+            interfaceString = kfindGetParperInfo;
+            break;
+        default:
+            break;
+    }
 }
 
 
-//配置参数获取数据编号
-- (NSMutableDictionary *)markParams{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:conNoString forKey:@"conNo"];
-    return dic;
-}
 
-
-
+#pragma mark - 界面点击事件
 - (IBAction)callTelphone:(id)sender {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -74,7 +100,6 @@
     }
 
     [HBRequest RequestDataJointStr:kSaveVoiceCall parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-        
 #warning 语音外呼
         NSString *telphoneString ;
         if (receiveJSON[@"cSNumber"]) {
@@ -101,7 +126,9 @@
     
    
 }
-//选择合同编号
+/**
+ *  选择合同编号
+ */
 - (IBAction)changeCart:(id)sender {
     MyCustomPickerView *pick = [[MyCustomPickerView alloc] initWithFrame:CGRectZero];
     pick.contentArray =  [NSMutableArray arrayWithArray:conNoList];
@@ -115,7 +142,9 @@
     }];
     [pick showInView:self.view];
 }
-//选择数据编号
+/**
+ *  选择数据编号
+*/
 - (IBAction)checkPaperID:(id)sender {
     MyCustomPickerView *pick = [[MyCustomPickerView alloc] initWithFrame:CGRectZero];
     pick.contentArray =  [NSMutableArray arrayWithArray:conPaperIdList];
@@ -131,6 +160,45 @@
 }
 
 
+
+
+//检查报告录入
+- (IBAction)repCheckClicked:(id)sender {
+
+    [self requestFromNetWorkingWithFirstChecked];
+}
+-(void)pushHBinspectViewController:(NSDictionary*)dic
+{
+    switch (_checkType) {
+        case CheckTypeXiaoqiyefaren:
+            [self pushXiaoqiyefaren:dic];
+            break;
+        case CheckTypeGerenshangdai:
+            [self pushGerenshangdai:dic];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - 根据不同类型推向不同界面
+
+-(void)pushXiaoqiyefaren:(NSDictionary*)dic
+{
+    
+    HBinspectViewController *inspectVC = [[HBinspectViewController alloc] init];
+    inspectVC.nextDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [self pushViewController:inspectVC animated:YES];
+}
+-(void)pushGerenshangdai:(NSDictionary*)dic
+{
+    
+    HBRepeatListViewController *inspectVC = [[HBRepeatListViewController alloc] init];
+    inspectVC.customerDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [self pushViewController:inspectVC animated:YES];
+}
+
+#pragma mark - 发送网络请求，处理相关数据
 //从网络请求数据获取第一次检查
 - (void)requestFromNetWorkingWithFirstChecked{
     
@@ -142,11 +210,11 @@
         [self handleDataFirst:receiveJSON];
         //测试
         self.customerDicWithData = (NSMutableDictionary *)receiveJSON;
-        NSLog(@"HBCheckDetailViewController->requestFromNetWorkingWithFirstChecked:%@",receiveJSON);
+//        NSLog(@"HBCheckDetailViewController->requestFromNetWorkingWithFirstChecked:%@",receiveJSON);
         
         _dictData = self.customerDicWithData;
         [self pushHBinspectViewController:_dictData];
-        NSLog(@"HBCheckDetailViewController->requestFromNetWorkingWithFirstChecked->customerDicWithData:%@",_dictData);
+//        NSLog(@"HBCheckDetailViewController->requestFromNetWorkingWithFirstChecked->customerDicWithData:%@",_dictData);
         
     } failBlock:^(NSError *error) {
         [self handleDataFirst:nil];
@@ -174,17 +242,27 @@
     
 }
 
-
-//检查报告录入
-- (IBAction)repCheckClicked:(id)sender {
-
-    [self requestFromNetWorkingWithFirstChecked];
+//从网络请求数据获取数据编号
+- (void)requestFromNetWorking{
+    
+    NSMutableDictionary *dic = [self markParams];
+    if (!dic) {
+        return;
+    }
+    [HBRequest RequestDataJointStr:interfaceString parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+        [self handleData:receiveJSON];
+    } failBlock:^(NSError *error) {
+        [self handleData:nil];
+        
+    }];
 }
--(void)pushHBinspectViewController:(NSDictionary*)dic
-{
-    HBinspectViewController *inspectVC = [[HBinspectViewController alloc] init];
-    inspectVC.nextDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    [self pushViewController:inspectVC animated:YES];
+
+
+//配置参数获取数据编号
+- (NSMutableDictionary *)markParams{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:conNoString forKey:@"conNo"];
+    return dic;
 }
 //处理数据
 - (void)handleData:(NSDictionary *)dic{
@@ -196,33 +274,6 @@
     conPaperIdList = [self.customerDic[@"dueNUM"] componentsSeparatedByString:@","];
     self.paperId.text = conPaperIdList[0];
     conPaperString  = self.paperId.text;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [self configUIWithDic];
-    [self requestFromNetWorking];
-}
-
-- (void)configUIWithDic{
-    if (self.customerDic) {
-        self.enterpriseName.text = self.customerDic[@"enterpriseName"];
-        self.enterpriseAddr.text = self.customerDic[@"enterpriseAddr"];
-        self.legalPerson.text = self.customerDic[@"legalPerson"];
-        self.legalPersonTel.text = self.customerDic[@"legalPersonTel"];
-        self.enterpriseLink.text = self.customerDic[@"enterpriseLink"];
-        self.linkManTel.text = self.customerDic[@"linkManTel"];
-        self.danger.text = self.customerDic[@"danger"];
-        self.mainBiz.text = self.customerDic[@"mainBiz"];
-        conNoList = [self.customerDic[@"conNo"] componentsSeparatedByString:@","];
-        self.conNo.text = conNoList[0];
-        conNoString = self.conNo.text;
-    }
-    
 }
 
 - (void)didReceiveMemoryWarning {

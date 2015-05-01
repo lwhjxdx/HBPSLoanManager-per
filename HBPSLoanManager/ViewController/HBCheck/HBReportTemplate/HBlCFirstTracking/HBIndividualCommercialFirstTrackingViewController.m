@@ -214,10 +214,10 @@
                    @"贷款实际支付方式"];
     
     keyArray = @[  @"custName",
-                   @"conNO",
+                   @"conNo",
                    @"creditProductCd",
                    @"loadAmt",
-                   @"loatPeriod",
+                   @"loadPeriod",
                    @"loadDate",
                    @"busiScope",
                    @"operationAddress",

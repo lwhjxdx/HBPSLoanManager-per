@@ -7,7 +7,14 @@
 //
 
 #import "HBBaseViewController.h"
-
+/**
+ 通过不同的检查类型，请求不同数据，push到不同的页面
+ */
+typedef enum : NSUInteger {
+    CheckTypeGerenshangdai,
+    CheckTypeXiaoqiyefaren,
+    ChechTypeGerenchedai,
+} CheckType;
 @interface HBCheckDetailViewController : HBBaseViewController
 
 - (IBAction)callTelphone:(id)sender;
@@ -15,7 +22,7 @@
 @property (nonatomic,copy) NSMutableDictionary *customerDic;
 @property (nonatomic,copy) NSMutableDictionary *customerDicWithData;
 @property (nonatomic,copy) NSDictionary *dictData;
-
+@property (nonatomic,assign)CheckType checkType;
 @property (weak, nonatomic) IBOutlet UILabel *enterpriseName;
 @property (weak, nonatomic) IBOutlet UILabel *enterpriseAddr;
 

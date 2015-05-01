@@ -134,6 +134,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HBCheckDetailViewController *vc = [[HBCheckDetailViewController alloc] init];
     vc.customerDic = [NSMutableDictionary dictionaryWithDictionary:_dataArray[indexPath.section]];
+    vc.checkType = CheckTypeXiaoqiyefaren;
     [self pushViewController:vc animated:YES];
 }
 

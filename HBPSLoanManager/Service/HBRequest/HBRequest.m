@@ -125,10 +125,13 @@
     NSLog(@"connectionDidFinishLoading --->\n connection %@ resultDic--------->\n %@",connection,resultDic);
     
     if (![[resultDic objectForKey:@"respCode"] isEqualToString:@"0000"]) {
-        if ([resultDic objectForKey:@"respMsg"]) {
-            UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提醒" message:[resultDic objectForKey:@"respMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [al show];
-        }
+        [SVProgressHUD showErrorWithStatus:resultDic[@"respMsg"]?resultDic[@"respMsg"]:@"数据异常"];
+//
+//        if ([resultDic objectForKey:@"respMsg"]) {
+//            
+//            UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提醒" message:[resultDic objectForKey:@"respMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [al show];
+//        }
     }
     else{
         if (self.finishLoadingBlock) {

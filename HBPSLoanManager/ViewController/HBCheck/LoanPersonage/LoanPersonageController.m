@@ -7,7 +7,7 @@
 //
 
 #import "LoanPersonageController.h"
-//#import "HBCheckDetailViewController.h"
+#import "HBCheckDetailViewController.h"
 #import "HBRepeatListViewController.h"
 @interface LoanPersonageController ()
 {
@@ -49,13 +49,11 @@
     if (!dic) {
         return;
     }
-    
     [HBRequest RequestDataJointStr:kFindCustInfo parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
     } failBlock:^(NSError *error) {
         
     }];
-    
 }
 
 
@@ -133,8 +131,9 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HBRepeatListViewController *vc = [[HBRepeatListViewController alloc] init];
+    HBCheckDetailViewController *vc = [[HBCheckDetailViewController alloc] init];
     vc.customerDic = [NSMutableDictionary dictionaryWithDictionary:_dataArray[indexPath.section]];
+    vc.checkType = CheckTypeGerenshangdai;
     [self pushViewController:vc animated:YES];
 }
 

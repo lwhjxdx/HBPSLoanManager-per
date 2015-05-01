@@ -7,7 +7,6 @@
 //
 
 #import "HBBaseViewController.h"
-
 @interface HBRepeatListViewController : HBBaseViewController
 
 @property (nonatomic,copy) NSMutableDictionary *customerDic;
