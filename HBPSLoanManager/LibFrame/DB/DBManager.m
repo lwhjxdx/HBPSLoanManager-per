@@ -34,7 +34,7 @@ static DBManager *manager = nil;
         //[_dataBase close];
         if ([_dataBase open]) {
             //创建表 blob 二进制对象类型
-            NSString *createSql = @"create table if not exists reportInfo(id integer primary key autoincrement,reportType integer,titleString varchar(256),contentString integer,isSelect varchar(20),filePath varchar(256))";
+            NSString *createSql = @"create table if not exists reportInfo(id integer primary key autoincrement,reportType integer,titleString varchar(256),contentString integer,isSelect varchar(20),filePath varchar(256),className varchar(256))";
             //executeUpdate 增、删、改，创建表 的sql全用此方法
             //返回值为执行的结果 yes no
             BOOL isSuccessed  =[_dataBase executeUpdate:createSql];
@@ -51,14 +51,20 @@ static DBManager *manager = nil;
 
 
 //插入一条数据
-- (void)insertDataWithModel:(HBReportModel *)model{
+- (BOOL)insertDataWithModel:(HBReportModel *)model{
 
-    NSString *insertSql = @"insert into reportInfo(reportType,titleString,contentString,filePath,isSelect) values(?,?,?,?,?)";
+    NSString *insertSql = @"insert into reportInfo(reportType,titleString,contentString,filePath,className,isSelect) values(?,?,?,?,?,?)";
     //executeUpdate 要求后面跟的参数必须是NSObject类型,否则会抛出EXC_BAD_ACCESS错误,fmdb会在将数据写入之前对数据进行自动转化
-    BOOL isSuccessd =[_dataBase executeUpdate:insertSql,[NSNumber numberWithInteger: model.reportType],model.titleString,model.contentString,model.filePath,@"NO"];
+    BOOL isSuccessd =[_dataBase executeUpdate:insertSql,
+                      [NSNumber numberWithInteger: model.reportType],
+                      model.titleString,
+                      model.contentString,
+                      model.filePath,
+                      model.className,@"NO"];
     if (!isSuccessd) {
         NSLog(@"insert error:%@",_dataBase.lastErrorMessage);
     }
+    return isSuccessd;
 }
 
 
@@ -99,14 +105,15 @@ static DBManager *manager = nil;
 #pragma mark ----------------更新----------------------
 
 //根据id更新数据
-- (void)updateWithModel:(HBReportModel *)model{
+- (BOOL)updateWithModel:(HBReportModel *)model{
     
-    NSString *updateSql = @"update reportInfo set titleString=?,contentString=?,filePath=?,isSelect=? where id=?";
-    BOOL isSuccessed =[_dataBase executeUpdate:updateSql withArgumentsInArray:@[model.titleString,model.contentString,model.filePath,model.isSelect,[NSNumber numberWithInteger: model.reportId]]];
+    NSString *updateSql = @"update reportInfo set titleString=?,contentString=?,filePath=?,isSelect=?,className=? where id=?";
+    BOOL isSuccessed =[_dataBase executeUpdate:updateSql withArgumentsInArray:@[model.titleString,model.contentString,model.filePath,model.isSelect,model.className,[NSNumber numberWithInteger: model.reportId]]];
 
     if (!isSuccessed) {
         NSLog(@"update error:%@",_dataBase.lastErrorMessage);
     }
+    return isSuccessed;
 }
 
 
@@ -132,6 +139,7 @@ static DBManager *manager = nil;
         model.filePath = [set stringForColumn:@"filePath"];
         model.reportType = [set intForColumn:@"reportType"];
         NSString *isSelect = [set stringForColumn:@"isSelect"];
+        model.className = [set stringForColumn:@"className"];
         model.isSelect = isSelect;
         [array addObject:model];
     }
@@ -183,6 +191,7 @@ static DBManager *manager = nil;
         model.filePath = [set stringForColumn:@"filePath"];
         model.reportType = [set intForColumn:@"reportType"];
         NSString *isSelect = [set stringForColumn:@"isSelect"];
+        model.className = [set stringForColumn:@"className"];
         model.isSelect = isSelect;
         [array addObject:model];
     }
@@ -211,6 +220,7 @@ static DBManager *manager = nil;
         model.contentString = [set stringForColumn:@"contentString"];
         model.filePath = [set stringForColumn:@"filePath"];
         model.reportType = [set intForColumn:@"reportType"];
+        model.className = [set stringForColumn:@"className"];
         NSString *isSelect = [set stringForColumn:@"isSelect"];
         model.isSelect = isSelect;
     }

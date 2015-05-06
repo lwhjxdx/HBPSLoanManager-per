@@ -29,6 +29,7 @@
     self.backButton.hidden = NO;
     self.titleLabel.text = @"个人商务贷款";
     [self configUI];
+    [self requestFromNetWorking];
     
 }
 
@@ -65,12 +66,14 @@
         [dic setObject:_searchString forKey:@"enterpriseName"];
     }
     
-    [dic setObject:@"1" forKey:@"productType"];
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
-    }else{
-        [dic setObject:@"161" forKey:@"userNo"];
-    }
+    [dic setObject:@"2" forKey:@"productType"];
+//    if (PAT_) {
+//        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+//    }else{
+//        [dic setObject:@"161" forKey:@"userNo"];
+//    }
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+
     return dic;
 }
 
@@ -80,7 +83,7 @@
         _dataArray = [NSMutableArray array];
     }
     
-    _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"custList"]];
+    _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"customInfos"]];
     [self.tableView reloadData];
 }
 
@@ -116,7 +119,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     NSDictionary *dic = _dataArray[indexPath.section];
-    cell.textLabel.text = dic[@"enterpriseName"];
+    cell.textLabel.text = dic[@"cusName"];
     [cell.textLabel setTextColor:[UIColor grayColor]];
     [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
     return cell;
@@ -142,7 +145,7 @@
 //dueNum //借据编号
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 - (void)didReceiveMemoryWarning {

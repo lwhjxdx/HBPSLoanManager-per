@@ -43,6 +43,11 @@
     NSLog(@"HBCheckFirstBaseController:dic = %@",_paramDic);
 }
 
+-(void)pushCheckNextVC:(HBCheckNextBaseController*)vc
+{
+    vc.className = self.class;
+    [self pushViewController:vc animated:YES];
+}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (!_paramDic) {

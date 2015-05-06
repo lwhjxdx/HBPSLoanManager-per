@@ -103,5 +103,9 @@
 
 #define kfindGetParperInfo @"customerAction/getDueNum.do"
 //取得模版借据编号
+//#define kfindGetParperInfo @"customerAction/getDueNum.do"
+////取得模版借据编号
+//#define kfindGetParperInfo @"customerAction/getDueNum.do"
+////取得模版借据编号
 
 #endif

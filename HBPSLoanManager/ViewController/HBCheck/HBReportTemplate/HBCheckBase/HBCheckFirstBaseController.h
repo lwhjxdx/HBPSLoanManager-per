@@ -7,6 +7,7 @@
 //
 
 #import "HBCheckBaseViewController.h"
+#import "HBCheckNextBaseController.h"
 
 #define kCellHigh 60
 
@@ -20,4 +21,6 @@
 //获取所有参数 将参数存放到 _paramDic中
 - (void)getAllParams;
 
+
+-(void)pushCheckNextVC:(HBCheckNextBaseController*)vc;
 @end

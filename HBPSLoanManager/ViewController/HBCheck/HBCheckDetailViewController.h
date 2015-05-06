@@ -7,14 +7,8 @@
 //
 
 #import "HBBaseViewController.h"
-/**
- 通过不同的检查类型，请求不同数据，push到不同的页面
- */
-typedef enum : NSUInteger {
-    CheckTypeGerenshangdai,
-    CheckTypeXiaoqiyefaren,
-    ChechTypeGerenchedai,
-} CheckType;
+#import "HBType.h"
+
 @interface HBCheckDetailViewController : HBBaseViewController
 
 - (IBAction)callTelphone:(id)sender;

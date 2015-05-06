@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, HBDraftType) {
 
 
 //保存数据到草稿箱
-- (Boolean)saveDraft:(NSMutableDictionary *)dataDic withType:(HBDraftType)type;
+- (Boolean)saveDraft:(NSMutableDictionary *)dataDic withType:(HBDraftType)type withClassName:(Class)className;
 
 - (void)cleanDraft:(NSString *)name type:(HBDraftType)type;
 

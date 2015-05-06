@@ -119,7 +119,7 @@
                                  @"实地检查",
                                  @"其他"];
             [cell showLabelView];
-            
+
             //选择其他的情况(弹框)
             cell.subKeyString = @"actualPurposeOther";
             
@@ -220,7 +220,7 @@
                        @"检查原因",
                        @"检查发现问题处理意见"];
     
-    keyArray = @[  @"userID",
+    keyArray = @[  @"custName",
                    @"loadAmt",
                    @"productRate",
                    @"startDate",
@@ -274,7 +274,7 @@
         _paramDic = dataDic;
     }];
     
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 //处理特殊字段

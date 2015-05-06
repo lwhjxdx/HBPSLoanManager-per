@@ -106,13 +106,15 @@
     upDataBtn.layer.masksToBounds = YES;
     [scrollView addSubview:upDataBtn];
     [viewArray addObject:upDataBtn];
+    scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH, upDataBtn.frame.origin.y + 100);
 }
 
 
 //保存草稿箱
 - (void)save{
     [self getParamDicWithOutCheck];
-    Boolean success =[_draftSevice saveDraft:_paramDic withType:self.checkType];
+    Boolean success =[_draftSevice saveDraft:_paramDic withType:self.checkType withClassName:self.className];
+    
     if (success) {
         [self showAlterView:@"保存成功"];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -159,7 +161,7 @@
                 break;
             }
             if (keyString1 == nil) {
-                return;
+                break;
             }else{
                 
                 /**
@@ -193,8 +195,8 @@
                 return NO;
             }
         }else{
-            [self showAlterView:@"影像文件不完整"];
-            return NO;
+            [self showAlterView:@"你上传的影像文件不完整"];
+            return YES;
         }
     }
     return right;
@@ -278,12 +280,12 @@
     [viewArray addObject:upDataBtn];
     [self handleSpecial];
     NSLog(@"dic = %@",_paramDic);
-    for (NSString *valueStr in [_paramDic allValues]) {
-        if ([valueStr isEqualToString:kDefaultValue]) {
-            isRight = NO;
-            [self showAlterView:@"请将上页信息填写完整"];
-        }
-    }
+//    for (NSString *valueStr in [_paramDic allValues]) {
+//        if ([valueStr isEqualToString:kDefaultValue]) {
+//            isRight = NO;
+//            [self showAlterView:@"请将上页信息填写完整"];
+//        }
+//    }
     return isRight;
 }
 

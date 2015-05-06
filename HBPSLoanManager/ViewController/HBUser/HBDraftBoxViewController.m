@@ -161,61 +161,66 @@
             }
                 break;
      */
-    
-    switch (type) {
-        case firstCheck:
-        {
-            vc = [[HBCFirstViewController alloc] init];
-        }
-            break;
-        case routeCheck:
-        {
-            vc = [[HBRoutineFirstViewController alloc] init];
-        }
-            break;
-        case allCheck:
-        {
-            vc = [[HBAllCheckViewController alloc] init];
-        }
-            break;
-        case payBackCheck:
-        {
-            vc = [[HBPayBackCheckFirstViewController alloc] init];
-        }
-            break;
-            
-        case localeCollectionCheck:{
-            vc = [[HBLocaleCollectionCheckViewController alloc] init];
-        }
-/**
- pVDailyMortgageFirstChecks,//个商车辆贷款首次检查
- personalVehiclesDailyMortgageChecks,//    个商车辆贷款日常及逾期
- individualCommercialLocaleCollect,//    个商现场催收
- iCRepaymentCondition,//    个商还款情况
- individualCommercialCreditDailyCheck,//个商贷款日常检查
- 
- 
- */
-            
-        case pVDailyMortgageFirstChecks:{
-            vc = [[HBPVDailyMortgageFirstChecksNextViewController alloc] init];
-        }
-        case personalVehiclesDailyMortgageChecks:{
-            vc = [[HBPersonalVehiclesDailyMortgageChecksViewController alloc] init];
-        }
-        case individualCommercialLocaleCollect:{
-            vc = [[HBIndividualCommercialLocaleCollectionCheckViewContr alloc] init];
-        }
-        case iCRepaymentCondition:{
-            vc = [[HBICRepaymentConditionViewController alloc] init];
-        }
-        case individualCommercialCreditDailyCheck:{
-            vc = [[HBIndividualCommercialCreditDailyCheckViewController alloc] init];
-        }
-
-        default:
-            break;
-    }
+    vc = [[NSClassFromString(model.className) alloc] init];
+//    if (!vc) switch (type) {
+//        case firstCheck:
+//        {
+//            vc = [[HBCFirstViewController alloc] init];
+//        }
+//            break;
+//        case routeCheck:
+//        {
+//            vc = [[HBRoutineFirstViewController alloc] init];
+//        }
+//            break;
+//        case allCheck:
+//        {
+//            vc = [[HBAllCheckViewController alloc] init];
+//        }
+//            break;
+//        case payBackCheck:
+//        {
+//            vc = [[HBPayBackCheckFirstViewController alloc] init];
+//        }
+//            break;
+//            
+//        case localeCollectionCheck:{
+//            vc = [[HBLocaleCollectionCheckViewController alloc] init];
+//        }
+//            break;
+/////**
+//// pVDailyMortgageFirstChecks,//个商车辆贷款首次检查
+//// personalVehiclesDailyMortgageChecks,//    个商车辆贷款日常及逾期
+//// individualCommercialLocaleCollect,//    个商现场催收
+//// iCRepaymentCondition,//    个商还款情况
+//// individualCommercialCreditDailyCheck,//个商贷款日常检查
+//// 
+//// 
+//// */
+////           case individualCommercialFirstTracking:
+////        {
+////            
+////        }
+////            break;
+////        case pVDailyMortgageFirstChecks:{
+////            vc = [[HBIndividualCommercialFirstTrackingViewController alloc] init];
+////        }
+////        case personalVehiclesDailyMortgageChecks:{
+////            vc = [[HBPersonalVehiclesDailyMortgageChecksViewController alloc] init];
+////        }
+////        case individualCommercialLocaleCollect:{
+////            vc = [[HBIndividualCommercialLocaleCollectionCheckViewContr alloc] init];
+////        }
+////        case iCRepaymentCondition:{
+////            vc = [[HBICRepaymentConditionViewController alloc] init];
+////        }
+////        case individualCommercialCreditDailyCheck:{
+////            vc = [[HBIndividualCommercialCreditDailyCheckViewController alloc] init];
+////        }
+//
+//        default:
+//            break;
+//    }
     vc.userDic = dataDic;
     [self pushViewController:vc animated:YES];
 }
@@ -239,7 +244,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 - (void)backBtnEvents:(id)sender{

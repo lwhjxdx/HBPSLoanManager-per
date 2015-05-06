@@ -14,6 +14,7 @@
 #import "HBSignInController.h"
 #import "HBLocusViewController.h"
 #import "HBDraftBoxViewController.h"
+
 @interface HBUserViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *imageViewArray;
@@ -119,12 +120,12 @@
 //配置 数据
 - (void)configData{
     imageViewArray = @[[UIImage imageNamed:@"wdzl-icon1"],
-//                       [UIImage imageNamed:@"wdzl-icon2"],
+                       [UIImage imageNamed:@"wdzl-icon2"],
                        [UIImage imageNamed:@"wdzl-icon3"],
                        [UIImage imageNamed:@"wdzl-icon5"]];
     
     titleArray = @[@"草稿箱",
-//                   @"活动轨迹",
+                   @"活动轨迹",
                    @"签到",
                    @"密码修改"];
     
@@ -139,20 +140,21 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IDE"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@"IDE"];
+        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     }
-    cell.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 50);
-    for (UIView *view in [cell.contentView subviews]) {
-        [view removeFromSuperview];
-    }
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 25, 25)];
-    imageView.image = imageViewArray[indexPath.row];
-    [cell.contentView addSubview:imageView];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, kSCREEN_WIDTH - 100, 25)];
-    label.text = titleArray[indexPath.row];
-    [cell.contentView addSubview:label];
-    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+//    cell.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 50);
+//    for (UIView *view in [cell.contentView subviews]) {
+//        [view removeFromSuperview];
+//    }
+//    
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 25, 25)];
+//    imageView.image = imageViewArray[indexPath.row];
+//    [cell.contentView addSubview:imageView];
+    cell.imageView.image = imageViewArray[indexPath.row];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, kSCREEN_WIDTH - 100, 25)];
+    cell.textLabel.text = titleArray[indexPath.row];
+//    [cell.contentView addSubview:label];
+//    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor = RGBACOLOR(247, 247, 247, 1);
     return cell;
@@ -173,12 +175,19 @@
             break;
         case 1:
         {
+            //活动轨迹
+            HBLocusViewController *vc = [[HBLocusViewController alloc] init];
+            [self pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
             //签到
             HBSignInController *vc = [[HBSignInController alloc] init];
             [self pushViewController:vc animated:YES];
         }
             break;
-        case 2:
+        case 3:
         {
             //修改密码
             HBAlterPWViewController *vc = [[HBAlterPWViewController alloc] init];
@@ -237,7 +246,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"NO"];
+    [self setTabbarViewHide:NO];
     if (isFirst) {
         [self initTableView];
     }

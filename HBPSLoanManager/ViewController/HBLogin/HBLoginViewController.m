@@ -74,8 +74,9 @@
 #warning passwd
     if (PAT_) {
         //密码
-        self.passwdTextField.text  = @"7B52009B64FD0A2A49E6D8A939753077792B0554";
-        //self.passwdTextField.text  = @"1234";
+//        self.passwdTextField.text  = @"7B52009B64FD0A2A49E6D8A939753077792B0554";
+        self.userNameTextField.text = @"manager1";
+        self.passwdTextField.text  = @"111111";
     }
     
     self.loginButton.layer.cornerRadius = 5;
@@ -139,7 +140,7 @@
         //手机唯一标识
         NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
         //密码
-        //pw = [[pw sha1] uppercaseString];
+        pw = [[pw sha1] uppercaseString];
         dic = [NSMutableDictionary dictionary];
         [dic setObject:pw forKey:@"userPwd"];
         [dic setObject:userName forKey:@"userId"];

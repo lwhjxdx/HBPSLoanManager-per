@@ -193,7 +193,7 @@
                        @"放款时点",
                        @"检查方式"];
         
-        keyArray = @[  @"userID",
+        keyArray = @[  @"custName",
                        @"loadAmt",
                        @"productRate",
                        @"startDate",
@@ -248,7 +248,7 @@
         _paramDic = dataDic;
     }];
     
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 

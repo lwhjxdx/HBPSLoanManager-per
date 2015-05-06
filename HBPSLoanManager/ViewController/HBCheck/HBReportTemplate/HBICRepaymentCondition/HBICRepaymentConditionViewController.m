@@ -254,7 +254,7 @@
         _paramDic = dataDic;
     }];
     
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 //处理特殊字段

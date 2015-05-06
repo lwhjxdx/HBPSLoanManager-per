@@ -183,7 +183,7 @@
      [vc setBackEvent:^(NSMutableDictionary *dataDic) {
         _paramDic = dataDic;
     }];
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
     
 
 }

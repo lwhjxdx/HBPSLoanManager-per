@@ -26,9 +26,9 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.backButton.hidden = NO;
-    self.titleLabel.text = @"贷后检查报告";
+    self.titleLabel.text = @"小企业法人授信业务";
     [self configUI];
-    
+    [self requestFromNetWorking];
 }
 
 - (void)configUI{
@@ -143,7 +143,7 @@
 //dueNum //借据编号
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -48,7 +48,7 @@
 }
 
 - (void)xxxx{
-    NSLog(@"XXX:%@",self.userDic);
+    NSLog(@"classString==XXX=%@:%@",NSStringFromClass(self.class),self.userDic);
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -65,8 +65,6 @@
 //所有子类需要重写此方法 处理特殊字段
 - (void)handleSpecial{
 }
-
-
 
 
 
