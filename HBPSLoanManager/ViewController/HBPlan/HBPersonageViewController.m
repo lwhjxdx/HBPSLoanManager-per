@@ -5,7 +5,9 @@
 //  Created by QC on 15-4-23.
 //  Copyright (c) 2015年 YM. All rights reserved.
 //
-
+/**
+ <#Description#>
+ */
 #import "HBPersonageViewController.h"
 #import "HBCheckCaledarViewController.h"
 #import "HBPersonPlanViewController.h"
@@ -48,6 +50,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 @end

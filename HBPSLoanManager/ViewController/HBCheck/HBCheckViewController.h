@@ -9,5 +9,6 @@
 #import "HBBaseSearchTableViewController.h"
 
 @interface HBCheckViewController : HBBaseSearchTableViewController
-
+@property(nonatomic,strong)NSArray *tableViewArr;
+@property(nonatomic,strong)NSString *titleString;
 @end

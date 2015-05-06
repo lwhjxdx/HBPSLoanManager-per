@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UILabel *hbtitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hbContentLabel;
-@property (weak) id<HBDraftBoxCellDelegate> delegate;
+@property (nonatomic, assign) id<HBDraftBoxCellDelegate> delegate;
 
 @property BOOL isSelect;
 

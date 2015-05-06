@@ -12,31 +12,40 @@
 #import "LoanPersonageCar/LoanPersonageCarController.h"
 #import "HBSignInController.h"
 @interface HBCheckViewController ()
-
 @end
 
 @implementation HBCheckViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"贷后检查报告";
+    [self initTableViewForResult:CGRectZero];
+    self.tableView.scrollEnabled = NO;
+    self.titleLabel.text = _titleString;
 }
-- (IBAction)LegalPersonInfoSearch:(id)sender {
-    [self pushQiandaoVC:NSClassFromString(@"LoanLegalViewController")];
-//    LoanLegalViewController *loanLegaVC = [[LoanLegalViewController alloc] init];
-//    [self pushViewController:loanLegaVC animated:YES];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _tableViewArr.count;
 }
-- (IBAction)PersonageSearch:(id)sender {
-    [self pushQiandaoVC:NSClassFromString(@"LoanPersonageController")];
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellId = @"helloCellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    cell.textLabel.text = _tableViewArr[indexPath.row][0];
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self pushQiandaoVC:NSClassFromString(_tableViewArr[indexPath.row][1])];
 
-    LoanPersonageController *loanPersonageVC = [[LoanPersonageController alloc] init];
-//    [self pushViewController:loanPersonageVC animated:YES];
 }
-- (IBAction)PersonageCarSearch:(id)sender {
-    [self pushQiandaoVC:NSClassFromString(@"LoanPersonageCarController")];
-//
-//    LoanPersonageCarController *loanPersonageCarVC = [[LoanPersonageCarController alloc] init];
-//    [self pushViewController:loanPersonageCarVC animated:YES];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
 }
 /**
  *  推向签到页面
@@ -45,10 +54,14 @@
  */
 -(void)pushQiandaoVC:(Class)class
 {
-    HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
-    qiandaoVC.isShowNextItem = YES;
-    qiandaoVC.classString = class;
-    [self.navigationController pushViewController:qiandaoVC animated:YES];
+#warning 暂时关闭定位
+//    HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
+//    qiandaoVC.isShowNextItem = YES;
+//    qiandaoVC.classString = class;
+//    [self.navigationController pushViewController:qiandaoVC animated:YES];
+    
+    
+    [self.navigationController pushViewController:[[class alloc]init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +71,7 @@
 //dueNum //借据编号
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"NO"];
+    [self setTabbarViewHide:NO];
 }
 
 @end

@@ -272,5 +272,9 @@
     [viewArray addObject:cell];
     [scrollView addSubview:cell];
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    scrollView.contentSize = 
+}
 @end

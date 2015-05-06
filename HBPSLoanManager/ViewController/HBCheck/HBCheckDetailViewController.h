@@ -7,6 +7,7 @@
 //
 
 #import "HBBaseViewController.h"
+#import "HBType.h"
 
 @interface HBCheckDetailViewController : HBBaseViewController
 
@@ -15,7 +16,7 @@
 @property (nonatomic,copy) NSMutableDictionary *customerDic;
 @property (nonatomic,copy) NSMutableDictionary *customerDicWithData;
 @property (nonatomic,copy) NSDictionary *dictData;
-
+@property (nonatomic,assign)CheckType checkType;
 @property (weak, nonatomic) IBOutlet UILabel *enterpriseName;
 @property (weak, nonatomic) IBOutlet UILabel *enterpriseAddr;
 

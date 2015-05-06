@@ -6,36 +6,35 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3886666E-D50E-450E-8DA5-FB98C0770D96</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HBPSLoanManager</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>d527bfd2-f195-11dd-984d-ab748d24aa7e++1904</key>
-		<string>http://ziparchive.googlecode.com/svn/trunk/minizip</string>
+		<key>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</key>
+		<string>https://github.com/PerHao/HBPSLoanManager-per.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HBPSLoanManager.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>d527bfd2-f195-11dd-984d-ab748d24aa7e++1904</key>
-		<string>minizip/</string>
-	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>d527bfd2-f195-11dd-984d-ab748d24aa7e++1904</key>
-		<string>http://ziparchive.googlecode.com/svn</string>
+		<key>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://ziparchive.googlecode.com/svn/trunk/minizip</string>
+	<string>https://github.com/PerHao/HBPSLoanManager-per.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>d527bfd2-f195-11dd-984d-ab748d24aa7e++1904</string>
+	<string>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
+			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>d527bfd2-f195-11dd-984d-ab748d24aa7e++1904</string>
+			<string>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</string>
 			<key>IDESourceControlWCCName</key>
-			<string>minizip</string>
+			<string>HBPSLoanManager-per</string>
 		</dict>
 	</array>
 </dict>

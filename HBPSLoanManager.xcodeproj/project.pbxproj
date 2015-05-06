@@ -229,6 +229,7 @@
 		282415901AE8FFB100935146 /* HBinspectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBinspectViewController.h; sourceTree = "<group>"; };
 		282415911AE8FFB100935146 /* HBinspectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBinspectViewController.m; sourceTree = "<group>"; };
 		282415921AE8FFB100935146 /* HBinspectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBinspectViewController.xib; sourceTree = "<group>"; };
+		90138FC31AF8A5B4006ADBA1 /* HBType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBType.h; sourceTree = "<group>"; };
 		9901CD4A1ABE61C500F92AFD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		9901CD4B1ABE61C500F92AFD /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		9901CD4C1ABE61C500F92AFD /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -1145,6 +1146,7 @@
 				9963F03D1AAD848600AA1B63 /* HBCheckViewController.h */,
 				9963F03E1AAD848600AA1B63 /* HBCheckViewController.m */,
 				9963F03F1AAD848600AA1B63 /* HBCheckViewController.xib */,
+				90138FC31AF8A5B4006ADBA1 /* HBType.h */,
 				994EAB7D1AAEE5DD002FB5ED /* HBCheckDetailViewController.h */,
 				994EAB7E1AAEE5DD002FB5ED /* HBCheckDetailViewController.m */,
 				994EAB7F1AAEE5DD002FB5ED /* HBCheckDetailViewController.xib */,
@@ -1804,7 +1806,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1840,7 +1842,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

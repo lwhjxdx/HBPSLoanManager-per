@@ -44,10 +44,10 @@ static NSMutableArray *_currentConArray;
 }
 
 - (void)removeConnection:(NSURLConnection *)connection{
+    [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
     if ([_currentConArray containsObject:connection]) {
         [_currentConArray removeObject:connection];
         if (_currentConArray.count == 0) {
-            [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
     }
@@ -72,6 +72,7 @@ static NSMutableArray *_currentConArray;
         if (_currentConArray.count <_maxCount && ![_currentConArray containsObject:connection]) {
             [_currentConArray addObject:connection];
             [connection start];
+//            [SVProgressHUD showWithStatus:@"正在加载"];
             [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             

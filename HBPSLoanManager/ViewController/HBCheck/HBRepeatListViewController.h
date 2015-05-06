@@ -7,10 +7,10 @@
 //
 
 #import "HBBaseViewController.h"
-
+#import "HBType.h"
 @interface HBRepeatListViewController : HBBaseViewController
 
 @property (nonatomic,copy) NSMutableDictionary *customerDic;
-
+@property (nonatomic,assign)CheckType checkType;
 
 @end

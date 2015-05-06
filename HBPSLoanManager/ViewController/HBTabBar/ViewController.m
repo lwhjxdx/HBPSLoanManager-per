@@ -122,8 +122,7 @@
 - (void)setTabbarHide:(NSNotification *)notification {
     NSDictionary * userInfo = [notification userInfo];
     
-    NSString *data = [userInfo valueForKey:@"isHide"];
-    if ([data isEqualToString:@"YES"]) {
+    if ([[userInfo valueForKey:@"isHide"] boolValue]) {
             self.tabbarView.hidden = YES;
     }else{
         self.tabbarView.hidden = NO;

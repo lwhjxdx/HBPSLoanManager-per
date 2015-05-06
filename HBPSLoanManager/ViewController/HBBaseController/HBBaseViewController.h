@@ -22,7 +22,7 @@
 
 
 //设置tabbar显示与隐藏
-- (void)setTabbarViewHide:(NSString *)isHide;
+- (void)setTabbarViewHide:(BOOL)isHide;
 //push到下级界面的方法
 - (void)pushViewController:(UIViewController *)vc animated:(BOOL)animated;
 

@@ -33,5 +33,5 @@
 @property (nonatomic,copy) NSString *isSelect;
 //存储的文件地址
 @property (nonatomic,copy) NSString *filePath;
-
+@property (nonatomic,copy) NSString *className;
 @end

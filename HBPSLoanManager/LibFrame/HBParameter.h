@@ -9,8 +9,8 @@
 #ifndef HBPSLoanManager_HBParameter_h
 #define HBPSLoanManager_HBParameter_h
 
-#define kDefaultEDSKey @"8jG93wGg8h"          //默认key
-#define kEDSKeyString @"EDSKEYSTRING"   //edsKey 在userdefault中的名称
+//#define kDefaultEDSKey @"8jG93wGg8h"          //默认key
+//#define kEDSKeyString @"EDSKEYSTRING"   //edsKey 在userdefault中的名称
 
 #define kDefaultValue @"9\\9....\\9"
 

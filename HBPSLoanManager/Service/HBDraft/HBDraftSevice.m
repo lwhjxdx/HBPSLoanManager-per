@@ -13,7 +13,9 @@
 
 
 //保存数据到草稿箱
-- (Boolean)saveDraft:(NSMutableDictionary *)dataDic withType:(HBDraftType)type{
+
+- (Boolean)saveDraft:(NSMutableDictionary *)dataDic withType:(HBDraftType)type withClassName:(Class)className
+{
     
     //剔除默认的值
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary: dataDic ];
@@ -22,11 +24,15 @@
             [tempDic removeObjectForKey:keyString];
         }
     }
+    [tempDic setObject:NSStringFromClass(className) forKey:@"className"];
     NSString *pathString = [self saveData:tempDic];
+    if (!pathString) {
+        return NO;
+    }
     NSString *nameString =  dataDic[@"custName"];
     NSString *checkTypeString = [self getTypeString:type];
     NSInteger checkType = type;
-    
+
     if (nameString && checkTypeString) {
         
         HBReportModel *model = [[DBManager shareManager] selectInfo:nameString withType:checkType];
@@ -35,14 +41,16 @@
             model.contentString = checkTypeString;
             model.filePath = pathString;
             model.reportType = type;
-            [[DBManager shareManager] updateWithModel:model];
+            model.className = NSStringFromClass(className);
+            return [[DBManager shareManager] updateWithModel:model];
         }else{
             model = [[HBReportModel alloc] init];
             model.titleString = nameString;
             model.contentString = checkTypeString;
             model.filePath = pathString;
             model.reportType = type;
-            [[DBManager shareManager] insertDataWithModel:model];
+            model.className = NSStringFromClass(className);
+            return [[DBManager shareManager] insertDataWithModel:model];
         }
         return YES;
     }else{
@@ -119,7 +127,7 @@
 - (NSString *)saveData:(NSMutableDictionary *)data{
     
     NSString *filePath  = [NSHomeDirectory()stringByAppendingPathComponent:@"/Documents/draft"];
-    NSString *fileName = [NSString stringWithFormat:@"%@/draft%@_%@.data",filePath,data[@"conNo"],data[@"custId"]];
+    NSString *fileName = [NSString stringWithFormat:@"%@/draft%@%@_%@.plist",filePath,data[@"className"],data[@"conNo"],data[@"custId"]];
     BOOL x = YES;
     NSError *error;
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&x]) {
@@ -129,7 +137,7 @@
     if (success) {
         
         NSLog(@"<<<<<<<fileName %@",fileName);
-        return fileName;
+        return [NSString stringWithFormat:@"/draft%@%@_%@.plist",data[@"className"],data[@"conNo"],data[@"custId"]];
     }else{
         return nil;
     }
@@ -140,8 +148,9 @@
 //从草稿箱中获取数据
 - (NSMutableDictionary *)getDataFromDraft:(HBReportModel *)model{
     NSString *filePath = model.filePath;
-    
-    NSDictionary *dataDic = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    NSString *mainfilePath  = [NSHomeDirectory()stringByAppendingPathComponent:@"/Documents/draft"];
+
+    NSDictionary *dataDic = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"%@%@",mainfilePath,filePath]];
     return [NSMutableDictionary dictionaryWithDictionary:dataDic];
 }
 
@@ -157,7 +166,9 @@
     [[DBManager shareManager] deleteDataWithModel:model];
     
     //删除 文件
-    [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:nil];
+    if ([[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@%@",[NSHomeDirectory()stringByAppendingPathComponent:@"/Documents/draft"],model.filePath] error:nil]) {
+        NSLog(@"%@删除成功",model.filePath);
+    }
 
 }
 

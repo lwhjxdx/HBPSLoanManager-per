@@ -28,7 +28,7 @@
     self.backButton.hidden = NO;
     self.titleLabel.text = @"个人经营性车辆按揭贷款";
     [self configUI];
-    
+    [self requestFromNetWorking];
 }
 
 - (void)configUI{
@@ -48,7 +48,7 @@
     if (!dic) {
         return;
     }
-    [HBRequest RequestDataJointStr:kQueryCarBaseInfo parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+    [HBRequest RequestDataJointStr:kFindCustInfo parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
     } failBlock:^(NSError *error) {
     }];
@@ -61,8 +61,10 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (_searchString) {
         [dic setObject:_searchString forKey:@"enterpriseName"];
+    }else{
+        [dic setObject:@"" forKey:@"enterpriseName"];
     }
-    [dic setObject:@"2" forKey:@"productType"];
+    [dic setObject:@"3" forKey:@"productType"];
     if (PAT_) {
         [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
     }else{
@@ -77,7 +79,7 @@
         _dataArray = [NSMutableArray array];
     }
     
-    _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"custList"]];
+    _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"customInfos"]];
     [self.tableView reloadData];
 }
 
@@ -111,7 +113,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     NSDictionary *dic = _dataArray[indexPath.section];
-    cell.textLabel.text = dic[@"enterpriseName"];
+    cell.textLabel.text = dic[@"cusName"];
     [cell.textLabel setTextColor:[UIColor grayColor]];
     [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
     return cell;
@@ -127,6 +129,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HBCheckDetailViewController *vc = [[HBCheckDetailViewController alloc] init];
+    vc.checkType = ChechTypeGerenchedai;
     vc.customerDic = [NSMutableDictionary dictionaryWithDictionary:_dataArray[indexPath.section]];
     [self pushViewController:vc animated:YES];
 }
@@ -136,7 +139,7 @@
 //dueNum //借据编号
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 - (void)didReceiveMemoryWarning {

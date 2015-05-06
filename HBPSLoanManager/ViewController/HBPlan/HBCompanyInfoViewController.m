@@ -51,7 +51,7 @@
                           ];
      conNoList = [self.customerDic[@"conNo"] componentsSeparatedByString:@","];;
     conNoString = conNoList[0]?conNoList[0]:@"";
-#pragma warning 点击企业检查上海后报错：试图插入空对象
+#warning 点击企业检查上海后报错：试图插入空对象
     valueArray1 = @[ self.customerDic[@"custId"],
                      self.customerDic[@"enterpriseName"],
                      conNoList[0]?conNoList[0]:@"",

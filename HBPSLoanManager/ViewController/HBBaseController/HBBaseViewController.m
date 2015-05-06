@@ -97,8 +97,8 @@
 }
 
 
-- (void)setTabbarViewHide:(NSString *)isHide{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNSNotificationTabbarHide     object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:isHide,@"isHide", nil]];
+- (void)setTabbarViewHide:(BOOL)isHide{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNSNotificationTabbarHide     object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@(isHide),@"isHide", nil]];
 }
 
 
@@ -151,7 +151,12 @@
     }
 }
 
-- (void)dealloc{
+
+/**
+ *  移除所有通知，如果不移除程序会莫名崩溃
+ */
+-(void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

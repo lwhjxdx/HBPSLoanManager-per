@@ -226,9 +226,9 @@
 //        _infoTextfield.textAlignment = NSTextAlignmentRight;
     }else{
         //设置pick里面的值
-        self.labelViewLabel.text = [self.changeArray objectAtIndex:[value integerValue]];
+        self.labelViewLabel.text = [self.changeArray objectAtIndex:0];
         
-        self.valueString = [NSString stringWithFormat:@"%d",[value integerValue]];
+        self.valueString = [NSString stringWithFormat:@"%d",[value intValue]];
     }
 }
 

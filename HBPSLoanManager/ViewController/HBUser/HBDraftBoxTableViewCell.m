@@ -26,9 +26,9 @@
         [btn setImage:[UIImage imageNamed:@"unChecked"] forState:(UIControlStateNormal)];
         _model.isSelect = @"NO";
     }
-    [[DBManager shareManager] updateWithModel:_model];
+    ;
 
-    if ([self.delegate respondsToSelector:@selector(cellChangeClicked:)]) {
+    if ([[DBManager shareManager] updateWithModel:_model]&&[self.delegate respondsToSelector:@selector(cellChangeClicked:)]) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         [dic setObject:self forKey:@"cell"];
         [self.delegate cellChangeClicked:dic];

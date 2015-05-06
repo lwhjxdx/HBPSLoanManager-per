@@ -282,7 +282,7 @@
         _paramDic = dataDic;
     }];
     
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 #pragma mark - 处理特殊字段

@@ -126,7 +126,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 

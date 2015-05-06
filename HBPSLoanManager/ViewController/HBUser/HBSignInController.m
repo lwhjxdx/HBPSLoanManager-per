@@ -196,7 +196,7 @@
 
 //签到点击事件
 - (void)signInClicked:(UIButton *)btn{
-    btn.hidden = YES;
+//    btn.hidden = YES;
     self.homeButton.hidden = !_isShowNextItem;
     [self requestFromNetWorking];
     
@@ -334,7 +334,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self setTabbarViewHide:@"YES"];
+    [super viewWillAppear:animated];
+    [self setTabbarViewHide:YES];
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _geocodesearch.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
@@ -352,6 +353,7 @@
 }
 
 - (void)dealloc{
+    
     if (_geocodesearch != nil) {
         _geocodesearch = nil;
     }
@@ -389,9 +391,9 @@
     NSDate *_date = [gregorian dateFromComponents:_comps];
     NSDateComponents *weekdayComponents =
     [gregorian components:NSWeekdayCalendarUnit fromDate:_date];
-    NSInteger _weekday = [weekdayComponents weekday];
+//    NSInteger _weekday = [weekdayComponents weekday];
     NSString *weakString;
-    switch (_weekday) {
+    switch (weekdayComponents.weekday) {
         case 1:
             weakString = @"周日";
             break;

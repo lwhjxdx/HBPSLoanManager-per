@@ -80,6 +80,7 @@
                    @"企业财务情况",
                    @"抵质押物目前状况",
                    ];
+    
     keyArray = @[  @"custId",
                    @"custName",
                    @"conNo",
@@ -227,7 +228,7 @@
         cell.hbTitleLabel.text = titleArray[i];
         cell.frame = CGRectMake(0, kCellHigh*i, kSCREEN_WIDTH, kCellHigh);
         
-        keyArray = titleArray;
+//        keyArray = titleArray;
         cell.keyString = keyArray[i];
         
         if ([cell.keyString isEqualToString:@"operationType"]) {
@@ -272,10 +273,12 @@
                 [cell showTextField];
 
         }
+        
         cell.vc = self;
         
         [cell setValuetext:[self.userDic objectForKey:cell.keyString]];
-         cell.subValueString = [self.userDic objectForKey:cell.subKeyString];
+        cell.subValueString = [self.userDic objectForKey:cell.subKeyString];
+        [cell setTextLength:textLengthArray[i]];
         
         [_cellArray addObject:cell];
         [scrollView addSubview:cell];
@@ -317,7 +320,7 @@
     [vc setBackEvent:^(NSMutableDictionary *dataDic) {
         _paramDic = dataDic;
     }];
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 //处理特殊字段

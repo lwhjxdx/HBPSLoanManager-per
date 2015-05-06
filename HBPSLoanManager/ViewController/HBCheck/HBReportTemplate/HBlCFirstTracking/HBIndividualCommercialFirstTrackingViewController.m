@@ -214,10 +214,10 @@
                    @"贷款实际支付方式"];
     
     keyArray = @[  @"custName",
-                   @"conNO",
+                   @"conNo",
                    @"creditProductCd",
                    @"loadAmt",
-                   @"loatPeriod",
+                   @"loadPeriod",
                    @"loadDate",
                    @"busiScope",
                    @"operationAddress",
@@ -293,7 +293,7 @@
         _paramDic = dataDic;
     }];
     
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 #pragma mark - 处理特殊字段

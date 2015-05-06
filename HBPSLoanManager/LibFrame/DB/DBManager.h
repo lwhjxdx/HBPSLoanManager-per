@@ -14,7 +14,7 @@
 //开发中一般，暴露一个类方法，来使其他对象通过此方法获取到单例
 + (DBManager *)shareManager;
 //插入一条数据
-- (void)insertDataWithModel:(HBReportModel *)model;
+- (BOOL)insertDataWithModel:(HBReportModel *)model;
 //根据id来删除一条数据
 - (void)deleteDataWithReportId:(NSInteger)reportId;
 
@@ -26,7 +26,7 @@
 
 
 
-- (void)updateWithModel:(HBReportModel *)model;
+- (BOOL)updateWithModel:(HBReportModel *)model;
 
 //根据model来删除一条数据
 - (void)deleteDataWithModel:(HBReportModel *)model;

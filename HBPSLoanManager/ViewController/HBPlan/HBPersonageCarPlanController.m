@@ -67,7 +67,7 @@
     if (_searchString) {
         [dic setObject:_searchString forKey:@"enterpriseName"];
     }
-    [dic setObject:@"1" forKey:@"productType"];
+    [dic setObject:@"3" forKey:@"productType"];
     
     if (PAT_) {
         [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
@@ -83,8 +83,8 @@
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }
-    if (jsonDic[@"custList"]) {
-        _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"custList"]];
+    if (jsonDic[@"customInfos"]) {
+        _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"customInfos"]];
     }else{
         [_dataArray removeAllObjects];
     }
@@ -107,7 +107,7 @@
     UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 40, 15, 20, 30)];
     arrowImageView.image = [UIImage imageNamed:@"dot"];
     cell.contentView.backgroundColor = RGBACOLOR(255, 255, 255, 1);
-    cell.textLabel.text = _dataArray[indexPath.row][@"enterpriseName"];
+    cell.textLabel.text = _dataArray[indexPath.row][@"cusName"];
     [cell.contentView addSubview:arrowImageView];
     return cell;
 }
@@ -135,7 +135,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 

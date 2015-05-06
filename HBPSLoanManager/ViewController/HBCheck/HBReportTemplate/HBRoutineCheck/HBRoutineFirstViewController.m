@@ -214,7 +214,7 @@
         _paramDic = dataDic;
     }];
  
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 - (void)getAllParams{

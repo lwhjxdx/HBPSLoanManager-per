@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.titleLabel.text = @"检查计划";
 
 }
@@ -59,7 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [self setTabbarViewHide:@"NO"];
+    [self setTabbarViewHide:NO];
 }
 
 - (void)didReceiveMemoryWarning {

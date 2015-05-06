@@ -323,8 +323,7 @@
         //重新赋值给_paramDic ，方便 下一步 还原上次填写的值
         _paramDic = dataDic;
     }];
-    
-    [self pushViewController:vc animated:YES];
+    [self pushCheckNextVC:vc];
 }
 
 

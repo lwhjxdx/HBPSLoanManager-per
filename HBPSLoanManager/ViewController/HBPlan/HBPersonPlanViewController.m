@@ -42,7 +42,6 @@
     }];
     
     [self initTableViewForResult:CGRectZero];
-    
 }
 
 //从网络请求数据 查询企业信息
@@ -135,7 +134,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 
 @end

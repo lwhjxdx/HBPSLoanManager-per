@@ -11,7 +11,7 @@
 #import "HBRoutineFirstViewController.h"
 #import "HBAllCheckViewController.h"
 #import "HBPayBackCheckFirstViewController.h"
-#import "HBLCNextCheckViewController.h"
+#import "HBLocaleCollectionCheckViewController.h"
 @interface HBinspectViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *infoTableView;
@@ -62,7 +62,8 @@
     [self pushViewController:payVC animated:YES];
 }
 - (IBAction)collectionCheck:(id)sender {
-    HBLCNextCheckViewController *nextCheckVC = [[HBLCNextCheckViewController alloc] init];
+    HBLocaleCollectionCheckViewController *nextCheckVC = [[HBLocaleCollectionCheckViewController alloc] init];
+    nextCheckVC.userDic = self.nextDic;
     [self pushViewController:nextCheckVC animated:YES];
 }
 
@@ -158,6 +159,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:@"YES"];
+    [self setTabbarViewHide:YES];
 }
 @end

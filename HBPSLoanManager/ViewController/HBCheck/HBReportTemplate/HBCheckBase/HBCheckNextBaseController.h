@@ -23,7 +23,7 @@
     
     HBDraftSevice *_draftSevice;
 }
-
+@property(nonatomic,copy)Class className;
 
 @property (nonatomic,copy) GetBackData getbackData;
 
