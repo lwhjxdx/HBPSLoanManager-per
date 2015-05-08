@@ -81,48 +81,48 @@
                    @"抵质押物目前状况",
                    ];
     
-    keyArray = @[  @"custId",
-                   @"custName",
-                   @"conNo",
-                   @"creditProductCd",
-                   @"loadAmt",
-                   @"loadPeriod",
-                   @"loadDate",
-                   @"busiScope",
-                   @"operationAddress",
-                   @"legalPerson",
-                   @"shareholderInfo",
-                   @"accountReceive",
-                   @"materialsValue",
-                   @"stockValue",
-                   @"bankLoadAmt",
-                   @"bankDeposit",
-                   @"repayType",
-                   @"loanPurpose",
-                   @"payMethod",
-                   @"assetName",
-                   @"affirmValue",
-                   @"evaMechanism",
-                   @"bondedRate",
-                   @"address",
-                   @"guarPay",
-                   @"checkAddress",
+    keyArray = @[  @"custId",//客户编号
+                   @"custName",//客户名称
+                   @"conNo",//合同编号
+                   @"creditProductCd",//授信业务种类
+                   @"loadAmt",//贷款金额
+                   @"endDate",//贷款期限
+                   @"startDate",//放款日期
+                   @"busiScope",//经营范围
+                   @"operationAddress",//经营地址
+                   @"legalPerson",//法定代表人
+                   @"shareholderInfo",//股东信息
+                   @"accountReceive",//应收账款
+                   @"materialsValue",//原材料价值
+                   @"stockValue",//存货价值 00
+                   @"bankLoadAmt",//银行借款 00
+                   @"bankDeposit",//银行账户存款
+                   @"repayType",//还款方式
+                   @"loanPurpose",//贷款约定用途
+                   @"payMethod",//贷款支付方式
+                   @"assetName",//抵押物质名称
+                   @"affirmValue",//
+                   @"evaMechanism",//
+                   @"bondedRate",//
+                   @"address",//
+                   @"guarPay",//
+                   @"checkAddress",//
 
-                   @"stockBalance",
-                   @"stockPrevBalance",
-                   @"receBalance",
-                   @"isRecePrevBalance",
-                   @"lentBalance",
-                   @"lentPrevBalance",
-                   @"sales",
-                   @"cash",
-                   @"queryDate",
-                   @"creditInvest",
-                   @"evaluateDate",
-                   @"evaluateMon",
-                   @"evaluateValue",
-                   @"finace",
-                   @"nowState",
+                   @"stockBalance",//
+                   @"stockPrevBalance",//
+                   @"receBalance",//
+                   @"isRecePrevBalance",//
+                   @"lentBalance",//
+                   @"lentPrevBalance",//
+                   @"sales",//
+                   @"cash",//
+                   @"queryDate",//
+                   @"creditInvest",//
+                   @"evaluateDate",//
+                   @"evaluateMon",//
+                   @"evaluateValue",//
+                   @"finace",//
+                   @"nowState"//
                                       ];
     
     textLengthArray = @[[NSNumber numberWithInteger:30],

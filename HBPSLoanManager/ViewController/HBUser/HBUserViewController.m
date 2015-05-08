@@ -27,7 +27,9 @@
 @implementation HBUserViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.titleLabel.text = @"我的信息";
     [self configData];
     isFirst = YES;
@@ -42,7 +44,6 @@
 - (void)littleAdjust{
     
     //替换 self.photoImageView 为 UpDataHeaderPicView 控件
-    
     self.photoImageView.layer.cornerRadius = self.photoImageView.frame.size.width/2;
     self.photoImageView.layer.masksToBounds = YES;
     self.photoImageView.layer.borderWidth = 5;
@@ -73,7 +74,9 @@
     upView.layer.borderColor = [UIColor whiteColor].CGColor;
     [[self.photoImageView superview] addSubview:upView];
     [self.photoImageView removeFromSuperview];
+    
     self.nameLabel.text = [HBUserModel getUserName];
+    
     self.loginButton.layer.cornerRadius =  5 ;
     self.loginButton.layer.masksToBounds = YES;
 }
@@ -102,18 +105,39 @@
 
 //界面tableview
 - (void)initTableView{
+    
     CGRect rect = self.subTempView.frame;
-    rect.size.height = imageViewArray.count* 60 ;
     self.subTempView.frame = rect;
     rect.origin = CGPointMake(0, 0);
     rect.size.width = kSCREEN_WIDTH;
-//    rect.size.height = rect.size.height*kSCREEN_HEIGHT/568.0;
+    //rect.size.height = imageViewArray.count * 60 + 80;
+    //rect.size.height = rect.size.height*kSCREEN_HEIGHT/568.0;
+    
     UITableView *tableView = [[UITableView alloc] initWithFrame:rect style:(UITableViewStylePlain)];
     tableView.dataSource  = self;
     tableView.delegate = self;
     tableView.backgroundColor = RGBACOLOR(247, 247, 247, 1);
     tableView.showsVerticalScrollIndicator = NO;
     [self.subTempView addSubview:tableView];
+    
+    UIView *footerView = [[UIView alloc] init];
+    footerView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 100);
+    footerView.backgroundColor = [UIColor clearColor];
+    
+    UIButton *logoutBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    logoutBtn.frame = CGRectMake((CGRectGetWidth(footerView.frame) - 260) * 0.5, 0, 260, 40);
+    logoutBtn.exclusiveTouch = YES;
+    [logoutBtn setTitle:@"登出" forState:UIControlStateNormal];
+    [logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    logoutBtn.backgroundColor = kColorWith16RGB(0x005E39);
+    logoutBtn.layer.cornerRadius =  5 ;
+    logoutBtn.layer.masksToBounds = YES;
+    [logoutBtn addTarget:self action:@selector(loginOutClick:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:logoutBtn];
+    
+    tableView.tableFooterView = footerView;
+    
+    
 }
 
 
@@ -121,12 +145,12 @@
 - (void)configData{
     imageViewArray = @[[UIImage imageNamed:@"wdzl-icon1"],
                        [UIImage imageNamed:@"wdzl-icon2"],
-                       [UIImage imageNamed:@"wdzl-icon3"],
+                       //[UIImage imageNamed:@"wdzl-icon3"],
                        [UIImage imageNamed:@"wdzl-icon5"]];
     
     titleArray = @[@"草稿箱",
                    @"活动轨迹",
-                   @"签到",
+                   //@"签到",
                    @"密码修改"];
     
 }
@@ -137,10 +161,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IDE"];
+    
     if (cell == nil) {
+        
         cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@"IDE"];
-        [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
 //    cell.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 50);
 //    for (UIView *view in [cell.contentView subviews]) {
@@ -180,14 +207,14 @@
             [self pushViewController:vc animated:YES];
         }
             break;
+//        case 2:
+//        {
+//            //签到
+//            //HBSignInController *vc = [[HBSignInController alloc] init];
+//            [self pushViewController:vc animated:YES];
+//        }
+//            break;
         case 2:
-        {
-            //签到
-            HBSignInController *vc = [[HBSignInController alloc] init];
-            [self pushViewController:vc animated:YES];
-        }
-            break;
-        case 3:
         {
             //修改密码
             HBAlterPWViewController *vc = [[HBAlterPWViewController alloc] init];

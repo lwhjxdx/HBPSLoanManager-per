@@ -31,6 +31,10 @@
     [super viewDidLoad];
     self.backButton.hidden = NO;
     self.titleLabel.text = @"个人商务贷款";
+    self.tableViewArr = @[@[@"个人商务贷款务检查计划",@"HBPersonPlanViewController"],
+//  @[@"个人商务贷款抽查计划",@"HBPersonPlanViewController"],
+  @[@"个人商务贷款检查日历",@"HBCheckCaledarViewController"]];
+    [self.tableView reloadData];
 }
 - (IBAction)companyPlan:(id)sender {
     HBPersonPlanViewController *personPlan = [[HBPersonPlanViewController alloc] init];

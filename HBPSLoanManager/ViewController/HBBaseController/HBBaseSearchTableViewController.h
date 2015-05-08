@@ -25,5 +25,6 @@ typedef void (^SearchData)(NSString *searchString);
 
 //初始化Tableview
 - (void)initTableViewForResult:(CGRect)rect;
-
+- (void)initTableViewForResult:(CGRect)rect withStyle:(UITableViewStyle)style;
+- (void)requestFromNetWorking;
 @end

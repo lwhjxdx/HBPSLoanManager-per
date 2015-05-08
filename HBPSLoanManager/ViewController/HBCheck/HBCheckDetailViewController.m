@@ -122,21 +122,24 @@
 - (IBAction)callTelphone:(id)sender {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[HBUserModel getUserId] forKey:@"userId"];
+    [dic setObject:self.linkManTel.text forKey:@"destTel"];
+    [dic setObject:[HBUserModel getUserTel] forKey:@"srcTel"];
 
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userId"];
-        [dic setObject:@"333" forKey:@"destTel"];
-        [dic setObject:@"73773" forKey:@"srcTel"];
-    }else{
-        [dic setObject:@"161" forKey:@"userId"];
-        [dic setObject:self.linkManTel.text forKey:@"destTel"];
-        [dic setObject:[HBUserModel getUserTel] forKey:@"srcTel"];
-    }
+//    if (PAT_) {
+//        [dic setObject:[HBUserModel getUserId] forKey:@"userId"];
+//        [dic setObject:@"333" forKey:@"destTel"];
+//        [dic setObject:@"73773" forKey:@"srcTel"];
+//    }else{
+//        [dic setObject:[HBUserModel getUserId] forKey:@"userId"];
+//        [dic setObject:self.linkManTel.text forKey:@"destTel"];
+//        [dic setObject:[HBUserModel getUserTel] forKey:@"srcTel"];
+//    }
 
     [HBRequest RequestDataJointStr:kSaveVoiceCall parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
 #warning 语音外呼
         NSString *telphoneString ;
-        if (receiveJSON[@"cSNumber"]) {
+        if (receiveJSON[@"restCallNum"]) {
             telphoneString = [NSString stringWithFormat:@"tel:%@",receiveJSON[@"restCallNum"]];
         }else{
             telphoneString = @"tel:400";

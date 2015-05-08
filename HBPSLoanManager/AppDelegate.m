@@ -10,7 +10,7 @@
 #import "HBLoginViewController.h"
 #import "BMKMapView.h"
 #import "HBUserModel.h"
-
+#import "MobClick.h"
 //手机端异常信息请求
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -46,6 +46,10 @@ void uncaughtExceptionHandler(NSException *exception)
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [MobClick startWithAppkey:UMENG_APPKEY];
+    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:REALTIME channelId:nil];
+
+    [MobClick checkUpdate];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     HBLoginViewController *root = [[HBLoginViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
@@ -54,7 +58,7 @@ void uncaughtExceptionHandler(NSException *exception)
     //百度地图相关配置
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"PT6ml2mAKzHExphF5G46Qhco"  generalDelegate:nil];//  WxVQsZyEH14hCkACsNzNqjGD
+    BOOL ret = [_mapManager start:@"UEz7X8pY9vhslqt68gZ8yGDP"  generalDelegate:nil];//  WxVQsZyEH14hCkACsNzNqjGD
     if (!ret) {
         NSLog(@"manager start failed!");
     }

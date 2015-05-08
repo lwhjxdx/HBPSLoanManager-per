@@ -32,7 +32,6 @@
     self.backButton.hidden = NO;
     self.titleLabel.text = @"个人经营性车辆按揭贷款";
     [self configUI];
-    self.tableView.backgroundColor = RGBACOLOR(238, 238, 238, 1);
 }
 
 - (void)configUI{
@@ -40,9 +39,6 @@
         _searchString = searchString;
         [self requestFromNetWorking];
     }];
-    
-    [self initTableViewForResult:CGRectZero];
-    
 }
 
 //从网络请求数据 查询企业信息
@@ -107,12 +103,12 @@
     UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 40, 15, 20, 30)];
     arrowImageView.image = [UIImage imageNamed:@"dot"];
     cell.contentView.backgroundColor = RGBACOLOR(255, 255, 255, 1);
-    cell.textLabel.text = _dataArray[indexPath.row][@"cusName"];
+    cell.textLabel.text = _dataArray[indexPath.section][@"cusName"];
     [cell.contentView addSubview:arrowImageView];
     return cell;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return _dataArray.count;
 }
 
@@ -123,7 +119,7 @@
 //跳转
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HBCompanyInfoViewController *vc = [[HBCompanyInfoViewController alloc] init];
-    vc.customerDic = _dataArray[indexPath.row];
+    vc.customerDic = _dataArray[indexPath.section];
     [self pushViewController:vc animated:YES];
 }
 

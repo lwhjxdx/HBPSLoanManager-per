@@ -54,14 +54,15 @@
  */
 -(void)pushQiandaoVC:(Class)class
 {
-#warning 暂时关闭定位
-//    HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
-//    qiandaoVC.isShowNextItem = YES;
-//    qiandaoVC.classString = class;
-//    [self.navigationController pushViewController:qiandaoVC animated:YES];
-    
-    
-    [self.navigationController pushViewController:[[class alloc]init] animated:YES];
+    if (_isShowMap) {
+        HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
+        qiandaoVC.isShowNextItem = YES;
+        qiandaoVC.classString = class;
+        [self pushViewController:qiandaoVC animated:YES];
+
+    }else{
+        [self pushViewController:[[class alloc]init] animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

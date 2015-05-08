@@ -45,7 +45,6 @@
 
 #define kFileUploadURL @"fileUploadAction/fileUpload.do"
 //文件上传
-
 #define kFindCustInfo @"customerAction/findCustInfo.do"
 //用户信息查询
 
@@ -53,7 +52,7 @@
 //贷款情况查询
 
 
-#define kGetCheckPlanList  @"checkPlanAction/getCheckPlanList.do"
+#define kGetCheckPlanList  @"checkPlanAction/getCheckPlanListForConNo.do"
 //获取检查计划列表   userNo  checked
 
 #define kSaveVoiceCall @"ycallAction/saveVoiceCall.do"

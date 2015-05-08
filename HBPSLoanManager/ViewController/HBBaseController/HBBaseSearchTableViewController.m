@@ -22,8 +22,17 @@
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
+    [self initTableViewForResult:CGRectZero withStyle:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = RGBACOLOR(238, 238, 238, 1);
+    [self requestFromNetWorking];
 }
-
+/**
+ *  子类复写该方法
+ */
+-(void)requestFromNetWorking
+{
+    
+}
 //点击屏幕其他区域 收键盘
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
 {
@@ -81,11 +90,12 @@
 }
 
 //初始化Tableview
-- (void)initTableViewForResult:(CGRect)rect{
+- (void)initTableViewForResult:(CGRect)rect withStyle:(UITableViewStyle)style
+{
     if (rect.size.height == 0) {
         rect = CGRectMake(0,kTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kTopBarHeight - kSearchBarHigh);
     }
-    self.tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:rect style:style];
     self.tableView.backgroundColor              = RGBACOLOR(238, 238, 238, 1);
     self.tableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -98,10 +108,22 @@
     if (DSystemVersion >= 7.0)
         //分割线的位置不带偏移
         self.tableView.separatorInset = UIEdgeInsetsZero;
+  
+}
+- (void)initTableViewForResult:(CGRect)rect
+{
+    [self initTableViewForResult:rect withStyle:UITableViewStyleGrouped];
 }
 
-
-
+#pragma mark - tableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 2;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
 - (void)searchClicked{
     [self.view endEditing:YES];
     if (self.search) {

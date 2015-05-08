@@ -38,7 +38,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="0SL-7U-NoK">
-                            <rect key="frame" x="0.0" y="64" width="320" height="381.99999932235198"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="382"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="近期检查反应的风险点" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="waJ-Np-sva">
@@ -349,8 +349,8 @@
         </view>
     </objects>
     <resources>
-        <image name="dot3" width="100" height="75"/>
-        <image name="dot5" width="800" height="600"/>
+        <image name="dot3" width="50" height="37"/>
+        <image name="dot5" width="400" height="300"/>
         <image name="qy_07" width="87" height="4"/>
         <image name="xx_icon" width="800" height="600"/>
         <image name="xx_icon1" width="800" height="600"/>

@@ -90,9 +90,9 @@
 - (void)commonInit {
     _dayViewHeight = 44;
     int second =24*60*60*(365*40+10);
-    if(PAT_){
-        second =0;
-    }
+//    if(PAT_){
+//        second =0;
+//    }
     NSDate *uatDay =[NSDate dateWithTimeIntervalSinceNow:second];
     _visibleMonth = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit | NSCalendarCalendarUnit fromDate:uatDay];
     _visibleMonth.day = 1;
