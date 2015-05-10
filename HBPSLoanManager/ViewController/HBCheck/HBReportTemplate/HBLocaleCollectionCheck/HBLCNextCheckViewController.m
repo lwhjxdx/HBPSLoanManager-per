@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.titleLabel.text = @"现场催收";
+    self.titleLabel.text = @"HBLCNextCheckViewController现场催收";
     self.backButton.hidden = NO;
     
     self.checkType = localeCollectionCheck;

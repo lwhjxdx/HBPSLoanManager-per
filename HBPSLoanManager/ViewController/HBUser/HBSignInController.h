@@ -14,5 +14,5 @@
 @interface HBSignInController : HBBaseViewController
 @property(nonatomic, assign)BOOL isShowNextItem;
 @property(nonatomic,strong)Class classString;
-@property(nonatomic,strong,readonly)NSMutableDictionary *dextDic;
+@property(nonatomic,strong)NSMutableDictionary *pushNextDic;
 @end

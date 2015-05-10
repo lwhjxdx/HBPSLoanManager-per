@@ -70,7 +70,8 @@
     }else{
         [dic setObject:@"161" forKey:@"userNo"];
     }
-    
+    [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
+    [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
     return dic;
 }
 
@@ -120,6 +121,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HBCompanyInfoViewController *vc = [[HBCompanyInfoViewController alloc] init];
     vc.customerDic = _dataArray[indexPath.section];
+    vc.planType = PlanTypeGerenchedai;
     [self pushViewController:vc animated:YES];
 }
 

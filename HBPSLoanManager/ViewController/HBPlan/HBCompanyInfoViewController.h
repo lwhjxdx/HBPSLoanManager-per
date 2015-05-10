@@ -7,9 +7,9 @@
 //
 
 #import "HBPlanBaseViewController.h"
+#import "HBType.h"
 
 @interface HBCompanyInfoViewController : HBPlanBaseViewController
 
-@property (nonatomic,strong) NSDictionary *customerDic;
-//@property (nonatomic,strong)UITableView *downTableView;
+@property (nonatomic,assign)PlanType planType;
 @end

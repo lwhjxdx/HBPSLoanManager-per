@@ -27,6 +27,13 @@
 		282415941AE8FFB100935146 /* HBinspectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282415921AE8FFB100935146 /* HBinspectViewController.xib */; };
 		909B98DE1AFC89F100A35B59 /* HBPlanBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */; };
 		909B98E11AFCA39C00A35B59 /* HBPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B98E01AFCA39C00A35B59 /* HBPersonInfoViewController.m */; };
+		909B98E31AFCFFD800A35B59 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 909B98E21AFCFFD800A35B59 /* mapapi.bundle */; };
+		909B98E51AFCFFF500A35B59 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98E41AFCFFF500A35B59 /* libbaidumapapi.a */; };
+		909B98E71AFD0E5E00A35B59 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98E61AFD0E5E00A35B59 /* PgySDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		909B98E91AFD0F8800A35B59 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98E81AFD0F8800A35B59 /* SceneKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		909B98EB1AFD0FAC00A35B59 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */; };
+		909B98ED1AFD0FC000A35B59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */; };
+		909B98EF1AFD0FD100A35B59 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */; };
 		90ED4B091AFB7A9D00898882 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90ED4B061AFB7A9C00898882 /* libMobClickLibrary.a */; };
 		9901CD561ABE61C500F92AFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9901CD4B1ABE61C500F92AFD /* ioapi.c */; };
 		9901CD571ABE61C500F92AFD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 9901CD4D1ABE61C500F92AFD /* mztools.c */; };
@@ -60,8 +67,6 @@
 		994BAF991ABAA9AA00BCF863 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 994BAF981ABAA9AA00BCF863 /* libc++.1.dylib */; };
 		994BAFA11ABAE37A00BCF863 /* UserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 994BAFA01ABAE37A00BCF863 /* UserInfoTool.m */; };
 		994BAFB71ABAFD7600BCF863 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 994BAFB61ABAFD7600BCF863 /* libz.dylib */; };
-		994E00821AB3D88200037B6A /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 994E00801AB3D88200037B6A /* libbaidumapapi.a */; };
-		994E00831AB3D88200037B6A /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 994E00811AB3D88200037B6A /* mapapi.bundle */; };
 		994E00851AB3D8AB00037B6A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994E00841AB3D8AB00037B6A /* CoreLocation.framework */; };
 		994E00871AB3D8B900037B6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994E00861AB3D8B900037B6A /* QuartzCore.framework */; };
 		994E00891AB3D8C100037B6A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994E00881AB3D8C100037B6A /* OpenGLES.framework */; };
@@ -237,6 +242,13 @@
 		909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBPlanBaseViewController.m; sourceTree = "<group>"; };
 		909B98DF1AFCA39C00A35B59 /* HBPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPersonInfoViewController.h; sourceTree = "<group>"; };
 		909B98E01AFCA39C00A35B59 /* HBPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBPersonInfoViewController.m; sourceTree = "<group>"; };
+		909B98E21AFCFFD800A35B59 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = HBPSLoanManager/mapapi.bundle; sourceTree = "<group>"; };
+		909B98E41AFCFFF500A35B59 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbaidumapapi.a; path = HBPSLoanManager/libbaidumapapi.a; sourceTree = "<group>"; };
+		909B98E61AFD0E5E00A35B59 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		909B98E81AFD0F8800A35B59 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		90ED4B061AFB7A9C00898882 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		90ED4B071AFB7A9C00898882 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		90ED4B081AFB7A9C00898882 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
@@ -299,8 +311,6 @@
 		994BAF9F1ABAE37A00BCF863 /* UserInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTool.h; sourceTree = "<group>"; };
 		994BAFA01ABAE37A00BCF863 /* UserInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTool.m; sourceTree = "<group>"; };
 		994BAFB61ABAFD7600BCF863 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		994E00801AB3D88200037B6A /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
-		994E00811AB3D88200037B6A /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		994E00841AB3D8AB00037B6A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		994E00861AB3D8B900037B6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		994E00881AB3D8C100037B6A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -598,17 +608,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994E008B1AB3D8CA00037B6A /* SystemConfiguration.framework in Frameworks */,
+				909B98EF1AFD0FD100A35B59 /* AVFoundation.framework in Frameworks */,
+				909B98ED1AFD0FC000A35B59 /* AudioToolbox.framework in Frameworks */,
+				909B98EB1AFD0FAC00A35B59 /* CoreMotion.framework in Frameworks */,
+				909B98E91AFD0F8800A35B59 /* SceneKit.framework in Frameworks */,
+				994E00891AB3D8C100037B6A /* OpenGLES.framework in Frameworks */,
 				994BAFB71ABAFD7600BCF863 /* libz.dylib in Frameworks */,
 				994BAF991ABAA9AA00BCF863 /* libc++.1.dylib in Frameworks */,
 				994AEDC71AB15BE0004438E8 /* Security.framework in Frameworks */,
 				994E008D1AB3D8D100037B6A /* CoreGraphics.framework in Frameworks */,
-				994E008B1AB3D8CA00037B6A /* SystemConfiguration.framework in Frameworks */,
-				994E00891AB3D8C100037B6A /* OpenGLES.framework in Frameworks */,
 				994E00871AB3D8B900037B6A /* QuartzCore.framework in Frameworks */,
 				994E00851AB3D8AB00037B6A /* CoreLocation.framework in Frameworks */,
+				909B98E51AFCFFF500A35B59 /* libbaidumapapi.a in Frameworks */,
 				9963A2861AB28F3200C3678E /* libsqlite3.dylib in Frameworks */,
+				909B98E71AFD0E5E00A35B59 /* PgySDK.framework in Frameworks */,
 				90ED4B091AFB7A9D00898882 /* libMobClickLibrary.a in Frameworks */,
-				994E00821AB3D88200037B6A /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,16 +1034,21 @@
 		9963EF6E1AAD4DD800AA1B63 = {
 			isa = PBXGroup;
 			children = (
+				909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */,
+				909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */,
+				909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */,
+				909B98E81AFD0F8800A35B59 /* SceneKit.framework */,
 				994BAFB61ABAFD7600BCF863 /* libz.dylib */,
 				994BAF981ABAA9AA00BCF863 /* libc++.1.dylib */,
+				909B98E61AFD0E5E00A35B59 /* PgySDK.framework */,
 				994E008C1AB3D8D100037B6A /* CoreGraphics.framework */,
 				994E008A1AB3D8CA00037B6A /* SystemConfiguration.framework */,
 				994E00881AB3D8C100037B6A /* OpenGLES.framework */,
 				994E00861AB3D8B900037B6A /* QuartzCore.framework */,
 				994E00841AB3D8AB00037B6A /* CoreLocation.framework */,
 				9963A2851AB28F3200C3678E /* libsqlite3.dylib */,
-				994E00801AB3D88200037B6A /* libbaidumapapi.a */,
-				994E00811AB3D88200037B6A /* mapapi.bundle */,
+				909B98E41AFCFFF500A35B59 /* libbaidumapapi.a */,
+				909B98E21AFCFFD800A35B59 /* mapapi.bundle */,
 				994AEDC61AB15BE0004438E8 /* Security.framework */,
 				9963EF791AAD4DD800AA1B63 /* HBPSLoanManager */,
 				9963EF931AAD4DD800AA1B63 /* HBPSLoanManagerTests */,
@@ -1603,7 +1623,6 @@
 				9963F0011AAD5B5700AA1B63 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				9963EFF91AAD5B5700AA1B63 /* dobuleArrowRight@2x.png in Resources */,
 				282415891AE8C88900935146 /* LoanPersonageController.xib in Resources */,
-				994E00831AB3D88200037B6A /* mapapi.bundle in Resources */,
 				2824156C1AE89E0E00935146 /* HBPersonageCarPlanController.xib in Resources */,
 				282415941AE8FFB100935146 /* HBinspectViewController.xib in Resources */,
 				282415761AE89E9800935146 /* HBPersonPlanViewController.xib in Resources */,
@@ -1612,6 +1631,7 @@
 				9963F0021AAD5B5700AA1B63 /* DSLCalendarDaySelection-middle.png in Resources */,
 				282415811AE8C85C00935146 /* LoanLegalViewController.xib in Resources */,
 				9963EFFF1AAD5B5700AA1B63 /* DSLCalendarDayCallout@2x.png in Resources */,
+				909B98E31AFCFFD800A35B59 /* mapapi.bundle in Resources */,
 				99938DE91ACAA78800B46EB9 /* ReportPicCell.xib in Resources */,
 				994EAB761AAE83C7002FB5ED /* HBCompanyPlanViewController.xib in Resources */,
 				9963F0071AAD5B5700AA1B63 /* DSLCalendarDaySelection@2x.png in Resources */,
@@ -1887,6 +1907,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBPSLoanManager/HBPSLoanManager-Prefix.pch";
@@ -1897,6 +1921,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/HBPSLoanManager/LibFrame/UMAnalytics_Sdk_3.4.6",
+					"$(PROJECT_DIR)/HBPSLoanManager",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1913,6 +1938,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBPSLoanManager/HBPSLoanManager-Prefix.pch";
@@ -1923,6 +1952,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/HBPSLoanManager/LibFrame/UMAnalytics_Sdk_3.4.6",
+					"$(PROJECT_DIR)/HBPSLoanManager",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
