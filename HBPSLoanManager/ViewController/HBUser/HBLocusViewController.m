@@ -7,10 +7,13 @@
 //
 
 #import "HBLocusViewController.h"
-#import "BMKMapView.h"
-#import "BMKPolyline.h"
-#import "BMKPolylineView.h"
-#import "BMKPointAnnotation.h"
+//#import "BMKMapView.h"
+//#import "BMKPolyline.h"
+//#import "BMKPolylineView.h"
+//#import "BMKPointAnnotation.h"
+//#import "BMKTypes.h"
+#import "BMapKit.h"
+
 @interface HBLocusViewController ()<BMKMapViewDelegate>
 {
     BMKMapView *_mapView;
@@ -27,6 +30,8 @@
     self.backButton.hidden = NO;
     self.titleLabel.text = @"我的轨迹";
     [self initMapView];
+    [self requestFromNetWorking];
+
 }
 
 - (void)loadDataWithJson:(NSDictionary*)dic{
@@ -44,6 +49,12 @@
     _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTopBarHeight)];
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;//显示定位图层
+    CLLocationCoordinate2D coordinator;
+    coordinator.latitude = 114.291479f;
+    coordinator.longitude = 30.606202f;
+    [_mapView setCenterCoordinate:coordinator animated:NO];
+    BMKCoordinateRegion viewRegion = BMKCoordinateRegionMake(coordinator, BMKCoordinateSpanMake(1.0, 1.0));
+    [_mapView setRegion:viewRegion];
     [_mapView setZoomLevel:16];
     [self.view addSubview:_mapView];
 }
@@ -107,8 +118,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    [self requestFromNetWorking];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

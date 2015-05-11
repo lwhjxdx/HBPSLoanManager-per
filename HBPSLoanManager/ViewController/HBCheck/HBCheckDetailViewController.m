@@ -16,6 +16,8 @@
 
 @interface HBCheckDetailViewController ()
 {
+    NSArray *planNoList;
+    NSString *planNoString;
     NSArray *conNoList;
     NSString *conNoString;
     NSArray *conPaperIdList;
@@ -31,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *lable8;
 @property (strong, nonatomic) IBOutlet UILabel *lable9;
 @property (strong, nonatomic) IBOutlet UILabel *lable10;
+@property (strong, nonatomic) IBOutlet UILabel *planNoLable;
+- (IBAction)planNoSelctAction:(id)sender;
 
 @end
 
@@ -190,6 +194,7 @@
     } withDoneBtnBlock:^(NSInteger index, id receiveData) {
         self.paperId.text = conPaperIdList[index];
         conPaperString = self.paperId.text;
+        [self requestFromNetWorkingGettingPlanNo];
     } withChangedEventBlock:^(NSInteger index) {
         
     }];
@@ -325,10 +330,93 @@
     self.enterpriseLink.text = self.customerDic[@"appOpName"];
     self.danger.text = self.customerDic[@"isNeedLimit"];
     self.mainBiz.text = self.customerDic[@"lineAmount"];
+    [self requestFromNetWorkingGettingPlanNo];
 }
 
+- (NSNumber*)productType
+{
+    if (_checkType==CheckTypeXiaoqiyefaren) {
+        return @1;
+    }else if(_checkType == CheckTypeGerenshangdai){
+        return @2;
+    }else{
+        return @3;
+    }
+}
+- (NSMutableDictionary *)makePlanNoParams{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (PAT_) {
+        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+        if (![conNoString isEqualToString:@"全部"]) {
+            [dic setObject:conNoString forKey:@"conNo"];
+        }
+//        if (![conPaperString isEqualToString:@"全部"]) {
+//            [dic setObject:conPaperString forKey:@"dueNum"];
+//        }
+        [dic setObject:self.customerDic[@"cusId"] forKey:@"cusId"];
+    }else{
+        [dic setObject:@"161" forKey:@"userNo"];
+    }
+    [dic setObject:[self productType] forKey:@"productType"];
+    [dic setObject:@0 forKey:@"checkPlanType"];
+    [dic setObject:@(1) forKey:@"page"];
+    [dic setObject:@(20) forKey:@"pageNo"];
+    [dic setObject:@(0) forKey:@"checked"];
+    [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
+    [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
+    [dic setObject:[self starStringfromDate] forKey:@"beginTime"];
+    [dic setObject:[self endStringfromDate] forKey:@"endTime"];
+    return dic;
+}
+- (void)requestFromNetWorkingGettingPlanNo{
+    NSMutableDictionary *dic = [self makePlanNoParams];
+    [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+        if (!receiveJSON[@"planNO"]) {
+            return;
+        }
+        planNoList = [receiveJSON[@"planNO"] componentsSeparatedByString:@","];
+        planNoString = planNoList[0];
+        self.planNoLable.text = planNoList[0];
+    } failBlock:^(NSError *error) {
+
+    }];
+}
+
+-(NSString*)starStringfromDate
+{
+    NSDateComponents *com = [self ca];
+    return [NSString stringWithFormat:@"%@-%@-%@",@(com.year),@(com.month),@01];
+}
+-(NSString*)endStringfromDate
+{
+    NSCalendar *calenar = [NSCalendar currentCalendar];
+    NSRange ra = [calenar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[NSDate date]];
+    NSDateComponents *com = [self ca];
+    return [NSString stringWithFormat:@"%@-%@-%@",@(com.year),@(com.month),@(ra.length)];
+}
+- (NSDateComponents*)ca{
+    NSCalendar *calenar = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *coms = [calenar components:unitFlags fromDate:[NSDate date]];
+    return coms;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)planNoSelctAction:(id)sender {
+    if (planNoList) {
+        MyCustomPickerView *pick = [[MyCustomPickerView alloc] initWithFrame:CGRectZero];
+        pick.contentArray =  [NSMutableArray arrayWithArray:planNoList];
+        [pick pickerDataWithCancelBtnBlock:^(UIButton *btn) {
+            
+        } withDoneBtnBlock:^(NSInteger index, id receiveData) {
+            self.planNoLable.text = planNoList[index];
+            planNoString = self.planNoLable.text;
+        } withChangedEventBlock:^(NSInteger index) {
+            
+        }];
+        [pick showInView:self.view];
+    }
+}
 @end

@@ -520,18 +520,19 @@
     }
 }
 
+
 - (NSMutableDictionary *)makeParams{
-     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (PAT_) {
         [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
         if (![conNoString isEqualToString:@"全部"]) {
             [dic setObject:conNoString forKey:@"conNo"];
         }
         if (![receiptNoString isEqualToString:@"全部"]) {
-            [dic setObject:conNoString forKey:@"conNo"];
+            [dic setObject:conNoString forKey:@"dueNum"];
         }
         [dic setObject:self.customerDic[@"cusId"] forKey:@"cusId"];
-
+        
     }else{
         [dic setObject:@"161" forKey:@"userNo"];
     }
@@ -544,7 +545,6 @@
     [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
     return dic;
 }
-
 - (void)requestFromNetWorking{
     NSMutableDictionary *dic = [self makeParams];
     _hasMoreData = NO;
@@ -578,10 +578,10 @@
     }else{
         lableStringArray3 = [NSMutableArray array];
     }
-    if (lableStringArray3.count < [dic[@"planNO"] integerValue]) {
-        _hasMoreData = YES;
-    }else{
+    if (dic.count < 20) {
         _hasMoreData = NO;
+    }else{
+        _hasMoreData = YES;
     }
     [self.thisTableView reloadData];
 }

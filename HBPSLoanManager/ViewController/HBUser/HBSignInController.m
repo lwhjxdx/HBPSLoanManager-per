@@ -102,8 +102,12 @@
 - (void)configUI{
     _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT -kTopBarHeight )];
     [_mapView setZoomLevel:17];
+//    [_mapView setlo]
+//    <wpt lat="31.225" lon="121.437">
+
     _mapView.showsUserLocation = YES;//显示定位图层
     [self.view addSubview:_mapView];
+    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(31.225, 121.437) animated:YES];
     self.backButton.hidden = NO;
 }
 

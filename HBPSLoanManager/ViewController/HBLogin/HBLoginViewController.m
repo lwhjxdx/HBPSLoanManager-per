@@ -75,8 +75,8 @@
     if (PAT_) {
         //密码
 //        self.passwdTextField.text  = @"7B52009B64FD0A2A49E6D8A939753077792B0554";
-//        self.userNameTextField.text = @"manager1";
-//        self.passwdTextField.text  = @"111111";
+        self.userNameTextField.text = @"manager1";
+        self.passwdTextField.text  = @"111111";
     }
     
     self.loginButton.layer.cornerRadius = 5;

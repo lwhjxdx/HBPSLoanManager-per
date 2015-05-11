@@ -137,6 +137,7 @@
     NSMutableDictionary *dic;
     if ([self verify]) {
         dic = [NSMutableDictionary dictionary];
+        [dic setObject:[HBUserModel getUserName] forKey:@"userId"];
         [dic setObject:[[self.oldPWTextField.text sha1] uppercaseString] forKey:@"oldPwd"];
         [dic setObject:[[self.userNewPWTextField.text sha1] uppercaseString]forKey:@"newPwd"];
     }

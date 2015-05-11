@@ -26,7 +26,7 @@
                  failBlock:(FailBlock )failBlock
 {
     
-    NSLog(@"RequestDataJointStr ---->\n %@",parameterDic);
+//    NSLog(@"RequestDataJointStr ---->\n %@",parameterDic);
     
     HBRequest *networkRequest = [[HBRequest alloc]init];
     networkRequest.finishLoadingBlock = finshedBlock;
@@ -87,7 +87,7 @@
             [body appendData:[param dataUsingEncoding:NSUTF8StringEncoding]];
             [body appendData:file];
             
-            NSLog(@"<<<<<<<file>>>>>>> %dk",file.length/1024);
+//            NSLog(@"<<<<<<<file>>>>>>> %dk",file.length/1024);
             
             [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         }
@@ -107,7 +107,7 @@
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     
-    NSLog(@"response ---->\n %@",response);
+//    NSLog(@"response ---->\n %@",response);
 
     
     if (!self.receiveData) {
@@ -122,7 +122,7 @@
     [[HBRequsetManager shareManager] removeConnection:connection];
     
     NSDictionary *resultDic = [self decryptDataFromeNetWorking:self.receiveData];
-    NSLog(@"connectionDidFinishLoading --->\n connection %@ resultDic--------->\n %@",connection,resultDic);
+//    NSLog(@"connectionDidFinishLoading --->\n connection %@ resultDic--------->\n %@",connection,resultDic);
     
     if (![[resultDic objectForKey:@"respCode"] isEqualToString:@"0000"]) {
         [SVProgressHUD showErrorWithStatus:resultDic[@"respMsg"]?resultDic[@"respMsg"]:@"数据异常"];
@@ -150,7 +150,7 @@
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    NSLog(@" connection : ----->\n %@   didFailWithError----->\n %@",connection,error);
+//    NSLog(@" connection : ----->\n %@   didFailWithError----->\n %@",connection,error);
 
     if (self.failWithErrorBlock) {
         self.failWithErrorBlock(error);
@@ -181,13 +181,14 @@
     if (tempDictionary == nil) {
         tempDictionary = [NSMutableDictionary dictionary];
     }
-    if ([HBUserModel getUserId]) {
-        [tempDictionary setObject:[HBUserModel getUserId] forKey:@"userId"];
-    }
-    
-    if (!PAT_) {
-        [tempDictionary setObject:@"161" forKey:@"userId"];
-    }
+//我贼，网络请求写这个闹哪样
+//    if ([HBUserModel getUserId]) {
+//        [tempDictionary setObject:[HBUserModel getUserId] forKey:@"userId"];
+//    }
+//    
+//    if (!PAT_) {
+//        [tempDictionary setObject:@"161" forKey:@"userId"];
+//    }
     
     NSData *json = [NSJSONSerialization dataWithJSONObject:tempDictionary
                                                    options:NSJSONWritingPrettyPrinted
