@@ -134,6 +134,7 @@ typedef NS_ENUM(NSUInteger, ImageType) {
     ImageType24,
 };
 
+#define PGY_APP_ID @"11e5e451ad497055874fba560d484c4b"
 
 
 

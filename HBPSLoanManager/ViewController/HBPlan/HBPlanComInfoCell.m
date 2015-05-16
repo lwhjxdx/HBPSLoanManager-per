@@ -27,11 +27,16 @@
 - (void)loadData:(NSMutableDictionary *)dic{
     _userDic = dic;
 
-    NSInteger checkType = [[_userDic objectForKey:@"checkType"] integerValue];
+//    NSInteger checkType = [[_userDic objectForKey:@"checkType"] integerValue];
 
-    self.checkType.text = [self chectStringWithType:checkType];
+    self.checkType.text = dic[@"checkTypeName"];
     self.startDate.text = [_userDic objectForKey:@"checkBeginTime"];
     self.endData.text = [_userDic objectForKey:@"checkEndTime"];
+    self.typePlanLable.text = [_userDic objectForKey:@"checkMehtodName"];
+}
+- (NSString*)changeDateFomateWithString:(NSString*)date
+{
+    return [date substringWithRange:NSMakeRange(2, date.length-2)];
 }
 - (NSString*)chectStringWithType:(NSInteger)type
 {

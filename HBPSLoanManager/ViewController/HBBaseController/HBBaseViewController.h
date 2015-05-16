@@ -37,4 +37,5 @@
 
 //---刷新视图
 - (void)refreshView:(NSMutableDictionary *)dic;
+- (void)homeBtnEvents:(id)sender;
 @end

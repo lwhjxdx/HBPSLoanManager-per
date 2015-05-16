@@ -92,7 +92,7 @@
                    @"operationType",
                    @"creditProductCd",
                    @"loadAmt",
-                   @"loadPeriod",
+                   @"endDate",
                    @"loadDate",
                    @"busiScope",
                    @"operationAddress",

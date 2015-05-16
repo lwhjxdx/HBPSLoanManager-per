@@ -18,6 +18,7 @@
     
 }
 @property (nonatomic, strong) id receiveData;
+@property (nonatomic, strong) NSArray *selctArr;
 @end
 
 @implementation MyCustomPickerView
@@ -56,7 +57,12 @@
     }
     return self;
 }
-
+-(void)pickerDataWithCancelBtnBlock:(CancelBtnBlcok )cancleBlock withDoneBtnBlock:(DoneBtnBlock )doneBlock withShowStringArr:(NSArray*)arr
+{
+    self.cancelBlock = cancleBlock;
+    self.doneBlock = doneBlock;
+    self.selctArr = arr;
+}
 -(void)pickerDataWithCancelBtnBlock:(CancelBtnBlcok )cancleBlock withDoneBtnBlock:(DoneBtnBlock )doneBlock withChangedEventBlock:(ChangedEventBlock )changedBlock
 {
     self.cancelBlock = cancleBlock;
@@ -140,7 +146,20 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH,45)];
     titleLabel.backgroundColor = [UIColor clearColor];
     if (self.contentArray.count) {
-      titleLabel.text = self.contentArray[row];
+        if ([self.contentArray[row] isKindOfClass:[NSString class]]) {
+            titleLabel.text = self.contentArray[row];
+        }else{
+            NSString *string;
+            for (int i = 0; i < self.selctArr.count; i++) {
+                if (string) {
+                    string = [NSString stringWithFormat:@"%@  %@",string,self.contentArray[row][self.selctArr[i]]];
+                }else{
+                    string = self.contentArray[row][self.selctArr[i]];
+                }
+            }
+            titleLabel.text = string;
+            titleLabel.textAlignment = NSTextAlignmentCenter;
+        }
     }
     titleLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -161,10 +180,12 @@
 {
     
     if (self.contentArray.count) {
-        self.changedBlock(row);
+        if (self.changedBlock) {
+            self.changedBlock(row);
+        }
         self.receiveData = self.contentArray[row];
         maskIndex = row;
-    }   
+    }
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {

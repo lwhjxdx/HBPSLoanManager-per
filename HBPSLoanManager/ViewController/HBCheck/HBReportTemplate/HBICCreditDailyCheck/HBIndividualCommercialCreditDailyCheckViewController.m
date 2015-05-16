@@ -191,7 +191,7 @@
                    @"conNo",
                    @"creditProductCd",
                    @"loaddAmt",
-                   @"loadPeriod",
+                   @"endDate",
                    @"loadDate",
                    @"busiScope",
                    @"operationAddress",

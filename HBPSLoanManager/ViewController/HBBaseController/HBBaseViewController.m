@@ -30,21 +30,21 @@
     }
     self.navigationController.navigationBarHidden = YES;
     self.mBaseNavigationBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH,kTopBarHeight)];
-    self.mBaseNavigationBarView.backgroundColor = [UIColor clearColor];
-    self.mBaseNavigationBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;//UIViewAutoresizingFlexibleWidth:自动调整view的宽度，保证左边距和右边距不变
-    self.mBaseNavigationBarView.autoresizesSubviews = YES;
+    self.mBaseNavigationBarView.backgroundColor = [UIColor colorWithRed:0.086 green:0.337 blue:0.192 alpha:1.000];
+//    self.mBaseNavigationBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;//UIViewAutoresizingFlexibleWidth:自动调整view的宽度，保证左边距和右边距不变
+//    self.mBaseNavigationBarView.autoresizesSubviews = YES;
     [self.view addSubview:self.mBaseNavigationBarView];
     
     
-    UIImageView *mBaseNavigationBar = [[UIImageView alloc]initWithFrame:self.mBaseNavigationBarView.bounds];
-    mBaseNavigationBar.backgroundColor = kColorWithRGB(247, 247, 247);
-    
-    [mBaseNavigationBar setImage:nil];
-    
-    [self.mBaseNavigationBarView addSubview:mBaseNavigationBar];
-    CGRect rect = mBaseNavigationBar.bounds;
-    rect.size.height -=20;
-    rect.origin.y +=10;
+//    UIImageView *mBaseNavigationBar = [[UIImageView alloc]initWithFrame:self.mBaseNavigationBarView.bounds];
+//    mBaseNavigationBar.backgroundColor = kColorWithRGB(247, 247, 247);
+//    
+//    [mBaseNavigationBar setImage:nil];
+//    
+//    [self.mBaseNavigationBarView addSubview:mBaseNavigationBar];
+//    CGRect rect = mBaseNavigationBar.bounds;
+//    rect.size.height -=20;
+//    rect.origin.y +=10;
 
 
     //Title头信息
@@ -53,13 +53,13 @@
     label.numberOfLines = 1;
     label.adjustsFontSizeToFitWidth = YES;
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(1, 1);
     label.textAlignment=NSTextAlignmentCenter;
     label.text = @"";
     self.titleLabel = label;
     [self.mBaseNavigationBarView addSubview:self.titleLabel];
-    
+    label.center = CGPointMake(_mBaseNavigationBarView.center.x, label.center.y);
     //返回按钮
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(10,FromStatusBarHeight+5,60,30);
@@ -73,10 +73,10 @@
     
     UIButton* homebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     homebutton.showsTouchWhenHighlighted = YES;//showsTouchWhenHighlighted 按钮按下会发光
-    homebutton.frame = CGRectMake(kSCREEN_WIDTH-44,FromStatusBarHeight, 44, 44);
+    homebutton.frame = CGRectMake(kSCREEN_WIDTH-44,FromStatusBarHeight, 64, 44);
     [homebutton addTarget:self action:@selector(homeBtnEvents:) forControlEvents:UIControlEventTouchUpInside];
-    [homebutton setImage:[UIImage imageNamed:@"icon_preson"] forState:UIControlStateNormal];
-    homebutton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+//    [homebutton setImage:[UIImage imageNamed:@"icon_preson"] forState:UIControlStateNormal];
+//    homebutton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     self.homeButton=homebutton;
     self.homeButton.hidden =YES;
     [self.mBaseNavigationBarView addSubview:self.homeButton];
@@ -152,9 +152,6 @@
 }
 
 
-/**
- *  移除所有通知，如果不移除程序会莫名崩溃
- */
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

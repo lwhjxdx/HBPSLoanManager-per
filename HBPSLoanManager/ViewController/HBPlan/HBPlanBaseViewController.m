@@ -524,15 +524,18 @@
     
     
     [self.view layoutIfNeeded];
-    NSArray *titleArray = @[@"检查类型",@"开始日期",@"结束日期",@"操作"];
+    NSArray *titleArray = @[@"检查类型",@"开始日期",@"结束日期",@"检查方式",@"操作"];
     for (int i = 0; i < titleArray.count; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake( i*kSCREEN_WIDTH/4, CGRectGetMaxY(iconBtn.frame), kSCREEN_WIDTH/4, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake( i*(kSCREEN_WIDTH)/titleArray.count, CGRectGetMaxY(iconBtn.frame), (kSCREEN_WIDTH)/titleArray.count, 20)];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setText:titleArray[i]];
         [label setTextColor:[UIColor whiteColor]];
         label.backgroundColor = RGBACOLOR(0, 88, 64, 1);
         [label setFont:[UIFont systemFontOfSize:13]];
         [spacingView addSubview:label];
+        if (i>1&&i<4) {
+            label.textAlignment = NSTextAlignmentRight;
+        }
     }
     
     CGFloat spacingViewHeight = CGRectGetHeight(spacingView.frame);

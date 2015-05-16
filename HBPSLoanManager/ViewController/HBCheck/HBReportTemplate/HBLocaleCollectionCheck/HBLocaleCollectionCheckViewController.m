@@ -219,7 +219,7 @@
     
     keyArray = @[  @"custName",
                    @"creditProductCd",
-                   @"conNO",
+                   @"conNo",
                    @"loadAmt",
                    @"endDate",
                    @"loanLevelFiveClass",

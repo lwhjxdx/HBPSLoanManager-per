@@ -19,6 +19,7 @@ typedef void(^ChangedEventBlock)(NSInteger);
 @property (nonatomic, strong) ChangedEventBlock changedBlock;
 
 @property NSMutableArray *contentArray;
+-(void)pickerDataWithCancelBtnBlock:(CancelBtnBlcok )cancleBlock withDoneBtnBlock:(DoneBtnBlock )doneBlock withShowStringArr:(NSArray*)arr;
 -(void)pickerDataWithCancelBtnBlock:(CancelBtnBlcok )cancleBlock withDoneBtnBlock:(DoneBtnBlock )doneBlock withChangedEventBlock:(ChangedEventBlock )changedBlock;
 -(void)showInView:(UIView *)view;
 @end

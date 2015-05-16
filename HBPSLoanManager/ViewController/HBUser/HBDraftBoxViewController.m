@@ -27,6 +27,7 @@
     NSString *_searchString;
     NSArray *_dataArray;
     HBDraftSevice *sevice;
+    HBReportModel *tempDelModel;
 }
 @end
 
@@ -65,7 +66,7 @@
     [delBtn addTarget:self action:@selector(delReportClicked) forControlEvents:(UIControlEventTouchUpInside)];
     [delBtn setTitle:@"删除" forState:(UIControlStateNormal)];
     [delBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-    
+    delBtn.center = CGPointMake(kSCREEN_WIDTH / 2, delBtn.center.y);
     delBtn.layer.cornerRadius = 3;
     delBtn.layer.masksToBounds = YES;
     delBtn.layer.borderColor = [UIColor blackColor].CGColor;
@@ -74,18 +75,18 @@
     [bottomView  addSubview:delBtn];
     
     
-    UIButton *updataBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [updataBtn setFrame:CGRectMake( kSCREEN_WIDTH*3/4 , 5,kSCREEN_WIDTH/4 - kSCREEN_WIDTH/12, 30)];
-    [updataBtn addTarget:self action:@selector(uploadReportClicked) forControlEvents:(UIControlEventTouchUpInside)];
-    [updataBtn setTitle:@"上传" forState:(UIControlStateNormal)];
-    [updataBtn setTitleColor:RGBACOLOR(244, 160, 112, 1) forState:(UIControlStateNormal)];
-    updataBtn.layer.cornerRadius = 3;
-    updataBtn.layer.masksToBounds = YES;
-    updataBtn.layer.borderColor = RGBACOLOR(244, 160, 112, 1).CGColor;
-    updataBtn.layer.borderWidth = 1;
-    
-    
-    [bottomView  addSubview:updataBtn];
+//    UIButton *updataBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [updataBtn setFrame:CGRectMake( kSCREEN_WIDTH*3/4 , 5,kSCREEN_WIDTH/4 - kSCREEN_WIDTH/12, 30)];
+//    [updataBtn addTarget:self action:@selector(uploadReportClicked) forControlEvents:(UIControlEventTouchUpInside)];
+//    [updataBtn setTitle:@"上传" forState:(UIControlStateNormal)];
+//    [updataBtn setTitleColor:RGBACOLOR(244, 160, 112, 1) forState:(UIControlStateNormal)];
+//    updataBtn.layer.cornerRadius = 3;
+//    updataBtn.layer.masksToBounds = YES;
+//    updataBtn.layer.borderColor = RGBACOLOR(244, 160, 112, 1).CGColor;
+//    updataBtn.layer.borderWidth = 1;
+//    
+//    
+//    [bottomView  addSubview:updataBtn];
     bottomView.backgroundColor = RGBACOLOR(238, 238, 238, 1);
     [self.view addSubview:bottomView];
     
@@ -97,8 +98,8 @@
     
 }
 
-//删除选中
-- (void)delReportClicked{
+
+- (void)okDel{
     [sevice deleteAllSeleteItem];
     [self loadData];
     [self reloadTableView];
@@ -109,7 +110,7 @@
     
     _dataArray = [[DBManager shareManager] fetchAllUsers];
 }
-
+#pragma mark - tableViewDatasouse&&delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HBDraftBoxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IDE"];
@@ -129,11 +130,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        HBReportModel *model = [_dataArray objectAtIndex:indexPath.row];
-
-        [sevice deleteModel:model];
-        [self loadData];
-        [self reloadTableView];
+        tempDelModel = [_dataArray objectAtIndex:indexPath.row];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"确认删除" message:@"是否确认该检查计划" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alert.tag = 100012;
+        [alert show];
+        
             }
 }
 
@@ -148,7 +149,7 @@
     HBReportModel *model = [_dataArray objectAtIndex:indexPath.row];
     NSDictionary *dic = [sevice getDataFromDraft:model];
     NSMutableDictionary *dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    HBDraftType type = model.reportType;
+//    HBDraftType type = model.reportType;
     
     
 #warning  根据不同的HBDraftType 跳转不同的 报告模板
@@ -241,7 +242,7 @@
     [self loadData];
     [self reloadTableView];
 }
-
+#pragma mark - 界面布局
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setTabbarViewHide:YES];
@@ -253,7 +254,25 @@
     [super backBtnEvents:sender];
 }
 
-
+//删除选中
+- (void)delReportClicked{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"确认删除" message:@"是否确认删除选中的的检查计划" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+#pragma mark - alertDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex==1) {
+        if (alertView.tag == 100012) {
+            [sevice deleteModel:tempDelModel];
+            [self loadData];
+            [self reloadTableView];
+        }else{
+            [self okDel];
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

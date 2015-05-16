@@ -14,6 +14,7 @@
 #import "HBSignInController.h"
 #import "HBLocusViewController.h"
 #import "HBDraftBoxViewController.h"
+#import "YZWViewController.h"
 
 @interface HBUserViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -145,13 +146,15 @@
 - (void)configData{
     imageViewArray = @[[UIImage imageNamed:@"wdzl-icon1"],
                        [UIImage imageNamed:@"wdzl-icon2"],
-                       //[UIImage imageNamed:@"wdzl-icon3"],
-                       [UIImage imageNamed:@"wdzl-icon5"]];
+                       [UIImage imageNamed:@"wdzl-icon5"],
+                       [UIImage imageNamed:@"wdzl-icon3"]
+                       ];
     
     titleArray = @[@"草稿箱",
                    @"活动轨迹",
-                   //@"签到",
-                   @"密码修改"];
+                   @"密码修改",
+                   @"关于"
+                   ];
     
 }
 
@@ -207,13 +210,13 @@
             [self pushViewController:vc animated:YES];
         }
             break;
-//        case 2:
-//        {
-//            //签到
-//            //HBSignInController *vc = [[HBSignInController alloc] init];
-//            [self pushViewController:vc animated:YES];
-//        }
-//            break;
+        case 3:
+        {
+            //签到
+            YZWViewController *vc = [[YZWViewController alloc] init];
+            [self pushViewController:vc animated:YES];
+        }
+            break;
         case 2:
         {
             //修改密码

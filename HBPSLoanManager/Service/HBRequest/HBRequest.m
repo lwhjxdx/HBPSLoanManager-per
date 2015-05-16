@@ -182,13 +182,15 @@
         tempDictionary = [NSMutableDictionary dictionary];
     }
 //我贼，网络请求写这个闹哪样
-//    if ([HBUserModel getUserId]) {
-//        [tempDictionary setObject:[HBUserModel getUserId] forKey:@"userId"];
-//    }
-//    
-//    if (!PAT_) {
-//        [tempDictionary setObject:@"161" forKey:@"userId"];
-//    }
+    if (!tempDictionary[@"userId"]) {
+        if ([HBUserModel getUserId]) {
+            [tempDictionary setObject:[HBUserModel getUserId] forKey:@"userId"];
+        }
+        if (!PAT_) {
+            [tempDictionary setObject:@"161" forKey:@"userId"];
+        }
+    }
+
     
     NSData *json = [NSJSONSerialization dataWithJSONObject:tempDictionary
                                                    options:NSJSONWritingPrettyPrinted

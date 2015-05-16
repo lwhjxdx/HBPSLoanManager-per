@@ -21,6 +21,7 @@ typedef void (^HBPlanComInfoBtnClicked)(NSDictionary *dic) ;
 @property (weak, nonatomic) IBOutlet UILabel *checkType;
 @property (weak, nonatomic) IBOutlet UILabel *startDate;
 @property (weak, nonatomic) IBOutlet UILabel *endData;
+@property (weak, nonatomic) IBOutlet UILabel *typePlanLable;
 
 - (void)loadData:(NSMutableDictionary *)dic;
 

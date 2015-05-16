@@ -62,7 +62,7 @@
         [self.keyString isEqualToString:@"accountReceive"]||//应收账款
         [self.keyString isEqualToString:@"loadAmt"]|| //贷款金额
         [self.keyString isEqualToString:@"loadDate"]||//放款日期
-        [self.keyString isEqualToString:@"loadPeriod"]||//贷款期限
+        [self.keyString isEqualToString:@"endDate"]||//贷款期限
         [self.keyString isEqualToString:@"stockPrevBalance"]||//上期检查(或调 查)时点余额
         [self.keyString isEqualToString:@"receBalance"]||//应收账款当前余额
         [self.keyString isEqualToString:@"lentBalance"]||//银行借款当前贷款余额

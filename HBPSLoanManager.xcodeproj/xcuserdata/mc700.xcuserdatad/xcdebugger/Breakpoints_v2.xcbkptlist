@@ -9,157 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-            timestampString = "453042254.299451"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
-            landmarkName = "-handleData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-            timestampString = "453042254.299451"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "-handleData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-            timestampString = "453042254.299451"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "-requestFromNetWorking"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HBCheckDetailViewController requestFromNetWorking]"
-                  moduleName = "HBPSLoanManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-                  timestampString = "453042256.758096"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "412">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__52-[HBCheckDetailViewController requestFromNetWorking]_block_invoke264"
-                  moduleName = "HBPSLoanManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-                  timestampString = "453042256.758325"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "43">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBPlan/HBCompanyInfoViewController.m"
-            timestampString = "453025592.008785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
-            landmarkName = "-requestFromNetWorking"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HBCompanyInfoViewController requestFromNetWorking]"
-                  moduleName = "HBPSLoanManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBPlan/HBCompanyInfoViewController.m"
-                  timestampString = "453042256.79168"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "551"
-                  endingLineNumber = "551"
-                  offsetFromSymbolStart = "106">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__52-[HBCompanyInfoViewController requestFromNetWorking]_block_invoke"
-                  moduleName = "HBPSLoanManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBPlan/HBCompanyInfoViewController.m"
-                  timestampString = "453042256.792228"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "551"
-                  endingLineNumber = "551"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-            timestampString = "453042571.061054"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
-            landmarkName = "-requestFromNetWorkingGettingPlanNo"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-            timestampString = "453042571.061054"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBReportTemplate/HBCheckBase/HBCheckNextBaseController.m"
+            timestampString = "453473239.053209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
             endingLineNumber = "349"
-            landmarkName = "-makePlanNoParams"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -169,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
-            timestampString = "453042571.061054"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBReportTemplate/HBCheckCell/ReportPicCell.m"
+            timestampString = "453474968.185899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
-            landmarkName = "-makePlanNoParams"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-fillImageView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBUser/HBAlterPWViewController.m"
-            timestampString = "453028004.544801"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBReportTemplate/HBCheckCell/ReportPicCell.m"
+            timestampString = "453474968.185899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-markParams"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "-fillImageView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,46 +57,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBUser/HBAlterPWViewController.m"
-            timestampString = "453028333.869381"
+            filePath = "HBPSLoanManager/LibFrame/Tool/UIImage+FixOrientation.m"
+            timestampString = "453474999.45829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-requestFromNetWorking"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-fixOrientation"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HBAlterPWViewController requestFromNetWorking]"
-                  moduleName = "HBPSLoanManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBUser/HBAlterPWViewController.m"
-                  timestampString = "453042256.891354"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "109">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[HBAlterPWViewController requestFromNetWorking]_block_invoke"
-                  moduleName = "HBPSLoanManager"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBUser/HBAlterPWViewController.m"
-                  timestampString = "453042256.891556"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBReportTemplate/HBCheckCell/ReportPicCell.m"
+            timestampString = "453475141.073954"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "-setPicString:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

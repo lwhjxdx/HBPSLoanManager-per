@@ -49,6 +49,7 @@
                                @"个商贷款日常检查",
                                @"个商还款情况",
                                @"个商现场催收"];
+            self.titleString = @"个商贷款检查";
         }
             break;
          
@@ -59,12 +60,14 @@
                                @"全面检查",
                                @"还款资金落实情况检查",
                                @"现场催收"];
+            self.titleString = @"小企业法人检查";
         }
             break;
         case ChechTypeGerenchedai:
         {
             self.dataArray = @[@"个商车辆贷款首次检查",
                                @"个商车辆贷款日常及逾期"];
+            self.titleString = @"个商车贷检查";
         }
             break;
         default:

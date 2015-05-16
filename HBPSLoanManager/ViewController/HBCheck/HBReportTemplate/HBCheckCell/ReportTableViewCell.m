@@ -103,7 +103,7 @@
         ||[self.keyString isEqualToString:@"legalPerson"]
         ||[self.keyString isEqualToString:@"loadAmt"]
         ||[self.keyString isEqualToString:@"loadDate"]
-        ||[self.keyString isEqualToString:@"loadPeriod"]
+        ||[self.keyString isEqualToString:@"endDate"]
         ||[self.keyString isEqualToString:@"loanPurpose"]
         ||[self.keyString isEqualToString:@"materialsValue"]
         ||[self.keyString isEqualToString:@"operationAddress"]
@@ -166,7 +166,7 @@
         [self.keyString isEqualToString:@"materialsValue"]||//原材料价值
         [self.keyString isEqualToString:@"accountReceive"]||//应收账款
         [self.keyString isEqualToString:@"loadAmt"]|| //贷款金额
-        [self.keyString isEqualToString:@"loadPeriod"]||//贷款期限
+        [self.keyString isEqualToString:@"endDate"]||//贷款期限
         [self.keyString isEqualToString:@"stockPrevBalance"]||//上期检查(或调 查)时点余额
         [self.keyString isEqualToString:@"receBalance"]||//应收账款当前余额
         [self.keyString isEqualToString:@"lentBalance"]||//银行借款当前贷款余额

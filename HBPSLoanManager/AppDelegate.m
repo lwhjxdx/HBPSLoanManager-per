@@ -12,7 +12,6 @@
 #import "HBUserModel.h"
 #import "MobClick.h"
 #import <PgySDK/PgyManager.h>
-#define PGY_APP_ID @"11e5e451ad497055874fba560d484c4b"
 //手机端异常信息请求
 void uncaughtExceptionHandler(NSException *exception)
 {

@@ -101,11 +101,10 @@
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     
     
-    UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 40, 15, 20, 30)];
-    arrowImageView.image = [UIImage imageNamed:@"dot"];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     cell.contentView.backgroundColor = RGBACOLOR(255, 255, 255, 1);
     cell.textLabel.text = _dataArray[indexPath.section][@"cusName"];
-    [cell.contentView addSubview:arrowImageView];
     return cell;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

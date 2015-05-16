@@ -17,15 +17,18 @@
 {
     UITableView *tableView1;
     
-    BMKMapView *_mapView;
-    BMKLocationService *_locService;
-    BMKGeoCodeSearch* _geocodesearch;
+    
+    
+    
     CLLocationCoordinate2D _userLocationPoint;
     NSString *addressString;
     
     NSMutableArray *_dataArray;
     BOOL isQiandao;
 }
+@property(nonatomic,strong)BMKMapView *mapView;
+@property(nonatomic,strong)BMKLocationService *locService;
+@property(nonatomic,strong)BMKGeoCodeSearch* geocodesearch;
 @end
 
 @implementation HBSignInController
@@ -45,15 +48,17 @@
     [btn addTarget:self action:@selector(chongxindingwei) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:btn];
     
-    self.titleLabel.text = @"签到";
+    self.titleLabel.text = @"定位";
     [self initLocation];
     [self.homeButton setTitle:@"下一步" forState:UIControlStateNormal];
-    [self.homeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.homeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.homeButton.frame = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
     [self.homeButton setImage:nil forState:UIControlStateNormal];
     self.homeButton.hidden = YES;
     [self.homeButton addTarget:self action:@selector(nextIemAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mBaseNavigationBarView addSubview:self.homeButton];
+    [self setTabbarViewHide:YES];
+
 }
 -(void)chongxindingwei
 {
@@ -100,13 +105,15 @@
     }
 }
 - (void)configUI{
-    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT -kTopBarHeight )];
+    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT -kTopBarHeight )];
     [_mapView setZoomLevel:17];
 //    [_mapView setlo]
 //    <wpt lat="31.225" lon="121.437">
-
+    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    _geocodesearch.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _mapView.showsUserLocation = YES;//显示定位图层
     [self.view addSubview:_mapView];
+//    [_mapView viewWillAppear];
     [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(31.225, 121.437) animated:YES];
     self.backButton.hidden = NO;
 }
@@ -131,6 +138,9 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
+    if (!_mapView) {
+        return;
+    }
     [_mapView updateLocationData:userLocation];
     [_mapView setCenterCoordinate:userLocation.location.coordinate animated:NO];
     [self searchGEO:userLocation];
@@ -138,6 +148,7 @@
 
 //查询地址
 - (void)searchGEO:(BMKUserLocation *)userLocation{
+    
     _geocodesearch.delegate = nil;
     _geocodesearch = nil;
     _geocodesearch = [[BMKGeoCodeSearch alloc]init];
@@ -162,6 +173,9 @@
 
 //获取地址解码
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+    if (!_mapView) {
+        return;
+    }
     NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
     [_mapView removeAnnotations:array];
     array = [NSArray arrayWithArray:_mapView.overlays];
@@ -350,35 +364,37 @@
 
 
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [self setTabbarViewHide:YES];
-    [_mapView viewWillAppear];
-    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
-    _geocodesearch.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
-}
+    [super viewDidAppear:animated];
+//    [_mapView viewWillAppear];
 
-- (void)viewWillDisappear:(BOOL)animated
+}
+-(void)backBtnEvents:(id)sender
 {
-    [_mapView viewWillDisappear];
+//    [_mapView viewWillDisappear];
+    
+    _mapView.showsUserLocation = NO;
     _mapView.delegate = nil; // 不用时，置nil
     _geocodesearch.delegate = nil; // 不用时，置nil
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)dealloc{
-    
     if (_geocodesearch != nil) {
         _geocodesearch = nil;
     }
     if (_mapView) {
         _mapView = nil;
     }
+    [super backBtnEvents:sender];
 }
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//
+//}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
 
 
 //数据处理算法

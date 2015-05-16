@@ -18,6 +18,7 @@
 {
     NSArray *planNoList;
     NSString *planNoString;
+    NSString *planNoTypeString;
     NSArray *conNoList;
     NSString *conNoString;
     NSArray *conPaperIdList;
@@ -44,20 +45,20 @@
     [super viewDidLoad];
     self.titleLabel.text = @"检查";
     self.backButton.hidden = NO;
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     [self setTabbarViewHide:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
     [self configUIWithDic];
     [self requestFromNetWorking];
+    
 }
+
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//}
+//
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//
+//}
 - (void)configUIWithDic{
     if (_checkType==CheckTypeXiaoqiyefaren) {
         if (self.customerDic) {
@@ -211,13 +212,90 @@
 }
 -(void)pushHBinspectViewController:(NSDictionary*)dic
 {
-    if (_checkType == CheckTypeXiaoqiyefaren) {
-        [self pushXiaoqiyefaren:dic];
-    }else{
-        [self pushGerenshangdai:dic];
+//    if (_checkType == CheckTypeXiaoqiyefaren) {
+//        [self pushXiaoqiyefaren:dic];
+//    }else{
+//        [self pushGerenshangdai:dic];
+//    }
+
+    if (!planNoTypeString) {
+        [self showAlterView:@"请先选择计划号"];
+        return;
     }
+    NSInteger type = [planNoTypeString integerValue];
+    Class className ;
+    switch (type) {
+        case 3://例行检查
+        {
+            if (_checkType == CheckTypeGerenshangdai) {
+                className = NSClassFromString(@"HBIndividualCommercialCreditDailyCheckViewController");
+            }else{
+                className = NSClassFromString(@"HBRoutineFirstViewController");
+            }
+        }
+            break;
+        case 2://首次检查
+        {
+            if (_checkType == CheckTypeGerenshangdai) {
+                className = NSClassFromString(@"HBIndividualCommercialFirstTrackingViewController");
+            }else if(_checkType == CheckTypeXiaoqiyefaren){
+                className = NSClassFromString(@"HBCFirstViewController");
+            }else{
+                className = NSClassFromString(@"HBPVehiclesDailyMortgageFirstChecksViewController");
+            }
+        }
+            break;
+            
+        case 4://逾期催收"
+        {
+            if (_checkType == CheckTypeGerenshangdai) {
+                className = NSClassFromString(@"HBIndividualCommercialLocaleCollectionCheckViewContr");
+            }else if(_checkType == CheckTypeXiaoqiyefaren){
+                className = NSClassFromString(@"HBLocaleCollectionCheckViewController");
+            }else{
+                className = NSClassFromString(@"HBPersonalVehiclesDailyMortgageChecksViewController");
+            }
+        }
+            break;
+        case 5://还款落实检查
+        {
+            if (_checkType == CheckTypeXiaoqiyefaren) {
+                className = NSClassFromString(@"HBPayBackCheckFirstViewController");
+            }else{
+                className = NSClassFromString(@"HBICRepaymentConditionViewController");
+            }
+        }
+            break;
+        case 8://全面检查
+        {
+            className = NSClassFromString(@"HBAllCheckViewController");
+        }
+            break;
+            
+            break;
+        default:
+            break;
+    }
+    if (!className) {
+        if (_checkType == CheckTypeGerenshangdai) {
+            className = NSClassFromString(@"HBIndividualCommercialCreditDailyCheckViewController");
+        }else{
+            className = NSClassFromString(@"HBAllCheckViewController");
+        }
+    }
+    [self pushHBSignInControllerWithDic:[NSMutableDictionary dictionaryWithDictionary:dic] withNextClass:className];
 }
 
+- (void)pushHBSignInControllerWithDic:(NSMutableDictionary*)dic withNextClass:(Class)class
+{
+    if (!class) {
+        return;
+    }
+    HBCheckBaseViewController *vc;
+    vc = [[class alloc] init];
+    vc.userDic = dic;
+    [self pushViewController:vc animated:YES];
+}
 #pragma mark - 根据不同类型推向不同界面
 
 -(void)pushXiaoqiyefaren:(NSDictionary*)dic
@@ -358,9 +436,9 @@
         [dic setObject:@"161" forKey:@"userNo"];
     }
     [dic setObject:[self productType] forKey:@"productType"];
-    [dic setObject:@0 forKey:@"checkPlanType"];
-    [dic setObject:@(1) forKey:@"page"];
-    [dic setObject:@(20) forKey:@"pageNo"];
+    [dic setObject:@0 forKey:@"checkCheckType"];
+//    [dic setObject:@(1) forKey:@"page"];
+//    [dic setObject:@(20) forKey:@"pageNo"];
     [dic setObject:@(0) forKey:@"checked"];
     [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
     [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
@@ -371,12 +449,13 @@
 - (void)requestFromNetWorkingGettingPlanNo{
     NSMutableDictionary *dic = [self makePlanNoParams];
     [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-        if (!receiveJSON[@"planNO"]) {
+        if (!receiveJSON[@"checkPlanList"]) {
             return;
         }
-        planNoList = [receiveJSON[@"planNO"] componentsSeparatedByString:@","];
-        planNoString = planNoList[0];
-        self.planNoLable.text = planNoList[0];
+        planNoList = receiveJSON[@"checkPlanList"];
+        planNoString = planNoList[0][@"checkTypeName"];
+        planNoTypeString = planNoList[0][@"checkType"];
+        self.planNoLable.text = planNoString;
     } failBlock:^(NSError *error) {
 
     }];
@@ -407,16 +486,30 @@
 - (IBAction)planNoSelctAction:(id)sender {
     if (planNoList) {
         MyCustomPickerView *pick = [[MyCustomPickerView alloc] initWithFrame:CGRectZero];
-        pick.contentArray =  [NSMutableArray arrayWithArray:planNoList];
+        pick.contentArray =  [NSMutableArray arrayWithArray:[planNoList copy]];
         [pick pickerDataWithCancelBtnBlock:^(UIButton *btn) {
             
-        } withDoneBtnBlock:^(NSInteger index, id receiveData) {
-            self.planNoLable.text = planNoList[index];
-            planNoString = self.planNoLable.text;
-        } withChangedEventBlock:^(NSInteger index) {
-            
-        }];
+        } withDoneBtnBlock:^(NSInteger selectIndex, id receiveData) {
+            planNoString = receiveData[@"checkTypeName"];
+            planNoTypeString = receiveData[@"checkType"];
+            self.planNoLable.text = planNoString;
+        } withShowStringArr:@[@"checkTypeName",@"checkBeginTime",@"checkEndTime"]];
         [pick showInView:self.view];
     }
 }
+//- (NSString*)chectStringWithType:(NSInteger)type
+//{
+//    if (type>8) {
+//        return @"";
+//    }
+//    NSArray *tempArr = @[@"半年检查",
+//                         @"首次检查",
+//                         @"例行检查",
+//                         @"逾期催收",
+//                         @"还款落实检查",
+//                         @"额度年检",
+//                         @"抽查",
+//                         @"全面检查"];
+//    return tempArr[type - 1];
+//}
 @end

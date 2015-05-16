@@ -22,6 +22,14 @@
     isShowSecret = YES;
     self.titleLabel.text = @"密码修改";
     [self littleAdjust];
+    [self.homeButton setTitle:@"确定" forState:UIControlStateNormal];
+        [self.homeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.homeButton.frame = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
+    self.homeButton.hidden = NO;
+    [self.homeButton setImage:nil forState:UIControlStateNormal];
+    [self.homeButton addTarget:self action:@selector(alterPWClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mBaseNavigationBarView addSubview:self.homeButton];
+    [self setTabbarViewHide:YES];
 }
 
 - (void)littleAdjust{
@@ -72,10 +80,37 @@
     [self.view endEditing:YES];
 }
 
-
+//判断输入字符是否是符合规则的密码
+- (BOOL) validatePassword:(NSString *)passWord
+{
+    //    NSString *passWordRegex = @"^[a-zA-Z0-9]{1,8}+$";
+    //    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
+    //    return [passWordPredicate evaluateWithObject:passWord];
+    /**
+     *  添加判断用户密码
+     */
+    BOOL isRigth;
+    NSString *allPwdRegex = @"[A-Z0-9a-z._%+-~!@#$%^&*()_+=\"]{6,18}+$";
+    NSPredicate *emailRegexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",allPwdRegex];
+    isRigth = [emailRegexPredicate evaluateWithObject:passWord];
+    NSString *passWordRegex = @"^[a-zA-Z]{6,18}+$";
+    NSString *passWordRegex1 = @"^[0-9]{6,18}+$";
+    
+    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
+    NSPredicate *passWordPredicate1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex1];
+    BOOL first = ![passWordPredicate1 evaluateWithObject:passWord];
+    BOOL secend = ![passWordPredicate evaluateWithObject:passWord];
+    return first&&secend&&isRigth;
+}
 
 //验证数据有效性
 - (Boolean)verify{
+//
+//    if (![self validatePassword:self.userNewPWTextField.text]) {
+//        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提醒" message:@"新密码长度不低于6位 不得大于18位,不能为纯数字 纯字母,不能是中文字符" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [al show];
+//        return NO;
+//    }
     if (self.userNewSurePWTextField.text.length > 0 && self.userNewPWTextField.text.length >0&& self.oldPWTextField.text.length >0) {
         if ([self.userNewSurePWTextField.text isEqualToString:self.userNewPWTextField.text] ) {
             if ([self.oldPWTextField.text isEqualToString:self.userNewPWTextField.text]) {

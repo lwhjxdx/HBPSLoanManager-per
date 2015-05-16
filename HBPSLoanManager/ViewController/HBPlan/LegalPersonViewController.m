@@ -30,7 +30,8 @@
     self.backButton.hidden = NO;
     self.tableViewArr = @[@[@"小企业法人授信业务检查计划",@"HBCompanyPlanViewController"],
 //  @[@"小企业法人授信业务抽查计划",@"HBPersonageViewController"],
-  @[@"小企业法人授信业务检查日历",@"HBCheckCaledarViewController"]];
+//  @[@"小企业法人授信业务检查日历",@"HBCheckCaledarViewController"]
+                          ];
     [self.tableView reloadData];
     self.titleLabel.text = @"小企业法人授信业务";
 }

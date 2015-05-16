@@ -45,7 +45,7 @@
     isShow = NO;
     self.backButton.hidden = NO;
     [self requestFromNetWorking];
-
+    [self.topTableView reloadData];
 
 }
 -(void)setPlanType:(PlanType)planType
@@ -244,11 +244,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell ;
     if (tableView == self.topTableView) {
+        static NSString *cellIDE = @"IDE";
         
-        
-        cell = [tableView dequeueReusableCellWithIdentifier:@"IDE"];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIDE];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"IDE"];
+            cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:cellIDE];
         }
         [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
         cell.contentView.backgroundColor = RGBACOLOR(247, 247, 247, 1);
@@ -281,7 +281,8 @@
             }
         }
     }else{
-        cell = [tableView dequeueReusableCellWithIdentifier:@"IDE1"];
+        static NSString *cellIDE1 = @"IDE123";
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIDE1];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HBPlanComInfoCell" owner:self options:nil] lastObject];
         }
@@ -348,89 +349,55 @@
    
     return tempDic;
 }
-- (void)pushHBSignInControllerWithDic:(NSMutableDictionary*)dic withNextClass:(Class)class
-{
-    if (!class) {
-        return;
-    }
-    HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
-    qiandaoVC.isShowNextItem = YES;
-    qiandaoVC.classString = class;
-    qiandaoVC.pushNextDic = dic;
-    [self pushViewController:qiandaoVC animated:YES];
-}
+
 - (void)cellClicked:(NSDictionary *)dic{
-//    NSArray *tempArr = @[@"半年检查",  //  0
-//                         @"首次检查",  //  1
-//                         @"例行检查",  //  2
-//                         @"逾期催收",  //  3
-//                         @"还款落实检查",//  4
-//                         @"额度年检",   //  5
-//                         @"抽查",       //  6
-//                         @"全面检查"];    // 7
-    NSInteger type = [dic[@"checkType"] integerValue] - 1;
-    
-//HBPersonalVehiclesDailyMortgageChecksViewController个商车辆贷款日常及逾期
-//    
-//HBPVehiclesDailyMortgageFirstChecksViewController个商车辆贷款首次检查
-//
-//    
-//    
-////    HBIndividualCommercialFirstTrackingViewController  个商还款情况
-//    
-//    HBIndividualCommercialCreditDailyCheckViewController   个商贷款日常检查
-//    
-//    HBICRepaymentConditionViewController   个商现场催收
-//    
-//    HBIndividualCommercialFirstTrackingViewController个商首次跟踪检查
+
     
     
-    
-//    HBLCNextCheckViewController现场催收
-    
-//    HBPayBackCheckFirstViewController还款资金落实情况检查
-    
-//    HBAllCheckViewController全面检查
-    
-//    HBRoutineFirstViewController例行检查
-    
-//    HBCFirstViewController首次检查
-//case 5:
-//    {
-//        //@"个商首次跟踪检查"
-//        HBIndividualCommercialFirstTrackingViewController *vc = [[HBIndividualCommercialFirstTrackingViewController alloc] init];
-//        vc.userDic = self.customerDic;
-//        [self pushViewController:vc animated:NO];
-//    }
-//    break;
-//case 6:
-//    {
-//        //@"个商贷款日常检查"
-//        HBIndividualCommercialCreditDailyCheckViewController *vc = [[HBIndividualCommercialCreditDailyCheckViewController alloc] init];
-//        vc.userDic = self.customerDic;
-//        [self pushViewController:vc animated:NO];
-//    }
-//    break;
-//case 7:
-//    {
-//        //@"个商贷款日常检查"
-//        HBICRepaymentConditionViewController *vc = [[HBICRepaymentConditionViewController alloc] init];
-//        vc.userDic = self.customerDic;
-//        [self pushViewController:vc animated:NO];
-//    }
-//    break;
-//case 8:
-//    {
-//        //@"个商贷款日常检查"个商车辆贷款首次检查
-//        HBIndividualCommercialLocaleCollectionCheckViewContr *vc = [[HBIndividualCommercialLocaleCollectionCheckViewContr alloc] init];
-//        vc.userDic = self.customerDic;
-//        [self pushViewController:vc animated:NO];
-//    }
-//    break;
-//    
+
+
+//    NSArray *tempArr = @[@"半年检查",  //  1
+//                         @"首次检查",  //  2
+//                         @"例行检查",  //  3
+//                         @"逾期催收",  //  4
+//                         @"还款落实检查",//  5
+//                         @"额度年检",   //  6
+//                         @"抽查",       //  7
+//                         @"全面检查"];    // 8
+   
+    NSInteger type = [dic[@"checkType"] integerValue];
     Class className ;
+/***************************小企业法人检查模板************************
+    //    HBLocaleCollectionCheckViewController现场催收
+    
+    //    HBPayBackCheckFirstViewController还款资金落实情况检查
+    
+    //    HBAllCheckViewController全面检查
+    
+    //    HBRoutineFirstViewController例行检查
+    
+    //    HBCFirstViewController首次检查
+ */
+
+    
+/*********************个商还款检查模板
+     HBIndividualCommercialFirstTrackingViewController  个商还款情况
+     
+     HBIndividualCommercialCreditDailyCheckViewController   个商贷款日常检查
+     
+     HBICRepaymentConditionViewController   个商现场催收
+     
+     HBIndividualCommercialFirstTrackingViewController个商首次跟踪检查
+*/
+    
+    
+/*********************************个商车贷检查模板
+     HBPersonalVehiclesDailyMortgageChecksViewController个商车辆贷款日常及逾期
+     
+     HBPVehiclesDailyMortgageFirstChecksViewController个商车辆贷款首次检查
+*/
     switch (type) {
-        case 2:
+        case 3://例行检查
         {
             if (_planType == PlanTypeGerenshangdai) {
                 className = NSClassFromString(@"HBIndividualCommercialCreditDailyCheckViewController");
@@ -439,7 +406,7 @@
             }
         }
             break;
-        case 1:
+        case 2://首次检查
         {
             if (_planType == PlanTypeGerenshangdai) {
                 className = NSClassFromString(@"HBIndividualCommercialFirstTrackingViewController");
@@ -451,28 +418,27 @@
         }
             break;
             
-        case 3:
+        case 4://逾期催收"
         {
             if (_planType == PlanTypeGerenshangdai) {
                 className = NSClassFromString(@"HBIndividualCommercialLocaleCollectionCheckViewContr");
             }else if(_planType == PlanTypeXiaoqiyefaren){
-                className = NSClassFromString(@"HBLCCheckViewController");
+                className = NSClassFromString(@"HBLocaleCollectionCheckViewController");
             }else{
                 className = NSClassFromString(@"HBPersonalVehiclesDailyMortgageChecksViewController");
             }
         }
             break;
-        case 4:
+        case 5://还款落实检查
         {
             if (_planType == PlanTypeXiaoqiyefaren) {
                 className = NSClassFromString(@"HBPayBackCheckFirstViewController");
-
             }else{
                 className = NSClassFromString(@"HBICRepaymentConditionViewController");
             }
         }
             break;
-        case 7:
+        case 8://全面检查
         {
             className = NSClassFromString(@"HBAllCheckViewController");
         }
@@ -482,10 +448,27 @@
         default:
             break;
     }
+    if (!className) {
+        if (_planType == PlanTypeGerenshangdai) {
+            className = NSClassFromString(@"HBIndividualCommercialCreditDailyCheckViewController");
+        }else{
+            className = NSClassFromString(@"HBAllCheckViewController");
+        }
+    }
     [self pushHBSignInControllerWithDic:[NSMutableDictionary dictionaryWithDictionary:dic] withNextClass:className];
 }
 
-
+- (void)pushHBSignInControllerWithDic:(NSMutableDictionary*)dic withNextClass:(Class)class
+{
+    if (!class) {
+        return;
+    }
+    HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
+    qiandaoVC.isShowNextItem = YES;
+    qiandaoVC.classString = class;
+    qiandaoVC.pushNextDic = dic;
+    [self pushViewController:qiandaoVC animated:YES];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];

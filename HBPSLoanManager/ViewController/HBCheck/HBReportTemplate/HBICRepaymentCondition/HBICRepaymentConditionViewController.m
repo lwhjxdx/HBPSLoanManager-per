@@ -178,7 +178,7 @@
         keyArray = @[  @"custName",
                        @"conNo",
                        @"operationType",
-                       @"loadPeriod",
+                       @"endDate",
                        @"loadAmt",
                        @"loadDate",
                        @"busiScope",

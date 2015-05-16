@@ -30,6 +30,11 @@
         return NO;
     }
     NSString *nameString =  dataDic[@"custName"];
+    NSDate *senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    NSString *locationString=[dateformatter stringFromDate:senddate];
+    NSString *infoString = locationString  ;
     NSString *checkTypeString = [self getTypeString:type];
     NSInteger checkType = type;
 
@@ -38,7 +43,7 @@
         HBReportModel *model = [[DBManager shareManager] selectInfo:nameString withType:checkType];
         if (model) {
             model.titleString = nameString;
-            model.contentString = checkTypeString;
+            model.contentString = [NSString stringWithFormat:@"%@\n%@",checkTypeString,infoString];
             model.filePath = pathString;
             model.reportType = type;
             model.className = NSStringFromClass(className);
@@ -46,7 +51,7 @@
         }else{
             model = [[HBReportModel alloc] init];
             model.titleString = nameString;
-            model.contentString = checkTypeString;
+            model.contentString = [NSString stringWithFormat:@"%@\n%@",checkTypeString,infoString];
             model.filePath = pathString;
             model.reportType = type;
             model.className = NSStringFromClass(className);
@@ -80,7 +85,7 @@
             typeString = @"贷后跟踪检查";
             break;
         case  localeCollectionCheck:
-            typeString = @"催收";
+            typeString = @"现场催收";
             break;
         case individualCommercialFirstTracking:
             typeString = @"个商首次跟踪";

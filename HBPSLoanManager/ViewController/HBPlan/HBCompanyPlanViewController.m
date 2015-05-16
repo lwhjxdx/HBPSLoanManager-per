@@ -92,11 +92,11 @@
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     
     
-    UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 40, 15, 20, 30)];
-    arrowImageView.image = [UIImage imageNamed:@"dot"];
+//    UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 40, 15, 20, 30)];
+//    arrowImageView.image = [UIImage imageNamed:@"dot"];
     cell.contentView.backgroundColor = RGBACOLOR(255, 255, 255, 1);
     cell.textLabel.text = _dataArray[indexPath.section][@"enterpriseName"];
-    [cell.contentView addSubview:arrowImageView];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
