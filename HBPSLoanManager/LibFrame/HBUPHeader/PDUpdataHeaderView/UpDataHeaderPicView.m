@@ -68,30 +68,33 @@
     [choiceSheet showInView:[UIApplication sharedApplication].keyWindow];
     
 }
-
+-(void)takePhotosWithCamare
+{
+    if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+        if ([self isRearCameraAvailable]) {
+            controller.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        }
+        NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+        [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+        controller.mediaTypes = mediaTypes;
+        controller.delegate = self;
+        UIViewController *vc = [self findViewController:self];
+        currentVC = vc;
+        [vc presentViewController:controller
+                         animated:YES
+                       completion:^(void){
+                           NSLog(@"Picker View Controller is presented");
+                       }];
+    }
+}
 
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         // 拍照
-        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
-            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-            controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-            if ([self isRearCameraAvailable]) {
-                controller.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-            }
-            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
-            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
-            controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            UIViewController *vc = [self findViewController:self];
-            currentVC = vc;
-            [vc presentViewController:controller
-                             animated:YES
-                           completion:^(void){
-                               NSLog(@"Picker View Controller is presented");
-                           }];
-        }
+        [self takePhotosWithCamare];
         
     } else if (buttonIndex == 1) {
         // 从相册中选取

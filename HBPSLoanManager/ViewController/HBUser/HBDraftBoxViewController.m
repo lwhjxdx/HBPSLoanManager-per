@@ -26,6 +26,8 @@
 {
     NSString *_searchString;
     NSArray *_dataArray;
+    NSMutableArray *selectIndexPath;
+    NSMutableArray *_resultsData;
     HBDraftSevice *sevice;
     HBReportModel *tempDelModel;
 }
@@ -45,18 +47,68 @@
 
 
 - (void)configUI{
-    [self initSearchView:@"请输入公司" SearchClicked:^(NSString *searchString) {
+    [self initSearchView:@"输入公司关键字、贷款类型" SearchClicked:^(NSString *searchString) {
         _searchString = searchString;
-        
+        if ([searchString isEqualToString:@""]||searchString==nil) {
+            _resultsData = [NSMutableArray arrayWithArray:_dataArray];
+            [self reloadTableView];
+            return ;
+        }
+        [self filterContentForSearchText:searchString];
     }];
     
-    [self initTableViewForResult:CGRectMake(0,kTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kTopBarHeight - 40 - kSearchBarHigh)];
+    [self initTableViewForResult:CGRectMake(0,kValueTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kValueTopBarHeight - 40 - kSearchBarHigh)];
     [self initBottomView];
     
 }
+//- (void)searchActionWithSearchString:(NSString*)searchString
+//{
+//    
+//}
 
-
-
+//源字符串内容是否包含或等于要搜索的字符串内容
+-(void)filterContentForSearchText:(NSString*)searchText
+{
+    NSMutableArray *tempResults = [NSMutableArray array];
+    [_resultsData removeAllObjects];
+    
+    if (_dataArray == nil) {
+        return;
+    }
+    for (int i = 0; i < _dataArray.count; i++)
+    {
+        //        NSString *storeString = dataArray[i][@"cityName"];
+        //        NSRange storeRange = NSMakeRange(0, storeString.length);
+        HBReportModel *model = _dataArray[i];
+        NSRange foundTitleStringRange = [self rangeWithString:model.titleString WithText:searchText];
+        NSRange foundContentStringRange = [self rangeWithString:model.contentString WithText:searchText];
+//        NSRange foundpinYinRange = [self rangeWithString:_dataArray[i][@"pinYin"] WithText:searchText];
+//        NSRange foundCodeRange = [self rangeWithString:_dataArray[i][@"cityCode"] WithText:searchText];
+        if (foundTitleStringRange.length||foundContentStringRange.length)
+        {
+            [tempResults addObject:_dataArray[i]];
+        }
+    }
+    
+    [_resultsData addObjectsFromArray:tempResults];
+    [self reloadTableView];
+}
+/**
+ *  搜素rangge
+ *
+ *  @param string     对比字符串
+ *  @param searchText 输入字符串
+ *
+ *  @return 该range是否存在
+ */
+-(NSRange)rangeWithString:(NSString*)string WithText:(NSString*)searchText
+{
+    NSUInteger searchOptions = NSCaseInsensitiveSearch;
+    NSString *storeleString = string;
+    NSRange storeleRange = NSMakeRange(0, storeleString.length);
+    NSRange foundleRange = [storeleString rangeOfString:searchText options:searchOptions range:storeleRange];
+    return foundleRange;
+}
 
 
 - (void)initBottomView{
@@ -109,6 +161,7 @@
 - (void)loadData{
     
     _dataArray = [[DBManager shareManager] fetchAllUsers];
+    _resultsData = [NSMutableArray arrayWithArray:_dataArray];
 }
 #pragma mark - tableViewDatasouse&&delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +171,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"HBDraftBoxTableViewCell" owner:self options:nil] lastObject];
     }
     cell.delegate = self;
-    HBReportModel *model = _dataArray[indexPath.row];
+    HBReportModel *model = _resultsData[indexPath.row];
     [cell configerCellWithData:model];
     
     return cell;
@@ -130,7 +183,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        tempDelModel = [_dataArray objectAtIndex:indexPath.row];
+        tempDelModel = [_resultsData objectAtIndex:indexPath.row];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"确认删除" message:@"是否确认该检查计划" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alert.tag = 100012;
         [alert show];
@@ -146,7 +199,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HBReportModel *model = [_dataArray objectAtIndex:indexPath.row];
+    HBReportModel *model = [_resultsData objectAtIndex:indexPath.row];
     NSDictionary *dic = [sevice getDataFromDraft:model];
     NSMutableDictionary *dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
 //    HBDraftType type = model.reportType;
@@ -235,11 +288,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataArray.count;
+    return _resultsData.count;
 }
 
 - (void)cellChangeClicked:(NSDictionary *)dic{
-    [self loadData];
+//    [self loadData];
     [self reloadTableView];
 }
 #pragma mark - 界面布局
@@ -267,12 +320,26 @@
         if (alertView.tag == 100012) {
             [sevice deleteModel:tempDelModel];
             [self loadData];
+
             [self reloadTableView];
         }else{
             [self okDel];
         }
     }
 }
+
+//- (void)deleteWithSelct
+//{
+//    
+//    for (int i = 0; i<_resultsData.count; i++) {
+//        HBReportModel *model = _resultsData[i];
+//        if ([model.isSelect isEqualToString:@"NO"]) {
+//            [_resultsData removeObjectAtIndex:i];
+//        }
+//    }
+//    NSLog(@"_resultsData====%@",_resultsData);
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

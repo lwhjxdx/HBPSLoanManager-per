@@ -239,7 +239,7 @@
     [upDataBtn setBackgroundColor:RGBACOLOR(0, 93, 57, 1)];
     [upDataBtn addTarget:self action:@selector(upData) forControlEvents:(UIControlEventTouchUpInside)];
     
-    [upDataBtn setTitle:@"上传" forState:UIControlStateNormal];
+    [upDataBtn setTitle:@"完成" forState:UIControlStateNormal];
     upDataBtn.titleLabel.font = [UIFont systemFontOfSize:20];
     upDataBtn.layer.cornerRadius = 5;
     upDataBtn.layer.masksToBounds = YES;

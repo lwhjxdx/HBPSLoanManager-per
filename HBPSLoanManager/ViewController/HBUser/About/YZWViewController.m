@@ -35,7 +35,7 @@
     self.backButton.hidden = NO;
     [self setTabbarViewHide:YES];
     array=[[NSArray alloc]initWithObjects:@"检查更新",@"版本说明", nil];
-    UITableView *tableview=[[UITableView alloc]initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kTopBarHeight) style:UITableViewStylePlain];
+    UITableView *tableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT) style:UITableViewStylePlain];
     tableview.backgroundColor=[UIColor clearColor];
     tableview.dataSource=self;
     tableview.delegate=self;
@@ -113,7 +113,7 @@
             UIImageView *logImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logIcon-60"]];
             logImgView.frame = CGRectMake(30, 20, 60, 60);
             [cell.contentView addSubview:logImgView];
-            cell.backgroundColor = [UIColor colorWithRed:0.298 green:0.486 blue:0.361 alpha:1.000];
+            cell.backgroundColor = [UIColor colorWithRed:0.922 green:0.882 blue:0.733 alpha:1.000];
             [cell.contentView addSubview:self.bandleIdLabel];
             
             _bandleIdLabel.frame = CGRectMake(0, 0, kSCREEN_WIDTH / 2, 20);

@@ -38,13 +38,16 @@
     [self configUI];
     
     UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [btn setFrame:CGRectMake(35, kSCREEN_HEIGHT- 80, 45, 45)];
+    [btn setFrame:CGRectMake(35, kSCREEN_HEIGHT- 80, 40, 40)];
     //        btn.center = _mapView.center;
     //        [btn setTitle:@"签到" forState:(UIControlStateNormal)];
-    [btn setImage:[UIImage imageNamed:@"thumb_IMG_0036_1024"] forState:UIControlStateNormal];
-    [btn setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.3f]];
+    [btn setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.9f]];
     btn.layer.cornerRadius = 5.f;
+    btn.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f].CGColor;
+    btn.layer.borderWidth = 1.f;
     btn.layer.masksToBounds = YES;
+    
+    [btn setImage:[UIImage imageNamed:@"thumb_IMG_0036_1024"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(chongxindingwei) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:btn];
     
@@ -55,10 +58,14 @@
     self.homeButton.frame = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
     [self.homeButton setImage:nil forState:UIControlStateNormal];
     self.homeButton.hidden = YES;
-    [self.homeButton addTarget:self action:@selector(nextIemAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.homeButton addTarget:self action:@selector(nextIemAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mBaseNavigationBarView addSubview:self.homeButton];
     [self setTabbarViewHide:YES];
 
+}
+-(void)homeBtnEvents:(id)sender
+{
+    [self nextIemAction:sender];
 }
 -(void)chongxindingwei
 {
@@ -188,6 +195,8 @@
         
         item.coordinate = result.location;
         item.title = result.address;
+        item.subtitle =[NSString stringWithFormat:@"经度:%.3f     维度:%.3f",result.location.latitude,result.location.longitude];
+        NSLog(@"%f",result.location.longitude);
         addressString = result.address;
         [_mapView addAnnotation:item];
         [_mapView selectAnnotation:item animated:YES];
@@ -201,12 +210,14 @@
         
         
         UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        [btn setFrame:CGRectMake(kSCREEN_WIDTH - 80, kSCREEN_HEIGHT- 80, 45, 45)];
+        [btn setFrame:CGRectMake(kSCREEN_WIDTH - 80, kSCREEN_HEIGHT- 80, 40, 40)];
 //        btn.center = _mapView.center;
 //        [btn setTitle:@"签到" forState:(UIControlStateNormal)];
         [btn setImage:[UIImage imageNamed:@"thumb_IMG_0035_1024"] forState:UIControlStateNormal];
-        [btn setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.3f]];
+        [btn setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.9f]];
         btn.layer.cornerRadius = 5.f;
+        btn.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f].CGColor;
+        btn.layer.borderWidth = 1.f;
         btn.layer.masksToBounds = YES;
         [btn addTarget:self action:@selector(signInClicked:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.view addSubview:btn];
@@ -385,11 +396,19 @@
     }
     [super backBtnEvents:sender];
 }
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//
-//}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    _mapView.showsUserLocation = NO;
+    _mapView.delegate = nil; // 不用时，置nil
+    _geocodesearch.delegate = nil; // 不用时，置nil
+    if (_geocodesearch != nil) {
+        _geocodesearch = nil;
+    }
+    if (_mapView) {
+        _mapView = nil;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

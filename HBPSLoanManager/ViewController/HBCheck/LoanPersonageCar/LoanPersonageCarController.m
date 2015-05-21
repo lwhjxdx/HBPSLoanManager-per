@@ -65,11 +65,9 @@
         [dic setObject:@"" forKey:@"enterpriseName"];
     }
     [dic setObject:@"3" forKey:@"productType"];
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
-    }else{
-        [dic setObject:@"161" forKey:@"userNo"];
-    }
+    [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
+    [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
     return dic;
 }
 
@@ -115,7 +113,7 @@
     NSDictionary *dic = _dataArray[indexPath.section];
     cell.textLabel.text = dic[@"cusName"];
     [cell.textLabel setTextColor:[UIColor grayColor]];
-    [cell.textLabel setFont:[UIFont systemFontOfSize:20]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
     return cell;
 }
 

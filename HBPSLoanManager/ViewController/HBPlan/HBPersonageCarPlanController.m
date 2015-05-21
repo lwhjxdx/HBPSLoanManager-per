@@ -39,6 +39,8 @@
         _searchString = searchString;
         [self requestFromNetWorking];
     }];
+    [self initTableViewForResult:CGRectMake(0,kValueTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kValueTopBarHeight - kSearchBarHigh)];
+
 }
 
 //从网络请求数据 查询企业信息
@@ -65,11 +67,8 @@
     }
     [dic setObject:@"3" forKey:@"productType"];
     
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
-    }else{
-        [dic setObject:@"161" forKey:@"userNo"];
-    }
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+
     [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
     [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
     return dic;

@@ -20,10 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHO-k8-w4V">
-                    <rect key="frame" x="0.0" y="214" width="320" height="404"/>
+                    <rect key="frame" x="0.0" y="214" width="320" height="314"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6d-Gi-UKt">
-                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="404"/>
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="314"/>
                             <subviews>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcb-py-q91">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="36"/>
@@ -41,7 +41,7 @@
                             <color key="backgroundColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEY-Fy-zGw">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
@@ -52,7 +52,7 @@
                         <constraint firstItem="h6d-Gi-UKt" firstAttribute="leading" secondItem="VHO-k8-w4V" secondAttribute="leading" id="5Xu-xf-7W1"/>
                         <constraint firstItem="hEY-Fy-zGw" firstAttribute="top" secondItem="VHO-k8-w4V" secondAttribute="top" id="CyO-UN-h5s"/>
                         <constraint firstAttribute="trailing" secondItem="hEY-Fy-zGw" secondAttribute="trailing" id="Jew-XI-y2g"/>
-                        <constraint firstAttribute="bottom" secondItem="hEY-Fy-zGw" secondAttribute="bottom" id="RZe-dO-5ty"/>
+                        <constraint firstAttribute="bottom" secondItem="hEY-Fy-zGw" secondAttribute="bottom" constant="44" id="RZe-dO-5ty"/>
                         <constraint firstAttribute="bottom" secondItem="h6d-Gi-UKt" secondAttribute="bottom" id="X05-Zh-hok"/>
                         <constraint firstItem="hEY-Fy-zGw" firstAttribute="leading" secondItem="h6d-Gi-UKt" secondAttribute="trailing" id="YtI-dD-ov4"/>
                     </constraints>
@@ -104,7 +104,7 @@
                 <constraint firstItem="VHO-k8-w4V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mak-RO-iJr"/>
                 <constraint firstAttribute="trailing" secondItem="VHO-k8-w4V" secondAttribute="trailing" id="NOs-N7-0jS"/>
                 <constraint firstAttribute="trailing" secondItem="RsK-lF-5na" secondAttribute="trailing" id="Nmn-a5-FJ2"/>
-                <constraint firstAttribute="bottom" secondItem="VHO-k8-w4V" secondAttribute="bottom" constant="-50" id="PIv-E1-4zt"/>
+                <constraint firstAttribute="bottom" secondItem="VHO-k8-w4V" secondAttribute="bottom" constant="40" id="PIv-E1-4zt"/>
                 <constraint firstItem="RsK-lF-5na" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="l4J-zf-Se4"/>
             </constraints>
             <point key="canvasLocation" x="279" y="332"/>

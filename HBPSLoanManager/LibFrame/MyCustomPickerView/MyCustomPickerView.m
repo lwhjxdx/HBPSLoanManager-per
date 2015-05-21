@@ -110,6 +110,7 @@
     pickerView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     pickerView.dataSource = self;
     pickerView.delegate = self;
+    
     pickerView.frame = CGRectMake(0, 44, kSCREEN_WIDTH, 180);
     pickerView.showsSelectionIndicator = YES;
     [self addSubview:pickerView];
@@ -143,11 +144,16 @@
 #pragma mark PickerViewDelegate & PickerViewDataSource
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH,45)];
+    UIButton *titleLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [[UILabel alloc] initWithFrame:];
+    titleLabel.frame = CGRectMake(0, 0, kSCREEN_WIDTH,45);
     titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.tag = row;
+
     if (self.contentArray.count) {
         if ([self.contentArray[row] isKindOfClass:[NSString class]]) {
-            titleLabel.text = self.contentArray[row];
+//            titleLabel.text = self.contentArray[row];
+            [titleLabel setTitle:self.contentArray[row] forState:UIControlStateNormal];
         }else{
             NSString *string;
             for (int i = 0; i < self.selctArr.count; i++) {
@@ -157,19 +163,24 @@
                     string = self.contentArray[row][self.selctArr[i]];
                 }
             }
-            titleLabel.text = string;
-            titleLabel.textAlignment = NSTextAlignmentCenter;
+            [titleLabel setTitle:string forState:UIControlStateNormal];
+
         }
     }
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 45)];
-    
-    contentView.backgroundColor = [UIColor clearColor];
-    [contentView addSubview:titleLabel];
-    return contentView;
+    [titleLabel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    titleLabel.userInteractionEnabled = NO;
+    [titleLabel addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doneBtnEvent:)]];
+//    [titleLabel addTarget:self action:@selector(doneBtnEvent:) forControlEvents:UIControlEventTouchUpInside];
+//    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 45)];
+//    
+//    contentView.backgroundColor = [UIColor clearColor];
+//    [contentView addSubview:titleLabel];
+    return titleLabel;
 }
-
+//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+//{
+//    [self doneBtnEvent:ni]
+//}
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
  

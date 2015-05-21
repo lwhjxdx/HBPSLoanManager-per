@@ -29,7 +29,8 @@
         _searchString = searchString;
         [self requestFromNetWorking];
     }];
-    
+    [self initTableViewForResult:CGRectMake(0,kValueTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kValueTopBarHeight - kSearchBarHigh)];
+
     
 }
 
@@ -56,11 +57,8 @@
         [dic setObject:_searchString forKey:@"enterpriseName"];
     }
     [dic setObject:@"1" forKey:@"productType"];
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
-    }else{
-        [dic setObject:@"161" forKey:@"userNo"];
-    }
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+    
     [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
     [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
     return dic;

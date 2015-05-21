@@ -69,10 +69,4 @@
     [super didReceiveMemoryWarning];
 }
 
-//dueNum //借据编号
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self setTabbarViewHide:NO];
-}
-
 @end

@@ -8,10 +8,20 @@
 
 #import "ReportPicCell.h"
 #import "MyMD5.h"
-@interface ReportPicCell()
+#import "ImageWithDelCollectionViewCell.h"
+
+static NSString  *midleCellItem = @"midleCellItem";
+
+@interface ReportPicCell()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    NSArray *imagePathArray;
+}
+@property (weak, nonatomic) IBOutlet UICollectionView *imageCollectionView;
+
 @property(nonatomic,strong)UIImageView*bigImageView;
 @property(nonatomic,strong)UIView*bigView;
 @property(nonatomic,strong)UIButton*closeBtn;
+@property(nonatomic,assign)NSInteger collectionNum;
 @end
 @implementation ReportPicCell
 
@@ -19,12 +29,18 @@
     toolView = [[UpDataHeaderPicView alloc] initWithFrame:CGRectZero upImage:^(NSData *headerData) {
         [self fillImageView:headerData];
     }];
+    
     [self.contentView addSubview:toolView];
     picArray = [NSMutableArray array];
     [picArray addObject:_imageView1];
     [picArray addObject:_imageView2];
     [picArray addObject:_imageView3];
     [picArray addObject:_imageView4];
+    [_imageView1.delBtn addTarget:self action:@selector(delteImage:) forControlEvents:UIControlEventTouchUpInside];
+    [_imageView2.delBtn addTarget:self action:@selector(delteImage:) forControlEvents:UIControlEventTouchUpInside];
+    [_imageView3.delBtn addTarget:self action:@selector(delteImage:) forControlEvents:UIControlEventTouchUpInside];
+    [_imageView4.delBtn addTarget:self action:@selector(delteImage:) forControlEvents:UIControlEventTouchUpInside];
+    [_imageView1.delBtn addTarget:self action:@selector(delteImage:) forControlEvents:UIControlEventTouchUpInside];
     [_imageView1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBigImage:)]];
     [_imageView2 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBigImage:)]];
     [_imageView3 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBigImage:)]];
@@ -36,6 +52,28 @@
     self.textFeildStyleView.layer.masksToBounds = YES;
     self.textFeildStyleView.layer.borderColor = [UIColor grayColor].CGColor;
     self.textFeildStyleView.layer.borderWidth = 1;
+
+}
+- (void)delteImage:(UIButton*)btn
+{
+    if ([btn.superview isKindOfClass:[HaveDelImageView class]]) {
+        HaveDelImageView *delView = (HaveDelImageView*)btn.superview;
+        delView.hidden = YES;
+        NSLog(@"_valueString%@",_valueString);
+        
+        NSInteger tag = delView.tag - 10000;
+        NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[_valueString componentsSeparatedByString:@","]];
+        [tempArr removeObjectAtIndex:tag];
+        _valueString = nil;
+        for (int i = 0; i < tempArr.count; i++) {
+            if (_valueString == nil) {
+                _valueString = tempArr[i];
+            }else{
+                _valueString = [_valueString stringByAppendingFormat:@",%@",tempArr[i]];
+            }
+        }
+        [self setPicString:_valueString];
+    }
 }
 - (void)showBigImage:(id)sender
 {
@@ -131,7 +169,7 @@
 }
 
 - (IBAction)takePhoto:(id)sender {
-    [toolView editPortrait];
+    [toolView takePhotosWithCamare];
 }
 -(NSString *)gettingFillePath
 {
@@ -146,15 +184,16 @@
     NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"YYYYMMddHHmmss"];
     NSString *locationString=[dateformatter stringFromDate:senddate];
-    NSString *infoString = locationString  ;
+    NSString *infoString = locationString;
+
     NSString *fileName = [NSString stringWithFormat:@"%@%@%d.jpg",_keyString,infoString,arc4random()%1000];
-    NSLog(@"fileName   %@",fileName);
+    
     BOOL x = YES;
     NSError *error;
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&x]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:&error];
     }
-    
+
     BOOL success = [data writeToFile:[NSString stringWithFormat:@"%@/%@",filePath,fileName] atomically:YES];
     if (success) {
         if (_valueString == nil) {
@@ -163,11 +202,23 @@
             _valueString = [_valueString stringByAppendingString:[NSString stringWithFormat:@",%@",fileName]];
         }
         
-        NSArray *imagePathArray = [_valueString componentsSeparatedByString:@","];
-        
+        imagePathArray = [_valueString componentsSeparatedByString:@","];
+        NSMutableArray *tempArr = [NSMutableArray arrayWithArray:imagePathArray];
+        while (tempArr.count > 4){
+            [tempArr removeObjectAtIndex:0];
+        };
         //控制图片的显示
+        _valueString = nil;
+        for (int i = 0; i < tempArr.count; i++) {
+            if (_valueString == nil) {
+                _valueString = tempArr[i];
+            }else{
+                _valueString = [_valueString stringByAppendingFormat:@",%@",tempArr[i]];
+            }
+        }
+        imagePathArray = tempArr;
         for (NSInteger i = 0; i < imagePathArray.count&&i<picArray.count; i++) {
-            UIImageView *imageView = picArray[i];
+            HaveDelImageView *imageView = picArray[i];
             if (imageView.hidden) {
                 imageView.hidden = NO;
             }
@@ -189,27 +240,55 @@
 
 - (void)setPicString:(NSString *)picString{
     _valueString = picString;
+
     NSArray *tempArray = [_valueString componentsSeparatedByString:@","];
         //控制图片的显示
-        for (int i = 0; i < tempArray.count&&i<picArray.count; i++) {
-            UIImageView *imageView = picArray[i];
+//    imagePathArray = tempArray;
+//    [self.imageCollectionView reloadData];
+        for (int i = 0; i < tempArray.count; i++) {
+            HaveDelImageView *imageView = picArray[i];
             if (imageView.hidden) {
                 imageView.hidden = NO;
             }
-            int index = 0;
-            if ((tempArray.count - picArray.count)+100>100) {
-                index = (int)tempArray.count-(int)picArray.count + i;
-            }else{
-                index = i;
-            }
+           
+//            int index = 0;
+//            if ((tempArray.count - picArray.count)+100>100) {
+//                index = (int)tempArray.count-(int)picArray.count + i;
+//            }else{
+//                index = i;
+//            }
             
-            UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",[self gettingFillePath],tempArray[index]]];
+            UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",[self gettingFillePath],tempArray[i]]];
             imageView.image = image;
             image = nil;
     }
+    for (int k = 0; k < picArray.count; k++) {
+        if (k>=tempArray.count) {
+            HaveDelImageView *imageView = picArray[k];
+            imageView.hidden = YES;
+        }
+    }
 }
 
-
+#pragma mark - collecthionViewDelegate
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (imagePathArray) {
+        return imagePathArray.count;
+    }
+    return 0;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ImageWithDelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:midleCellItem forIndexPath:indexPath];
+    cell.midleImageView.image = imagePathArray[indexPath.row];
+    
+    return cell;
+}
 
 - (id)valueForUndefinedKey:(NSString *)key{
     return nil;

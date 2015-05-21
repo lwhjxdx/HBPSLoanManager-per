@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UpDataHeaderPicView.h"
+#import "HaveDelImageView.h"
 
 /*
     此cell为图片上传样式Cell
@@ -27,10 +28,10 @@
     NSMutableArray *picArray;
 }
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView3;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView4;
+@property (weak, nonatomic) IBOutlet HaveDelImageView *imageView1;
+@property (weak, nonatomic) IBOutlet HaveDelImageView *imageView2;
+@property (weak, nonatomic) IBOutlet HaveDelImageView *imageView3;
+@property (weak, nonatomic) IBOutlet HaveDelImageView *imageView4;
 @property (weak, nonatomic) IBOutlet UIView *textFeildStyleView;
 
 @property (nonatomic,copy) NSString *keyString;

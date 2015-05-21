@@ -223,11 +223,10 @@
     if (self.textfieldView.hidden == NO) {
         self.infoTextfield.text = value;
         self.valueString = value;
-//        _infoTextfield.textAlignment = NSTextAlignmentRight;
+//        [self.infoTextfield adjustsFontSizeToFitWidth];
     }else{
         //设置pick里面的值
         self.labelViewLabel.text = [self.changeArray objectAtIndex:0];
-        
         self.valueString = [NSString stringWithFormat:@"%d",[value intValue]];
     }
 }

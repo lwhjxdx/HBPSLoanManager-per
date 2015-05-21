@@ -76,7 +76,7 @@
     [[self.photoImageView superview] addSubview:upView];
     [self.photoImageView removeFromSuperview];
     
-    self.nameLabel.text = [HBUserModel getUserName];
+    self.nameLabel.text = [HBUserModel getRealname];
     
     self.loginButton.layer.cornerRadius =  5 ;
     self.loginButton.layer.masksToBounds = YES;
@@ -111,6 +111,7 @@
     self.subTempView.frame = rect;
     rect.origin = CGPointMake(0, 0);
     rect.size.width = kSCREEN_WIDTH;
+    rect.size.height = 400;
     //rect.size.height = imageViewArray.count * 60 + 80;
     //rect.size.height = rect.size.height*kSCREEN_HEIGHT/568.0;
     
@@ -122,7 +123,7 @@
     [self.subTempView addSubview:tableView];
     
     UIView *footerView = [[UIView alloc] init];
-    footerView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 100);
+    footerView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 300);
     footerView.backgroundColor = [UIColor clearColor];
     
     UIButton *logoutBtn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -276,7 +277,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setTabbarViewHide:NO];
     if (isFirst) {
         [self initTableView];
     }

@@ -19,9 +19,9 @@
     NSArray *planNoList;
     NSString *planNoString;
     NSString *planNoTypeString;
-    NSArray *conNoList;
+    NSMutableArray *conNoList;
     NSString *conNoString;
-    NSArray *conPaperIdList;
+    NSMutableArray *conPaperIdList;
     NSString *conPaperString;
     UIWebView *phoneCallWebView;
     NSString *interfaceString;
@@ -43,11 +43,11 @@
 #pragma mark - 初始化界面，回调网络数据，时时更新
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"检查";
+    self.titleLabel.text = @"详细信息";
     self.backButton.hidden = NO;
     [self setTabbarViewHide:YES];
     [self configUIWithDic];
-    [self requestFromNetWorking];
+//    [self requestFromNetWorking];
     
 }
 
@@ -70,9 +70,12 @@
             self.linkManTel.text = self.customerDic[@"linkManTel"];
             self.danger.text = self.customerDic[@"danger"];
             self.mainBiz.text = self.customerDic[@"mainBiz"];
-            conNoList = [self.customerDic[@"conNo"] componentsSeparatedByString:@","];
+            conNoList = [NSMutableArray arrayWithArray:[self.customerDic[@"conNo"] componentsSeparatedByString:@","]];
+            [conNoList insertObject:@"全部" atIndex:0];
             self.conNo.text = conNoList[0];
             conNoString = self.conNo.text;
+            self.planNoLable.text = @"全部";
+            self.paperId.text = @"全部";
         }
     }else{
         self.lable1.text = @"姓名";
@@ -92,10 +95,14 @@
             
             
             
-            conNoList = [self.customerDic[@"conNo"] componentsSeparatedByString:@","];
+            conNoList = [NSMutableArray arrayWithArray:[self.customerDic[@"conNo"] componentsSeparatedByString:@","]];
+            [conNoList insertObject:@"全部" atIndex:0];
             self.conNo.text = conNoList[0];
             conNoString = self.conNo.text;
-            
+//            self.conpa
+            self.planNoLable.text = @"全部";
+            self.paperId.text = @"全部";
+
         }
     }
  
@@ -179,6 +186,7 @@
     } withDoneBtnBlock:^(NSInteger index, id receiveData) {
         self.conNo.text = conNoList[index];
         conNoString = self.conNo.text;
+        [self requestFromNetWorking];
     } withChangedEventBlock:^(NSInteger index) {
         
     }];
@@ -189,7 +197,7 @@
 */
 - (IBAction)checkPaperID:(id)sender {
     MyCustomPickerView *pick = [[MyCustomPickerView alloc] initWithFrame:CGRectZero];
-    pick.contentArray =  [NSMutableArray arrayWithArray:conPaperIdList];
+    pick.contentArray = conPaperIdList;
     [pick pickerDataWithCancelBtnBlock:^(UIButton *btn) {
         
     } withDoneBtnBlock:^(NSInteger index, id receiveData) {
@@ -217,11 +225,7 @@
 //    }else{
 //        [self pushGerenshangdai:dic];
 //    }
-
-    if (!planNoTypeString) {
-        [self showAlterView:@"请先选择计划号"];
-        return;
-    }
+ 
     NSInteger type = [planNoTypeString integerValue];
     Class className ;
     switch (type) {
@@ -323,7 +327,18 @@
 #pragma mark - 发送网络请求，处理相关数据
 //从网络请求数据获取第一次检查
 - (void)requestFromNetWorkingWithFirstChecked{
-    
+    if ([self.conNo.text isEqualToString:@"全部"]) {
+        [self showAlterView:@"请先选择合同编号"];
+        return;
+    }
+    if ([self.paperId.text isEqualToString:@"全部"]) {
+        [self showAlterView:@"请先选择借据编号"];
+        return;
+    }
+    if (!planNoTypeString||[self.planNoLable.text isEqualToString:@"全部"]) {
+        [self showAlterView:@"请先选择计划号"];
+        return;
+    }
     NSMutableDictionary *dic = [self markParamsWithFirstChecked];
     if (!dic) {
         return;
@@ -402,7 +417,8 @@
         [tempDic setObject:[dic objectForKey:key] forKey:key];
     }
     self.customerDic = tempDic;
-    conPaperIdList = [self.customerDic[@"dueNUM"] componentsSeparatedByString:@","];
+    conPaperIdList =[NSMutableArray arrayWithArray: [self.customerDic[@"dueNUM"] componentsSeparatedByString:@","]];
+    [conPaperIdList insertObject:@"全部" atIndex:0];
     self.paperId.text = conPaperIdList[0];
     conPaperString  = self.paperId.text;
     self.enterpriseLink.text = self.customerDic[@"appOpName"];
@@ -453,9 +469,9 @@
             return;
         }
         planNoList = receiveJSON[@"checkPlanList"];
-        planNoString = planNoList[0][@"checkTypeName"];
-        planNoTypeString = planNoList[0][@"checkType"];
-        self.planNoLable.text = planNoString;
+//        planNoString = planNoList[0][@"checkTypeName"];
+//        planNoTypeString = planNoList[0][@"checkType"];
+        self.planNoLable.text = @"全部";
     } failBlock:^(NSError *error) {
 
     }];
@@ -495,6 +511,8 @@
             self.planNoLable.text = planNoString;
         } withShowStringArr:@[@"checkTypeName",@"checkBeginTime",@"checkEndTime"]];
         [pick showInView:self.view];
+    }else{
+        [self showAlterView:@"计划号不存在"];
     }
 }
 //- (NSString*)chectStringWithType:(NSInteger)type

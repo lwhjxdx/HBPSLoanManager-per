@@ -12,6 +12,7 @@
 @interface HBBaseSearchTableViewController ()
 {
     UITextField *_textField;
+    UIView *searchView;
 }
 @end
 
@@ -19,6 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    if (DSystemVersion>=7.0) {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;//来解决UINavigationBar透明的问题
+//    }
+
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
@@ -42,7 +47,7 @@
 //初始化SearchBar
 - (void)initSearchView:(NSString *)placeholder SearchClicked:(SearchData)s{
     self.search = s;
-    UIView *searchView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSearchBarHigh)];
+    searchView = [[UIView alloc] initWithFrame:CGRectMake(0, kValueTopBarHeight, kSCREEN_WIDTH, kSearchBarHigh)];
     searchView.backgroundColor = RGBACOLOR(210, 210, 210, 1);
     _textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 5, kSCREEN_WIDTH*3/4, kSearchBarHigh - 10)];
     _textField.backgroundColor = RGBACOLOR(247, 247, 247, 1);
@@ -93,18 +98,18 @@
 - (void)initTableViewForResult:(CGRect)rect withStyle:(UITableViewStyle)style
 {
     if (rect.size.height == 0) {
-        rect = CGRectMake(0,kTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kTopBarHeight - kSearchBarHigh);
+        rect = CGRectMake(0,kValueTopBarHeight + kSearchBarHigh ,kSCREEN_WIDTH ,kSCREEN_HEIGHT - kValueTopBarHeight - kSearchBarHigh);
     }
     self.tableView = [[UITableView alloc] initWithFrame:rect style:style];
     self.tableView.backgroundColor              = RGBACOLOR(238, 238, 238, 1);
     self.tableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.tableHeaderView              = [[UIView alloc] init];
-    self.tableView.tableFooterView              = [[UIView alloc] init];
     self.tableView.dataSource                   = self;
     self.tableView.delegate                     = self;
     [self.view addSubview:self.tableView];
-    
+    if (searchView) {
+        [self.view insertSubview:self.tableView belowSubview:searchView];
+    }
     if (DSystemVersion >= 7.0)
         //分割线的位置不带偏移
         self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -114,7 +119,18 @@
 {
     [self initTableViewForResult:rect withStyle:UITableViewStyleGrouped];
 }
-
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    
+//}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (_tableView) {
+        _tableView.contentSize = CGSizeZero;
+    }
+}
 #pragma mark - tableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {

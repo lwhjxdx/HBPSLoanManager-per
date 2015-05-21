@@ -250,10 +250,10 @@
 
 //处理特殊字段
 - (void)handleSpecial{
-    [_paramDic setObject:[NSString stringWithFormat:@"%d",ImageType1] forKey:@"surfaceInfo"];
-    [_paramDic setObject:[NSString stringWithFormat:@"%d",ImageType2] forKey:@"addressInfo"];
-    [_paramDic setObject:[NSString stringWithFormat:@"%d",ImageType16] forKey:@"productInfo"];
-    [_paramDic setObject:[NSString stringWithFormat:@"%d",ImageType23] forKey:@"financialInfo"];
+    [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)ImageType1] forKey:@"surfaceInfo"];
+    [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)ImageType2] forKey:@"addressInfo"];
+    [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)ImageType16] forKey:@"productInfo"];
+    [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)ImageType23] forKey:@"financialInfo"];
     
 }
 

@@ -26,6 +26,8 @@
 
 + (NSString *)getRoleName;
 
++ (NSString *)getRealname;
+
 + (void)setHeadImagePath:(NSString *)imagePath;
 
 

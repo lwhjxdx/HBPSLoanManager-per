@@ -9,9 +9,8 @@
 #import "HBAlterPWViewController.h"
 #import "NSString+encrypt.h"
 @interface HBAlterPWViewController ()<UITextFieldDelegate>
-{
-    Boolean isShowSecret;
-}
+@property (weak, nonatomic) IBOutlet UIView *textSuperView;
+
 @end
 
 @implementation HBAlterPWViewController
@@ -19,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backButton.hidden = NO;
-    isShowSecret = YES;
     self.titleLabel.text = @"密码修改";
     [self littleAdjust];
     [self.homeButton setTitle:@"确定" forState:UIControlStateNormal];
@@ -27,36 +25,47 @@
     self.homeButton.frame = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
     self.homeButton.hidden = NO;
     [self.homeButton setImage:nil forState:UIControlStateNormal];
-    [self.homeButton addTarget:self action:@selector(alterPWClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.homeButton addTarget:self action:@selector(alterPWClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.mBaseNavigationBarView addSubview:self.homeButton];
-    [self setTabbarViewHide:YES];
+    
 }
-
+-(void)homeBtnEvents:(id)sender
+{
+    [self alterPWClicked:sender];
+}
 - (void)littleAdjust{
     
     self.mBaseNavigationBarView.hidden = NO;
-    [self addLeftImageViewToTextFeild:self.oldPWTextField];
-    [self addLeftImageViewToTextFeild:self.userNewPWTextField];
-    [self addLeftImageViewToTextFeild:self.userNewSurePWTextField];
+    _textSuperView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f].CGColor;
+    _textSuperView.layer.borderWidth = 0.5f;
+    _textSuperView.layer.masksToBounds = YES;
+    _userNewSurePWTextField.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f].CGColor;
+    _userNewSurePWTextField.layer.borderWidth = 0.5f;
+    
+    [self addLeftImageViewToTextFeild:self.oldPWTextField withLeftString:@"原 密 码"];
+    [self addLeftImageViewToTextFeild:self.userNewSurePWTextField withLeftString:@"新 密 码"];
+    [self addLeftImageViewToTextFeild:self.userNewPWTextField withLeftString:@"确认密码"];
     self.resetClicked.layer.cornerRadius = 5;
     self.resetClicked.layer.masksToBounds = YES;
 }
 
 //添加左图片 到 textField
-- (void)addLeftImageViewToTextFeild:(UITextField *)textField{
+- (void)addLeftImageViewToTextFeild:(UITextField *)textField withLeftString:(NSString*)leftString{
 
-    textField.backgroundColor = [UIColor whiteColor];
-    textField.layer.cornerRadius = 5;
-    textField.layer.masksToBounds = YES;
-    textField.layer.borderColor = [UIColor grayColor].CGColor;
-    textField.layer.borderWidth = 1;
+//    textField.backgroundColor = [UIColor whiteColor];
+////    textField.layer.cornerRadius = [leftString isEqualToString:@"新密码"]?0:5;
+//    textField.layer.masksToBounds = YES;
+//    textField.layer.borderColor = [UIColor grayColor].CGColor;
+//    textField.layer.borderWidth = 1;
     textField.delegate = self;
-    UIImageView *userNameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 60, 20)];
+    UILabel *userNameImageView = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 100, 20)];
+    userNameImageView.textAlignment = NSTextAlignmentCenter;
     userNameImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [userNameImageView setImage:[UIImage imageNamed:@"wdzl-icon5"]];
+    userNameImageView.text = leftString;
+//    [userNameImageView setImage:[UIImage imageNamed:@"wdzl-icon5"]];
     [textField setLeftView:userNameImageView];
     [textField setLeftViewMode:(UITextFieldViewModeAlways)];
-
+    [textField setClearButtonMode:UITextFieldViewModeAlways];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,27 +99,27 @@
      *  添加判断用户密码
      */
     BOOL isRigth;
-    NSString *allPwdRegex = @"[A-Z0-9a-z._%+-~!@#$%^&*()_+=\"]{6,18}+$";
+    NSString *allPwdRegex = @"^(?![a-zA-z]+$)(?!\\d+$)(?![!@#$%^&*]+$)[a-zA-Z\\d!!@#$%^&*.]{6,18}$";
     NSPredicate *emailRegexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",allPwdRegex];
     isRigth = [emailRegexPredicate evaluateWithObject:passWord];
-    NSString *passWordRegex = @"^[a-zA-Z]{6,18}+$";
-    NSString *passWordRegex1 = @"^[0-9]{6,18}+$";
-    
-    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
-    NSPredicate *passWordPredicate1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex1];
-    BOOL first = ![passWordPredicate1 evaluateWithObject:passWord];
-    BOOL secend = ![passWordPredicate evaluateWithObject:passWord];
-    return first&&secend&&isRigth;
+//    NSString *passWordRegex = @"^[a-zA-Z]{6,18}+$";
+//    NSString *passWordRegex1 = @"^[0-9]{6,18}+$";
+//    
+//    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
+//    NSPredicate *passWordPredicate1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex1];
+//    BOOL first = ![passWordPredicate1 evaluateWithObject:passWord];
+//    BOOL secend = ![passWordPredicate evaluateWithObject:passWord];
+    return isRigth;
 }
 
 //验证数据有效性
 - (Boolean)verify{
-//
-//    if (![self validatePassword:self.userNewPWTextField.text]) {
-//        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提醒" message:@"新密码长度不低于6位 不得大于18位,不能为纯数字 纯字母,不能是中文字符" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [al show];
-//        return NO;
-//    }
+
+    if (![self validatePassword:self.userNewPWTextField.text]) {
+        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提醒" message:@"新密码长度不低于6位 不得大于18位,不能为纯数字 纯字母,不能是中文字符等非常用字符" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [al show];
+        return NO;
+    }
     if (self.userNewSurePWTextField.text.length > 0 && self.userNewPWTextField.text.length >0&& self.oldPWTextField.text.length >0) {
         if ([self.userNewSurePWTextField.text isEqualToString:self.userNewPWTextField.text] ) {
             if ([self.oldPWTextField.text isEqualToString:self.userNewPWTextField.text]) {
@@ -133,17 +142,13 @@
 
 
 - (IBAction)showPWClicked:(id)sender {
-    isShowSecret = !isShowSecret;
     UIButton *btn = (UIButton *)sender;
-    if (isShowSecret) {
-        [btn setImage:[UIImage imageNamed:@"checked"] forState:(UIControlStateNormal)];
-
+    btn.selected = !btn.selected;
+    if (btn.selected) {
         [self.oldPWTextField  setSecureTextEntry:NO];
         [self.userNewPWTextField  setSecureTextEntry:NO];
         [self.userNewSurePWTextField  setSecureTextEntry:NO];
     }else{
-        [btn setImage:[UIImage imageNamed:@"unChecked"] forState:(UIControlStateNormal)];
-
         [self.oldPWTextField  setSecureTextEntry:YES];
         [self.userNewPWTextField  setSecureTextEntry:YES];
         [self.userNewSurePWTextField  setSecureTextEntry:YES];

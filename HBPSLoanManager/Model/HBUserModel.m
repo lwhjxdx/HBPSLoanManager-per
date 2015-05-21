@@ -27,7 +27,10 @@ static NSArray *keyArray = nil;
     [userDefault setObject:keyArray forKey:@"keyArray"];
     [userDefault synchronize];
 }
++ (NSString *)getRealname{
+    return  [HBUserModel getValueString:@"realname"]?[HBUserModel getValueString:@"realname"]:@"";
 
+}
 + (NSString *)getUserName{
     return  [HBUserModel getValueString:@"username"]?[HBUserModel getValueString:@"username"]:@"";
 }

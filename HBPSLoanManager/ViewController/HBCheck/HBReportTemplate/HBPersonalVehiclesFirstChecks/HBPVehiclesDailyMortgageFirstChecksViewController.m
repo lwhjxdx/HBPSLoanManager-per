@@ -224,8 +224,9 @@
         titleArray1 = @[@"车辆"];
     
         //图片上传cell的key值 数组
-        keyArray1 = @[@"carImageFile"];
-    
+        keyArray1 = @[@"surfaceImageFile",
+                    @"addressImageFile",
+                    @"otherImageFile"];
         _cellArray = [NSMutableArray array];
 
 }

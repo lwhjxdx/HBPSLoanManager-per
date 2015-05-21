@@ -256,9 +256,7 @@
     
     
     //需要 上传 zip 的 字段名称 数组
-    valueArrays = @[@"surfaceImageFile",
-                    @"addressImageFile",
-                    @"otherImageFile"];
+    valueArrays = @[@"carImageFile"];
 
 }
 

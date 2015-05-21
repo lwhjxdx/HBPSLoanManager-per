@@ -78,22 +78,22 @@
     conNoString = conNoList[0];
     receiptNoString = receiptNoList[0];
 //    conNoString = conNoList[0]?conNoList[0]:@"";
-#warning 点击企业检查上海后报错：试图插入空对象
+
     if (_planType == PlanTypeXiaoqiyefaren) {
-        valueArray1 = @[ self.customerDic[@"cusId"],
-                         self.customerDic[@"enterpriseName"],
+        valueArray1 = @[ @"cusId",
+                         @"enterpriseName",
                          conNoList[0],
                          receiptNoList[0],
-                         self.customerDic[@"legalPerson"]
-                         ,self.customerDic[@"enterpriseLink"],
-                         self.customerDic[@"enterpriseName"],
-                         self.customerDic[@"legalPersonTel"],
-                         self.customerDic[@"enterpriseLink"],
-                         self.customerDic[@"linkManTel"],
-                         self.customerDic[@"enterpriseAddr"],
-                         self.customerDic[@"collateral"],
-                         self.customerDic[@"cusInfo"],
-                         self.customerDic[@"cusId"]
+                         @"legalPerson",
+                         @"enterpriseLink",
+                         @"enterpriseName",
+                         @"legalPersonTel",
+                         @"enterpriseLink",
+                         @"linkManTel",
+                         @"enterpriseAddr",
+                         @"collateral",
+                         @"cusInfo",
+                         @"cusId"
                          ];
         lableStringArray1 = @[@"客户编号",
                               @"企业名称",
@@ -125,13 +125,13 @@
                               @"放款时间",
                               @"还款方式"
                               ];
-        valueArray1 = @[ self.customerDic[@"cusId"],
-                         self.customerDic[@"cusName"],
+        valueArray1 = @[ @"cusId",
+                         @"cusName",
                          conNoString,
                          receiptNoString,
                          @"身份证",
-                         self.customerDic[@"certNo"],
-                         self.customerDic[@"mobilePhone"]
+                         @"certNo",
+                         @"mobilePhone"
                          ];
         
     }
@@ -193,20 +193,23 @@
     [HBRequest RequestDataJointStr:@"customerAction/getLoanInfo.do" parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         if (receiveJSON[@"tCustomInfo"]) {
             NSDictionary *dic = receiveJSON[@"tCustomInfo"];
-            valueArray1 = @[ self.customerDic[@"cusId"],
-                             self.customerDic[@"cusName"],
+            for (NSString *value in [dic allKeys]) {
+                [self.customerDic setValue:dic[value] forKey:value];
+            }
+            valueArray1 = @[ @"cusId",
+                             @"cusName",
                              conNoString,
                              receiptNoString,
                              @"身份证",
-                             self.customerDic[@"certNo"],
-                             self.customerDic[@"mobilePhone"],
-                             dic[@"repayType"],
-                             dic[@"isNeedLimit"],
-                             dic[@"appOpName"],
-                             dic[@"lineAmount"],
-                             dic[@"lineBalance"],
-                             dic[@"loadDate"],
-                             dic[@"loanPurpose"]
+                             @"certNo",
+                             @"mobilePhone",
+                             @"repayType",
+                             @"isNeedLimit",
+                             @"appOpName",
+                             @"lineAmount",
+                             @"lineBalance",
+                             @"loadDate",
+                             @"loanPurpose"
                              ];
             [self.topTableView reloadData];
         }
@@ -273,12 +276,18 @@
             view.image = [UIImage imageNamed:@"dot3"];
             [cell.contentView addSubview:view];
         }else{
-            if (indexPath.row<valueArray1.count) {
+            if (indexPath.row==4&&_planType!=PlanTypeXiaoqiyefaren) {
                 cell.detailTextLabel.text = (valueArray1[indexPath.row])?valueArray1[indexPath.row]:@"";
             }else{
-                cell.detailTextLabel.text = @"";
-
+                if (indexPath.row<valueArray1.count) {
+                    
+                    cell.detailTextLabel.text = (valueArray1[indexPath.row])?self.customerDic[valueArray1[indexPath.row]]:@"";
+                }else{
+                    cell.detailTextLabel.text = @"";
+                    
+                }
             }
+            
         }
     }else{
         static NSString *cellIDE1 = @"IDE123";
@@ -506,19 +515,15 @@
 
 - (NSMutableDictionary *)makeParams{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
-        if (![conNoString isEqualToString:@"全部"]) {
-            [dic setObject:conNoString forKey:@"conNo"];
-        }
-        if (![receiptNoString isEqualToString:@"全部"]) {
-            [dic setObject:conNoString forKey:@"dueNum"];
-        }
-        [dic setObject:self.customerDic[@"cusId"] forKey:@"cusId"];
-        
-    }else{
-        [dic setObject:@"161" forKey:@"userNo"];
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+    if (![conNoString isEqualToString:@"全部"]) {
+        [dic setObject:conNoString forKey:@"conNo"];
     }
+    if (![receiptNoString isEqualToString:@"全部"]) {
+        [dic setObject:receiptNoString forKey:@"dueNum"];
+    }
+    [dic setObject:self.customerDic[@"cusId"] forKey:@"cusId"];
+    
     [dic setObject:[self productType] forKey:@"productType"];
     [dic setObject:@0 forKey:@"checkPlanType"];
     [dic setObject:@(_startIndex) forKey:@"page"];
@@ -569,9 +574,6 @@
     [self.thisTableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -25,6 +25,7 @@
     [zip CreateZipFile2:fileName];
     
     for (int i = 0; i < pathArray.count; i++) {
+        
      Boolean success = [zip addFileToZip:pathArray[i] newname:[NSString stringWithFormat:@"m%d.jpg",i]];
         if (success) {
             NSLog(@"zip success");

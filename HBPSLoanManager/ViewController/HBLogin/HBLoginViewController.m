@@ -29,7 +29,10 @@
     [self littleAdjust];
     centPoint = self.contentView.center;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:YES];
+}
 - (void)littleAdjust{
     [HBUserModel clearUserInfo];
     self.mBaseNavigationBarView.hidden = YES;
@@ -75,8 +78,8 @@
     if (PAT_) {
         //密码
 //        self.passwdTextField.text  = @"7B52009B64FD0A2A49E6D8A939753077792B0554";
-//        self.userNameTextField.text = @"manager1";
-//        self.passwdTextField.text  = @"111111";
+        self.userNameTextField.text = @"ceshi4";
+        self.passwdTextField.text  = @"1qaz!2WSX";
     }
     
     self.loginButton.layer.cornerRadius = 5;

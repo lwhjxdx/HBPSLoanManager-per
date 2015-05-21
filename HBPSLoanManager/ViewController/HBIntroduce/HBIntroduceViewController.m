@@ -20,7 +20,7 @@
     self.titleLabel.text = @"业务介绍";
 //    self.myWebView.backgroundColor = [UIColor whiteColor];
     NSLog(@"kSCREEN_WIDTH===%f",kSCREEN_WIDTH);
-    self.myWebView.frame = CGRectMake(0, 64, kSCREEN_WIDTH, kSCREEN_HEIGHT - 64 -44);
+    self.myWebView.frame = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT);
     NSURL *url = [NSURL URLWithString:@"http://180.168.123.215:8090/p2pInterface/index.html"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.myWebView loadRequest:request];

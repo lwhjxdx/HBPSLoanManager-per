@@ -22,9 +22,12 @@
 #define NSLog(...)
 #endif
 
+/**
+ *  生产环境
+*/
+#define kBaseURL  @"http://61.183.150.194:8085/p2pInterface/"
 
-
-#define kBaseURL  @"http://180.168.123.215:8090/p2pInterface/"
+//#define kBaseURL  @"https://180.168.123.215:8089/p2pInterface/"
 //基本URL
 
 #define kLoginURL @"userAction/login.do"

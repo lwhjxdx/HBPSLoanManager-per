@@ -60,7 +60,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [self setTabbarViewHide:NO];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -48,6 +48,8 @@
 		909B98EB1AFD0FAC00A35B59 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */; };
 		909B98ED1AFD0FC000A35B59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */; };
 		909B98EF1AFD0FD100A35B59 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */; };
+		90E5C4431B0B0B680086FA66 /* ImageWithDelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E5C4421B0B0B680086FA66 /* ImageWithDelCollectionViewCell.m */; };
+		90E5C4461B0B15D50086FA66 /* HaveDelImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E5C4451B0B15D50086FA66 /* HaveDelImageView.m */; };
 		90ED4B091AFB7A9D00898882 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90ED4B061AFB7A9C00898882 /* libMobClickLibrary.a */; };
 		9901CD561ABE61C500F92AFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9901CD4B1ABE61C500F92AFD /* ioapi.c */; };
 		9901CD571ABE61C500F92AFD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 9901CD4D1ABE61C500F92AFD /* mztools.c */; };
@@ -294,6 +296,10 @@
 		909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		90E5C4411B0B0B680086FA66 /* ImageWithDelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWithDelCollectionViewCell.h; sourceTree = "<group>"; };
+		90E5C4421B0B0B680086FA66 /* ImageWithDelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWithDelCollectionViewCell.m; sourceTree = "<group>"; };
+		90E5C4441B0B15D50086FA66 /* HaveDelImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaveDelImageView.h; sourceTree = "<group>"; };
+		90E5C4451B0B15D50086FA66 /* HaveDelImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaveDelImageView.m; sourceTree = "<group>"; };
 		90ED4B061AFB7A9C00898882 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		90ED4B071AFB7A9C00898882 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		90ED4B081AFB7A9C00898882 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
@@ -1549,6 +1555,10 @@
 				99938DDF1ACAA78800B46EB9 /* ReportPicCell.h */,
 				99938DDC1ACAA78800B46EB9 /* ReportPicCell.m */,
 				99938DDD1ACAA78800B46EB9 /* ReportPicCell.xib */,
+				90E5C4441B0B15D50086FA66 /* HaveDelImageView.h */,
+				90E5C4451B0B15D50086FA66 /* HaveDelImageView.m */,
+				90E5C4411B0B0B680086FA66 /* ImageWithDelCollectionViewCell.h */,
+				90E5C4421B0B0B680086FA66 /* ImageWithDelCollectionViewCell.m */,
 				99938DE01ACAA78800B46EB9 /* HBNextStepChangeCell.h */,
 				99938DD81ACAA78800B46EB9 /* HBNextStepChangeCell.m */,
 				99938DDE1ACAA78800B46EB9 /* HBNextStepChangeCell.xib */,
@@ -1774,6 +1784,7 @@
 			files = (
 				9901CD561ABE61C500F92AFD /* ioapi.c in Sources */,
 				994E00DC1AB44D0300037B6A /* HBReportModel.m in Sources */,
+				90E5C4461B0B15D50086FA66 /* HaveDelImageView.m in Sources */,
 				9963EFF31AAD5B5700AA1B63 /* DSLCalendarMonthSelectorView.m in Sources */,
 				2824155C1AE8961300935146 /* HBPersonageViewController.m in Sources */,
 				9901CD5D1ABE677E00F92AFD /* ZipTool.m in Sources */,
@@ -1907,6 +1918,7 @@
 				9963F04F1AAD84C200AA1B63 /* HBUserViewController.m in Sources */,
 				996B87141ABC1BAD005FF4BD /* HBPayBackCheckFirstViewController.m in Sources */,
 				9963427B1ADA5E0C00687242 /* HBPVDailyMortgageCheckNextViewController.m in Sources */,
+				90E5C4431B0B0B680086FA66 /* ImageWithDelCollectionViewCell.m in Sources */,
 				9963F00C1AAD5B5700AA1B63 /* NSData+ImageContentType.m in Sources */,
 				99938DD71ACAA77400B46EB9 /* HBCFNextViewController.m in Sources */,
 				9984AB601ACAF4730086D1D5 /* HBCheckFirstBaseController.m in Sources */,
@@ -1951,8 +1963,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1994,8 +2006,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2019,8 +2031,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2039,7 +2051,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
@@ -2050,8 +2062,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2069,7 +2081,7 @@
 					"$(PROJECT_DIR)/HBPSLoanManager",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};

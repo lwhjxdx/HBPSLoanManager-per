@@ -22,7 +22,7 @@ typedef Boolean (^CheckUserInfo)();
 @property (nonatomic,strong) NSMutableData *headData;
 
 - (void)editPortrait;
-
+-(void)takePhotosWithCamare;
 - (instancetype)initWithFrame:(CGRect)frame upImage:(UpdataImage)up;
 
 @end

@@ -29,7 +29,8 @@ typedef void(^GetBackData)(NSMutableDictionary *dataDic);
 #define kSCREEN_WIDTH       [[UIScreen mainScreen] bounds].size.width
 
 
-#define kTopBarHeight           (DSystemVersion>=7?64.f:44.f)
+#define kTopBarHeight           (DSystemVersion>=7?0:44.f)
+#define kValueTopBarHeight           (DSystemVersion>=7?64:44.f)
 
 #define kTabbarHight kSCREEN_HEIGHT*49/568
 
