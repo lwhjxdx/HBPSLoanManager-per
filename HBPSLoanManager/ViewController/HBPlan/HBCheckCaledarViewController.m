@@ -41,12 +41,14 @@
 
 - (NSMutableDictionary *)makeParms{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    if (PAT_) {
-        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
-    }else{
-        [dic setObject:@"161" forKey:@"userNo"];
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
 
-    }
+//    if (PAT_) {
+//        [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+//    }else{
+//        [dic setObject:@"161" forKey:@"userNo"];
+//
+//    }
 
     return dic;
 }

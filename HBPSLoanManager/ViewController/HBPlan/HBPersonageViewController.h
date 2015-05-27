@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 YM. All rights reserved.
 //
 
-#import "HBBaseViewController.h"
+#import "HBCheckViewController.h"
 
-@interface HBPersonageViewController : HBBaseViewController
+@interface HBPersonageViewController : HBCheckViewController
 
 @end

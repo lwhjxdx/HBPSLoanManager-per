@@ -11,4 +11,5 @@
 @interface HBCheckViewController : HBBaseSearchTableViewController
 @property(nonatomic,strong)NSArray *tableViewArr;
 @property(nonatomic,strong)NSString *titleString;
+@property(nonatomic,assign)BOOL isShowMap;
 @end

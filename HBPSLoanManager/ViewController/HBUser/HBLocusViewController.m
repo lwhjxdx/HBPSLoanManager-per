@@ -67,7 +67,7 @@
 {
 
     // 添加折线覆盖物
-    CLLocationCoordinate2D coors[50] = {0};
+    CLLocationCoordinate2D coors[500] = {0};
     for (int i = 0; i < dataArray.count; i++) {
         coors[i].latitude = [dataArray[i][@"latitude"] floatValue];
         coors[i].longitude = [dataArray[i][@"longitude"] floatValue];

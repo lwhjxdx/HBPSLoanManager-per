@@ -32,7 +32,6 @@
     self.backButton.hidden = NO;
     self.titleLabel.text = @"个人商务贷款";
     [self configUI];
-    self.tableView.backgroundColor = RGBACOLOR(238, 238, 238, 1);
 }
 
 - (void)configUI{
@@ -40,8 +39,6 @@
         _searchString = searchString;
         [self requestFromNetWorking];
     }];
-    
-    [self initTableViewForResult:CGRectZero];
 }
 
 //从网络请求数据 查询企业信息
@@ -66,14 +63,15 @@
     if (_searchString) {
         [dic setObject:_searchString forKey:@"enterpriseName"];
     }
-    [dic setObject:@"1" forKey:@"productType"];
+    [dic setObject:@"2" forKey:@"productType"];
     
     if (PAT_) {
         [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
     }else{
         [dic setObject:@"161" forKey:@"userNo"];
     }
-    
+    [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
+    [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
     return dic;
 }
 
@@ -82,8 +80,8 @@
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }
-    if (jsonDic[@"custList"]) {
-        _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"custList"]];
+    if (jsonDic[@"customInfos"]) {
+        _dataArray = [NSMutableArray arrayWithArray: jsonDic[@"customInfos"]];
     }else{
         [_dataArray removeAllObjects];
     }
@@ -106,12 +104,12 @@
     UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 40, 15, 20, 30)];
     arrowImageView.image = [UIImage imageNamed:@"dot"];
     cell.contentView.backgroundColor = RGBACOLOR(255, 255, 255, 1);
-    cell.textLabel.text = _dataArray[indexPath.row][@"enterpriseName"];
+    cell.textLabel.text = _dataArray[indexPath.section][@"cusName"];
     [cell.contentView addSubview:arrowImageView];
     return cell;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return _dataArray.count;
 }
 
@@ -122,7 +120,8 @@
 //跳转
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HBCompanyInfoViewController *vc = [[HBCompanyInfoViewController alloc] init];
-    vc.customerDic = _dataArray[indexPath.row];
+    vc.customerDic = _dataArray[indexPath.section];
+    vc.planType = PlanTypeGerenshangdai;
     [self pushViewController:vc animated:YES];
 }
 

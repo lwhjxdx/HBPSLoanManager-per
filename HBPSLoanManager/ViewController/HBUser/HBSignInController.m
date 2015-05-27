@@ -11,6 +11,8 @@
 #import "BMKLocationService.h"
 #import "BMKGeocodeSearch.h"
 #import "BMKPointAnnotation.h"
+#import "HBCheckBaseViewController.h"
+
 @interface HBSignInController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
     UITableView *tableView1;
@@ -67,14 +69,26 @@
 //        [SVProgressHUD showErrorWithStatus:@"请先签到"];
 //        return;
 //    }
-    [HBRequest RequestDataJointStr:kSignInURL1 parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-        if (![receiveJSON[@"respCode"] isEqualToString:@"0000"]) {
-            return ;
-        }
-        [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
-    } failBlock:^(NSError *error) {
-        
-    }];
+
+        [HBRequest RequestDataJointStr:kSignInURL1 parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+            if (![receiveJSON[@"respCode"] isEqualToString:@"0000"]) {
+                return ;
+            }
+//            [receiveJSON isMemberOfClass:<#(__unsafe_unretained Class)#>]
+            if (self.pushNextDic) {
+                HBCheckBaseViewController *vc;
+                vc = [[[self.classString class] alloc] init];
+                vc.userDic = self.pushNextDic;
+                [self pushViewController:vc animated:YES];
+                
+            }else{
+                [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
+
+            }
+        } failBlock:^(NSError *error) {
+            
+        }];
+
 }
 -(void)setIsShowNextItem:(BOOL)isShowNextItem
 {

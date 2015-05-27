@@ -126,6 +126,9 @@
     
     if (![[resultDic objectForKey:@"respCode"] isEqualToString:@"0000"]) {
         [SVProgressHUD showErrorWithStatus:resultDic[@"respMsg"]?resultDic[@"respMsg"]:@"数据异常"];
+        if (self.failWithErrorBlock) {
+            self.failWithErrorBlock(nil);
+        }
 //
 //        if ([resultDic objectForKey:@"respMsg"]) {
 //            

@@ -22,6 +22,10 @@
 
 + (NSString *)getUserTel;
 
++ (NSString *)getUserInstitution;
+
++ (NSString *)getRoleName;
+
 + (void)setHeadImagePath:(NSString *)imagePath;
 
 

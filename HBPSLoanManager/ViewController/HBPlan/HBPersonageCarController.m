@@ -29,6 +29,10 @@
     [super viewDidLoad];
     self.backButton.hidden = NO;
     self.titleLabel.text = @"个人经营性车辆按揭贷款";
+    self.tableViewArr = @[@[@"个人经营性车辆按揭贷款检查计划",@"HBPersonageCarPlanController"],
+//  @[@"个人经营性车辆按揭贷款抽查计划",@"HBPersonageCarPlanController"],
+  @[@"个人经营性车辆按揭贷款检查日历",@"HBCheckCaledarViewController"]];
+    [self.tableView reloadData];
 }
 - (IBAction)companyPlan:(id)sender {
     HBPersonageCarPlanController *personageCarPlan = [[HBPersonageCarPlanController alloc] init];

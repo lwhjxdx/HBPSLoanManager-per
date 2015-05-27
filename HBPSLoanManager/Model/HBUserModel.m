@@ -71,7 +71,13 @@ static NSArray *keyArray = nil;
     return  [HBUserModel getValueString:@"userPhone"];
 }
 
++ (NSString *)getUserInstitution{
+    return [HBUserModel getValueString:@"userInstitution"];
+}
 
++ (NSString *)getRoleName{
+    return [HBUserModel getValueString:@"roleName"];
+}
 + (NSString *)getValueString:(NSString *)keyString{
     NSUserDefaults *userDefault  =[NSUserDefaults standardUserDefaults];
     NSString *valueString = [userDefault objectForKey:keyString];

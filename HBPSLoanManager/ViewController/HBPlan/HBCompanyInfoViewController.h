@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 YM. All rights reserved.
 //
 
-#import "HBBaseViewController.h"
+#import "HBPlanBaseViewController.h"
+#import "HBType.h"
 
-@interface HBCompanyInfoViewController : HBBaseViewController
+@interface HBCompanyInfoViewController : HBPlanBaseViewController
 
-@property (nonatomic,strong) NSDictionary *customerDic;
-
+@property (nonatomic,assign)PlanType planType;
 @end
