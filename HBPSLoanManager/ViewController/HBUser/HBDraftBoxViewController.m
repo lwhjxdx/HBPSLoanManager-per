@@ -199,13 +199,12 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HBReportModel *model = [_resultsData objectAtIndex:indexPath.row];
     NSDictionary *dic = [sevice getDataFromDraft:model];
     NSMutableDictionary *dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
 //    HBDraftType type = model.reportType;
     
-    
-#warning  根据不同的HBDraftType 跳转不同的 报告模板
     HBCheckFirstBaseController *vc ;
     /**
      所有 通过草稿箱跳转的模板 都应该 写成如下方式

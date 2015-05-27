@@ -4,65 +4,18 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.OpenGLErrorBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            breakpointStackSelectionBehavior = "1"
-            symbolName = "__GPUTOOLS_HAS_DETECTED_AN_OPENGL_ERROR__"
-            moduleName = "libglInterpose.dylib">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.OpenGLError">
-                  <ActionContent>
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = ""
-            moduleName = "">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.IDETestFailureBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            breakpointStackSelectionBehavior = "1">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBPlan/HBPlanBaseViewController.m"
-            timestampString = "453893352.646452"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBReportTemplate/HBCheckCell/ReportTableViewCell.m"
+            timestampString = "454326767.005633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-setupSubView"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-setValuetext:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -72,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBUser/HBUserViewController.m"
-            timestampString = "453894747.816863"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBReportTemplate/HBCheckCell/ReportTableViewCell.m"
+            timestampString = "454326769.789432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-initTableView"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "-setValuetext:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBUser/HBUserViewController.m"
-            timestampString = "453894747.816863"
+            filePath = "HBPSLoanManager/LibFrame/LockView/NSUserDefaults+Setting.m"
+            timestampString = "454332914.721943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-initTableView"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "+changeUserDefalutSetting:andValue:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -104,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBUser/HBUserViewController.m"
-            timestampString = "453894514.61574"
+            filePath = "HBPSLoanManager/LibFrame/LockView/NSUserDefaults+Setting.m"
+            timestampString = "454332914.721943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-initTableView"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "+acquireDcitionary"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -120,29 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBUser/HBUserViewController.m"
-            timestampString = "453894747.816863"
+            filePath = "HBPSLoanManager/LibFrame/LockView/NSUserDefaults+Setting.m"
+            timestampString = "454332914.721943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-initTableView"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBPlan/HBPlanBaseViewController.m"
-            timestampString = "453902643.900522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-setupSubView"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "+acquireTimerOrNumberDictionary"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

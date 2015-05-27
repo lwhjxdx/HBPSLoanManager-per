@@ -118,16 +118,28 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:rect style:(UITableViewStylePlain)];
     tableView.dataSource  = self;
     tableView.delegate = self;
-    tableView.backgroundColor = RGBACOLOR(247, 247, 247, 1);
+    tableView.backgroundColor = [UIColor whiteColor];
     tableView.showsVerticalScrollIndicator = NO;
     [self.subTempView addSubview:tableView];
-    
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.subTempView);
+    }];
     UIView *footerView = [[UIView alloc] init];
-    footerView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 300);
+    footerView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 130);
     footerView.backgroundColor = [UIColor clearColor];
-    
+//    footerView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f].CGColor;
+//    footerView.layer.borderWidth = 0.5f;
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
+    [footerView addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(footerView.mas_left);
+        make.right.equalTo(footerView.mas_right);
+        make.top.equalTo(footerView.mas_top);
+        make.height.equalTo(@0.5);
+    }];
     UIButton *logoutBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    logoutBtn.frame = CGRectMake((CGRectGetWidth(footerView.frame) - 260) * 0.5, 0, 260, 40);
+    logoutBtn.frame = CGRectMake((CGRectGetWidth(footerView.frame) - 260) * 0.5, 60, 260, 40);
     logoutBtn.exclusiveTouch = YES;
     [logoutBtn setTitle:@"登出" forState:UIControlStateNormal];
     [logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -137,9 +149,7 @@
     [logoutBtn addTarget:self action:@selector(loginOutClick:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:logoutBtn];
     
-    tableView.tableFooterView = footerView;
-    
-    
+    tableView.tableFooterView = footerView;    
 }
 
 
@@ -187,7 +197,7 @@
 //    [cell.contentView addSubview:label];
 //    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.backgroundColor = RGBACOLOR(247, 247, 247, 1);
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 

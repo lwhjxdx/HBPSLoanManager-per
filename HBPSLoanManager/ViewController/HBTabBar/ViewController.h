@@ -14,7 +14,7 @@
 
 
 
-- (void)setImageView:(NSArray *)imageArray titleArray:(NSArray *)titleArray viewControllers:(NSArray *)viewControllerArray;
+//- (void)setImageView:(NSArray *)imageArray titleArray:(NSArray *)titleArray viewControllers:(NSArray *)viewControllerArray;
 
 
 @end

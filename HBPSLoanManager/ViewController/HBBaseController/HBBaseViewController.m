@@ -140,8 +140,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = YES;
-    [self setTabbarViewHide:YES];
+//    self.tabBarController.tabBar.hidden = YES;
+//    [self setTabbarViewHide:YES];
 //    [self.view bringSubviewToFront:self.mBaseNavigationBarView];
 //    设置navagation样式
 
@@ -166,11 +166,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([self.navigationController.viewControllers count] == 1) {
-        [self setTabbarViewHide:NO];
-    }else{
-        [self setTabbarViewHide:YES];
-    }
+//    if ([self.navigationController.viewControllers count] == 1) {
+//        [self setTabbarViewHide:NO];
+//    }else{
+//        [self setTabbarViewHide:YES];
+//    }
     
 
 }

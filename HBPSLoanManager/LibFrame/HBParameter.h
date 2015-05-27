@@ -34,6 +34,10 @@ typedef void(^GetBackData)(NSMutableDictionary *dataDic);
 
 #define kTabbarHight kSCREEN_HEIGHT*49/568
 
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iPhone4S ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
 
 #define  FromStatusBarHeight   (DSystemVersion>=7?20.f:0.f)
 
@@ -66,6 +70,7 @@ alpha:(a)])
 // 颜色(RGB)
 #define RGBACOLOR(r, g, b, a)   [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
+#define KMainColor [UIColor colorWithRed:0.086 green:0.337 blue:0.192 alpha:1.000]
 //网络请求超时时间
 #define kTIMEOUTSECOND 15
 //定位信息
@@ -73,7 +78,8 @@ alpha:(a)])
 
 #define kNSNotificationTabbarHide @"kNSNotificationTabbarHide"
 
-
+#define all_screen_width(w) ((((float)w)/320.f)*kSCREEN_WIDTH)
+#define all_screen_higth(h) ((((float)h)/568.f)*((kSCREEN_HEIGHT<568)?568:kSCREEN_HEIGHT))
 
 
 

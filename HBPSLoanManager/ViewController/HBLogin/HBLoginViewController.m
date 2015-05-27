@@ -78,8 +78,14 @@
     if (PAT_) {
         //密码
 //        self.passwdTextField.text  = @"7B52009B64FD0A2A49E6D8A939753077792B0554";
-        self.userNameTextField.text = @"ceshi4";
-        self.passwdTextField.text  = @"1qaz!2WSX";
+        if ([kBaseURL isEqualToString:@"https://180.168.123.215:8089/p2pInterface/"]) {
+            self.userNameTextField.text = @"manager1";
+            self.passwdTextField.text  = @"q111111";
+        }else{
+            self.userNameTextField.text = @"ceshi1";
+            self.passwdTextField.text  = @"1qaz!2WSX";
+        }
+
     }
     
     self.loginButton.layer.cornerRadius = 5;
@@ -175,7 +181,7 @@
 
     ViewController *tabbarController = [[ViewController alloc] init];
     
-    [tabbarController setImageView:[HBDefaultConfigerData getTabbarImageDefult] titleArray:[HBDefaultConfigerData getTitleArray] viewControllers:[HBDefaultConfigerData getTabbarControl]];
+//    [tabbarController setImageView:[HBDefaultConfigerData getTabbarImageDefult] titleArray:[HBDefaultConfigerData getTitleArray] viewControllers:[HBDefaultConfigerData getTabbarControl]];
     
     [UIApplication sharedApplication].keyWindow.rootViewController = tabbarController;
 }

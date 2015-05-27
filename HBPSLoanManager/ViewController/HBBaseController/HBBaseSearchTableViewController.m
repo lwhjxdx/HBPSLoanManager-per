@@ -110,10 +110,13 @@
     if (searchView) {
         [self.view insertSubview:self.tableView belowSubview:searchView];
     }
-    if (DSystemVersion >= 7.0)
-        //分割线的位置不带偏移
-        self.tableView.separatorInset = UIEdgeInsetsZero;
-  
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
 }
 - (void)initTableViewForResult:(CGRect)rect
 {
@@ -139,6 +142,16 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 10;
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 - (void)searchClicked{
     [self.view endEditing:YES];

@@ -34,7 +34,7 @@ static DBManager *manager = nil;
         //[_dataBase close];
         if ([_dataBase open]) {
             //创建表 blob 二进制对象类型
-            NSString *createSql = @"create table if not exists reportInfo(id integer primary key autoincrement,reportType integer,titleString varchar(256),contentString integer,isSelect varchar(20),filePath varchar(256),className varchar(256))";
+            NSString *createSql = @"create table if not exists reportInfo(id integer primary key autoincrement,reportType integer,titleString varchar(256),contentString integer,isSelect varchar(20),filePath varchar(256),className varchar(256),userId varchar(256))";
             //executeUpdate 增、删、改，创建表 的sql全用此方法
             //返回值为执行的结果 yes no
             BOOL isSuccessed  =[_dataBase executeUpdate:createSql];
@@ -53,14 +53,16 @@ static DBManager *manager = nil;
 //插入一条数据
 - (BOOL)insertDataWithModel:(HBReportModel *)model{
 
-    NSString *insertSql = @"insert into reportInfo(reportType,titleString,contentString,filePath,className,isSelect) values(?,?,?,?,?,?)";
+    NSString *insertSql = @"insert into reportInfo(reportType,titleString,contentString,filePath,className,userId,isSelect) values(?,?,?,?,?,?,?)";
     //executeUpdate 要求后面跟的参数必须是NSObject类型,否则会抛出EXC_BAD_ACCESS错误,fmdb会在将数据写入之前对数据进行自动转化
     BOOL isSuccessd =[_dataBase executeUpdate:insertSql,
                       [NSNumber numberWithInteger: model.reportType],
                       model.titleString,
                       model.contentString,
                       model.filePath,
-                      model.className,@"NO"];
+                      model.className,
+                      model.userId,
+                      @"NO"];
     if (!isSuccessd) {
         NSLog(@"insert error:%@",_dataBase.lastErrorMessage);
     }
@@ -107,8 +109,8 @@ static DBManager *manager = nil;
 //根据id更新数据
 - (BOOL)updateWithModel:(HBReportModel *)model{
     
-    NSString *updateSql = @"update reportInfo set titleString=?,contentString=?,filePath=?,isSelect=?,className=? where id=?";
-    BOOL isSuccessed =[_dataBase executeUpdate:updateSql withArgumentsInArray:@[model.titleString,model.contentString,model.filePath,model.isSelect,model.className,[NSNumber numberWithInteger: model.reportId]]];
+    NSString *updateSql = @"update reportInfo set titleString=?,contentString=?,filePath=?,isSelect=?,className=?,userId=? where id=?";
+    BOOL isSuccessed =[_dataBase executeUpdate:updateSql withArgumentsInArray:@[model.titleString,model.contentString,model.filePath,model.isSelect,model.className,model.userId,[NSNumber numberWithInteger: model.reportId]]];
 
     if (!isSuccessed) {
         NSLog(@"update error:%@",_dataBase.lastErrorMessage);
@@ -121,10 +123,13 @@ static DBManager *manager = nil;
 #pragma mark --------------查询----------------------
 //获取全部数据
 - (NSArray *)fetchAllUsers{
-    NSString *seleteSql = @"select * from reportInfo";
+//    NSString *seleteSql = @"select * from reportInfo";
+    NSString *selectSql  = @"select * from reportInfo where userId = ?";
+
     //查询的sql语句用executeQuery
     //FMResultSet 查询结果的集合类
-    FMResultSet *set =[_dataBase executeQuery:seleteSql];
+//    FMResultSet *set =[_dataBase executeQuery:seleteSql];
+    FMResultSet *set = [_dataBase executeQuery:selectSql,[HBUserModel getUserId]];
     //next 从第一条数据开始，一直能取到最后一条，能取到当前的数据返回YES
     NSMutableArray *array = [NSMutableArray array];
     while ([set next]) {
@@ -140,6 +145,7 @@ static DBManager *manager = nil;
         model.reportType = [set intForColumn:@"reportType"];
         NSString *isSelect = [set stringForColumn:@"isSelect"];
         model.className = [set stringForColumn:@"className"];
+        model.userId = [set stringForColumn:@"userId"];
         model.isSelect = isSelect;
         [array addObject:model];
     }
@@ -221,6 +227,7 @@ static DBManager *manager = nil;
         model.filePath = [set stringForColumn:@"filePath"];
         model.reportType = [set intForColumn:@"reportType"];
         model.className = [set stringForColumn:@"className"];
+        model.userId = [set stringForColumn:@"userId"];
         NSString *isSelect = [set stringForColumn:@"isSelect"];
         model.isSelect = isSelect;
     }

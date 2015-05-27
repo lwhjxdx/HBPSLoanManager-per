@@ -11,6 +11,8 @@
 #import "UIColor+ChangeWithString.h"
 #import "Masonry.h"
 #import <PgySDK/PgyManager.h>
+#import "GestureSetPasswordController.h"
+
 @interface YZWViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
 
@@ -146,10 +148,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==1) {
-        [SVProgressHUD show];
         if (indexPath.row==0) {
+            [SVProgressHUD show];
+
             [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateReturnId:)];
         }else{
+//            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc]init];
+//            [self pushViewController:vc animated:YES];
+//            return;
+//#warning 测试手势密码页面
+            [SVProgressHUD show];
             if (!_visonInfo) {
                 [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(gettingVersion:)];
             }else{
@@ -170,6 +178,8 @@
         vc.versionInfoString = @"初始版本，功能可能会有欠缺";
         [self pushViewController:vc animated:YES];
     }
+ 
+
 }
 -(void)updateReturnId:(id)dic
 {

@@ -25,7 +25,7 @@
     self.backButton.hidden = NO;
     
     NSString *string=@"当前版本如下";
-    UILabel *lable=[[UILabel alloc]initWithFrame:CGRectMake(0, kTopBarHeight + 29, kSCREEN_WIDTH, 15)];
+    UILabel *lable=[[UILabel alloc]initWithFrame:CGRectMake(0, kValueTopBarHeight + 29, kSCREEN_WIDTH, 15)];
     lable.text=string;
     
     lable.textAlignment = NSTextAlignmentCenter;

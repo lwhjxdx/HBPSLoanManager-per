@@ -37,7 +37,7 @@
     NSString *infoString = locationString  ;
     NSString *checkTypeString = [self getTypeString:type];
     NSInteger checkType = type;
-
+    NSString *userId = [HBUserModel getUserId];
     if (nameString && checkTypeString) {
         
         HBReportModel *model = [[DBManager shareManager] selectInfo:nameString withType:checkType];
@@ -46,6 +46,7 @@
             model.contentString = [NSString stringWithFormat:@"%@\n%@",checkTypeString,infoString];
             model.filePath = pathString;
             model.reportType = type;
+            model.userId = userId;
             model.className = NSStringFromClass(className);
             return [[DBManager shareManager] updateWithModel:model];
         }else{
@@ -54,6 +55,7 @@
             model.contentString = [NSString stringWithFormat:@"%@\n%@",checkTypeString,infoString];
             model.filePath = pathString;
             model.reportType = type;
+            model.userId = userId;
             model.className = NSStringFromClass(className);
             return [[DBManager shareManager] insertDataWithModel:model];
         }

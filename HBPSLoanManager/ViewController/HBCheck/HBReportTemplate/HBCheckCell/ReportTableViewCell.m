@@ -114,7 +114,16 @@
         ||[self.keyString isEqualToString:@"respCode"]
         ||[self.keyString isEqualToString:@"respMsg"]
         ||[self.keyString isEqualToString:@"shareholderInfo"]
-        ||[self.keyString isEqualToString:@"stockValue"])
+        ||[self.keyString isEqualToString:@"stockValue"]
+        ||[self.keyString isEqualToString:@"productRate"]
+        ||[self.keyString isEqualToString:@"startDate"]
+        ||[self.keyString isEqualToString:@"endDate"]
+        ||[self.keyString isEqualToString:@"repayType"]
+        ||[self.keyString isEqualToString:@"loanBalance"]
+        ||[self.keyString isEqualToString:@"prodType"]
+        ||[self.keyString isEqualToString:@"lendDate"]
+        ||[self.keyString isEqualToString:@"checkMethod"]
+        )
     {
          [self showTextFieldEdit:NO];
      }else{
@@ -223,6 +232,11 @@
     if (self.textfieldView.hidden == NO) {
         self.infoTextfield.text = value;
         self.valueString = value;
+        if (!value) {
+//            self.valueString = @"无";
+            self.infoTextfield.text = @"无";
+
+        }
 //        [self.infoTextfield adjustsFontSizeToFitWidth];
     }else{
         //设置pick里面的值

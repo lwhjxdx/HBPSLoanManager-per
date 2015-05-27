@@ -41,18 +41,18 @@
                             <color key="backgroundColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEY-Fy-zGw">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="314"/>
                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="hEY-Fy-zGw" firstAttribute="leading" secondItem="VHO-k8-w4V" secondAttribute="leading" id="1CH-x8-qns"/>
                         <constraint firstItem="h6d-Gi-UKt" firstAttribute="top" secondItem="VHO-k8-w4V" secondAttribute="top" id="34b-c2-AeN"/>
                         <constraint firstItem="h6d-Gi-UKt" firstAttribute="leading" secondItem="VHO-k8-w4V" secondAttribute="leading" id="5Xu-xf-7W1"/>
                         <constraint firstItem="hEY-Fy-zGw" firstAttribute="top" secondItem="VHO-k8-w4V" secondAttribute="top" id="CyO-UN-h5s"/>
                         <constraint firstAttribute="trailing" secondItem="hEY-Fy-zGw" secondAttribute="trailing" id="Jew-XI-y2g"/>
-                        <constraint firstAttribute="bottom" secondItem="hEY-Fy-zGw" secondAttribute="bottom" constant="44" id="RZe-dO-5ty"/>
+                        <constraint firstAttribute="bottom" secondItem="hEY-Fy-zGw" secondAttribute="bottom" id="RZe-dO-5ty"/>
                         <constraint firstAttribute="bottom" secondItem="h6d-Gi-UKt" secondAttribute="bottom" id="X05-Zh-hok"/>
                         <constraint firstItem="hEY-Fy-zGw" firstAttribute="leading" secondItem="h6d-Gi-UKt" secondAttribute="trailing" id="YtI-dD-ov4"/>
                     </constraints>

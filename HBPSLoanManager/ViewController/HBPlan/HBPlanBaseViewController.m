@@ -56,6 +56,14 @@
     tbView.backgroundColor = [UIColor clearColor];
     tbView.dataSource = self;
     tbView.delegate = self;
+    if ([tbView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tbView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([tbView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tbView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+
     tbView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:tbView];
     self.topTableView = tbView;

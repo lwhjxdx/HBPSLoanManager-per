@@ -51,6 +51,7 @@
 
 +(NSArray *)getTabbarControl
 {
+//    NSArray *imageArr = [self getTabbarImageDefult];
 //    HBPlanViewController *vc1 = [[HBPlanViewController alloc] init];
     HBCheckViewController *vc1 = [[HBCheckViewController alloc] init];
     vc1.tableViewArr = @[@[@"小企业法人授信业务",@"LegalPersonViewController"],@[@"个人商务贷款",@"HBPersonageViewController"],@[@"个人经营性车辆按揭贷款",@"HBPersonageCarController"]];

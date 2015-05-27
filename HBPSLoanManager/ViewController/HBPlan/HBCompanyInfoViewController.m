@@ -306,7 +306,16 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
 #pragma mark ---------------------跳转-----------------------------
 //从网络请求数据
 - (void)requestFromNetWorkingToJump:(NSDictionary *)dic{
