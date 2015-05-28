@@ -545,7 +545,8 @@
 - (void)requestFromNetWorking{
     NSMutableDictionary *dic = [self makeParams];
     _hasMoreData = NO;
-    [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+    [self.refreshControl beginRefreshing];
+    [HBRequest RequestDataNoWaittingJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self.refreshControl endRefreshing];
         [self handleData:receiveJSON];
     } failBlock:^(NSError *error) {

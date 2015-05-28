@@ -40,24 +40,42 @@
 @property (nonatomic,copy) NSString *subKeyString;
 @property (nonatomic,copy) NSString *subValueString;
 
+/**
+ *  设置 valueString
+ *
+ *  @param textString 传入显示字符串
+ */
 
-//设置 valueString
 - (void)setValuetext:(NSString *)value;
 
-//显示样式为TextField
+/**
+ *  显示样式为TextField
+ */
 - (void)showTextField;
+/**
+ *  显示样式为TextField isEditable为是否可编辑
+ *
+ *  @param isEditable 传入是否可以编辑编辑
+ */
 
-//显示样式为TextField isEditable为是否可编辑
 - (void)showTextFieldEdit:(Boolean)isEditable;
-
-//显示样式为 点击出现pickerView 样式
+/**
+ *  显示样式为 点击出现pickerView 样式
+ */
 - (void)showLabelView;
 
-
-//设置textfield 的输入的最大长度
+/**
+ *  设置textfield 的输入的最大长度
+ *
+ *  @param textLength 传入显示字符串最大长度
+ */
 - (void)setTextLength:(NSNumber *)textLength;
 
-//设置显示的text
+/**
+ *  设置显示的text
+ *
+ *  @param textString 传入显示字符串
+ */
 - (void)setTextString:(NSString *)textString;
 
 

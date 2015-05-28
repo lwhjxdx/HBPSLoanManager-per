@@ -190,8 +190,8 @@
 
 //处理特殊字段
 - (void)handleSpecial{
-    [_paramDic setObject:[NSString stringWithFormat:@"%d",ImageType1] forKey:@"surfaceInfo"];
-    [_paramDic setObject:[NSString stringWithFormat:@"%d",ImageType2] forKey:@"addressInfo"];
+    [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)ImageType1] forKey:@"surfaceInfo"];
+    [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)ImageType2] forKey:@"addressInfo"];
     
     
     NSInteger i = [[_paramDic objectForKey:@"repayTimes"] integerValue];
@@ -199,17 +199,17 @@
     switch (i) {
         case 0:
         {
-            [_paramDic setObject:[NSString stringWithFormat:@"%d",x] forKey:@"firstCheckStage"];
+            [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)x] forKey:@"firstCheckStage"];
         }
             break;
         case 1:
         {
-            [_paramDic setObject:[NSString stringWithFormat:@"%d",x] forKey:@"secondCheckStage"];
+            [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)x] forKey:@"secondCheckStage"];
         }
             break;
         case 2:
         {
-            [_paramDic setObject:[NSString stringWithFormat:@"%d",x] forKey:@"thirdCheckStage"];
+            [_paramDic setObject:[NSString stringWithFormat:@"%d",(int)x] forKey:@"thirdCheckStage"];
         }
             break;
         default:

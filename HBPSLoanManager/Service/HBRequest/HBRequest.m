@@ -19,15 +19,22 @@
 
 
 @implementation HBRequest
-
 +(void)RequestDataJointStr:(NSString *)str
+              parameterDic:(NSMutableDictionary *)parameterDic
+           successfulBlock:(FinishBlock )finshedBlock
+                 failBlock:(FailBlock )failBlock
+{
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    [self RequestDataNoWaittingJointStr:str parameterDic:parameterDic successfulBlock:finshedBlock failBlock:failBlock];
+}
++(void)RequestDataNoWaittingJointStr:(NSString *)str
               parameterDic:(NSMutableDictionary *)parameterDic
            successfulBlock:(FinishBlock )finshedBlock
                  failBlock:(FailBlock )failBlock
 {
     
 //    NSLog(@"RequestDataJointStr ---->\n %@",parameterDic);
-    
+
     HBRequest *networkRequest = [[HBRequest alloc]init];
     networkRequest.finishLoadingBlock = finshedBlock;
     networkRequest.failWithErrorBlock = failBlock;
@@ -129,12 +136,7 @@
         if (self.failWithErrorBlock) {
             self.failWithErrorBlock(nil);
         }
-//
-//        if ([resultDic objectForKey:@"respMsg"]) {
-//            
-//            UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提醒" message:[resultDic objectForKey:@"respMsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [al show];
-//        }
+
     }
     else{
         if (self.finishLoadingBlock) {
@@ -236,7 +238,13 @@
     return dic;
 }
 
-//encodeing
+/**
+ *  encodeing
+ *
+ *  @param NSString 传入编码前字符串
+ *
+ *  @return 编码后字符串
+ */
 -(NSString *)encodeURL:(NSString *)dString{
     
     NSString *escapeUrlString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)dString, NULL, (CFStringRef)ENCODE_KEY, kCFStringEncodingUTF8 ));

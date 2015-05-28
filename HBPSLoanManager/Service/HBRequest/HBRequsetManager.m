@@ -23,7 +23,7 @@ static NSMutableArray *_currentConArray;
         manager = [[HBRequsetManager alloc] init];
         _queue = [NSMutableArray array];
         _currentConArray = [NSMutableArray array];
-        manager.maxCount = 2;
+        manager.maxCount = 4;
         _currentCount = 0;
     });
     return manager;
@@ -73,7 +73,6 @@ static NSMutableArray *_currentConArray;
             [_currentConArray addObject:connection];
             [connection start];
 //            [SVProgressHUD showWithStatus:@"正在加载"];
-            [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             
             NSLog(@"_currentConArray connection %@",connection);

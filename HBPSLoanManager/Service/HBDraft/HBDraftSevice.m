@@ -70,7 +70,7 @@
 
 //获取检查 类型
 
-#warning getTypeString 获取检查类型 目的为填充 首次检查 字样
+//#warning getTypeString 获取检查类型 目的为填充 首次检查 字样
 - (NSString *)getTypeString:(HBDraftType)type{
     NSString *typeString;
     switch (type) {

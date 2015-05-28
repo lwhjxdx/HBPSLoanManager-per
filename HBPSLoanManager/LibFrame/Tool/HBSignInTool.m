@@ -96,7 +96,6 @@
     [self initLocation];
 }
 
-#warning signIn
 - (void)signInWithDic:(NSMutableDictionary *)dic{
     
     [_locService stopUserLocationService];

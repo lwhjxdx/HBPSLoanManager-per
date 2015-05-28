@@ -23,7 +23,7 @@ void uncaughtExceptionHandler(NSException *exception)
     NSString *name = [exception name];
     NSString *exceptionInfo = [NSString stringWithFormat:@"Exception reason：%@\nException name：%@\nException stack：%@",name, reason, stackArray];
     
-    NSString *strName = [[UIDevice currentDevice] name];//e.g. "My iPhone"手机名称
+//    NSString *strName = [[UIDevice currentDevice] name];//e.g. "My iPhone"手机名称
     
     //系统版本号
     NSString *strSysVersion = [[UIDevice currentDevice] systemVersion];

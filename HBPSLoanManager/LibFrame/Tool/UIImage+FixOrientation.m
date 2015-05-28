@@ -66,7 +66,7 @@
                                              8,
                                              0,
                                              CGImageGetColorSpace(self.CGImage),
-                                             kCGImageAlphaNoneSkipLast);
+                                             (CGBitmapInfo)kCGImageAlphaNoneSkipLast);
     CGContextConcatCTM(ctx, transform);
     switch (self.imageOrientation) {
         case UIImageOrientationLeft:

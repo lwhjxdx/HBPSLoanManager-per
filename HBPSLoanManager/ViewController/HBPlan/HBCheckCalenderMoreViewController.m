@@ -45,8 +45,8 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"HBCheckCalenderMoreCell" owner:self options:nil] lastObject];
     }
-    [cell setParams:[dataArray objectAtIndex:indexPath.row]];
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];;
+    [cell setParams:[dataArray objectAtIndex:(int)indexPath.row]];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d", (int)indexPath.row];;
     [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     
     return cell;
