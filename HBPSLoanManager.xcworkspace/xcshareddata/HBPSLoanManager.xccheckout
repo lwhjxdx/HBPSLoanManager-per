@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>880D2781-36C3-4F96-AFBF-13C14E5AF648</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HBPSLoanManager</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</key>
+		<string>https://github.com/PerHao/HBPSLoanManager-per.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HBPSLoanManager.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PerHao/HBPSLoanManager-per.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>02913A98ABAAFCFEB6AEA7CFF16BD3EE100908EE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HBPSLoanManager-per</string>
+		</dict>
+	</array>
+</dict>
+</plist>

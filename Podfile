@@ -1,0 +1,5 @@
+platform :ios, '7.0'
+pod 'pop', '~> 1.0'
+pod 'Masonry', '~> 0.6.1'
+pod 'SDWebImage', '~> 3.7.2'
+source 'https://github.com/CocoaPods/Specs.git'
