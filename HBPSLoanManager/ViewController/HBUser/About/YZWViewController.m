@@ -153,16 +153,16 @@
 
             [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateReturnId:)];
         }else{
-//            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc]init];
-//            [self pushViewController:vc animated:YES];
-//            return;
-//#warning 测试手势密码页面
-            [SVProgressHUD show];
-            if (!_visonInfo) {
-                [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(gettingVersion:)];
-            }else{
-                [self gettingVersion:_visonInfo];
-            }
+            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc]init];
+            [self pushViewController:vc animated:YES];
+            return;
+#warning 测试手势密码页面
+//            [SVProgressHUD show];
+//            if (!_visonInfo) {
+//                [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(gettingVersion:)];
+//            }else{
+//                [self gettingVersion:_visonInfo];
+//            }
         }
     }
 }

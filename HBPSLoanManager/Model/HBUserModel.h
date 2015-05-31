@@ -28,6 +28,8 @@
 
 + (NSString *)getRealname;
 
++ (NSString*)getUserImageId;
+
 + (void)setHeadImagePath:(NSString *)imagePath;
 
 

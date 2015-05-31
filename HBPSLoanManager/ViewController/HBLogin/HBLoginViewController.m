@@ -222,6 +222,12 @@
         self.contentView.center = CGPointMake(kSCREEN_WIDTH/2, p.y);
     }];
 }
+- (IBAction)forgotPassword:(UIButton *)sender {
+}
+
+
+
+
 
 #pragma  mark 键盘消失
 

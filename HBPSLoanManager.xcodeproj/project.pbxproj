@@ -26,6 +26,13 @@
 		282415931AE8FFB100935146 /* HBinspectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282415911AE8FFB100935146 /* HBinspectViewController.m */; };
 		282415941AE8FFB100935146 /* HBinspectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282415921AE8FFB100935146 /* HBinspectViewController.xib */; };
 		757F0D386BC1D1DE88082280 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EEF1302DEB5FE180BBC9C4 /* libPods.a */; };
+		901BD5491B180F2A00F88AAB /* HBCheckMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BD5471B180F2A00F88AAB /* HBCheckMainViewController.m */; };
+		9032949F1B171B99006096E0 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 903294941B171B99006096E0 /* FSCalendar.m */; };
+		903294A01B171B99006096E0 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 903294961B171B99006096E0 /* FSCalendarCell.m */; };
+		903294A11B171B99006096E0 /* FSCalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 903294981B171B99006096E0 /* FSCalendarHeader.m */; };
+		903294A21B171B99006096E0 /* NSCalendar+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032949A1B171B99006096E0 /* NSCalendar+FSExtension.m */; };
+		903294A31B171B99006096E0 /* NSDate+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032949C1B171B99006096E0 /* NSDate+FSExtension.m */; };
+		903294A41B171B99006096E0 /* UIView+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032949E1B171B99006096E0 /* UIView+FSExtension.m */; };
 		904C65711B0F21E40005DBEC /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904C65701B0F21E40005DBEC /* PgySDK.framework */; };
 		904C65771B14375C0005DBEC /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C65741B14375C0005DBEC /* KKGestureLockPreviewView.m */; };
 		904C65781B14375C0005DBEC /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C65761B14375C0005DBEC /* KKGestureLockView.m */; };
@@ -41,6 +48,11 @@
 		9085ACE21B02F69300BAD006 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9085ACDB1B02F69300BAD006 /* DetailsViewController.m */; };
 		9085ACE41B02F69300BAD006 /* UIColor+ChangeWithString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9085ACDF1B02F69300BAD006 /* UIColor+ChangeWithString.m */; };
 		9085ACE51B02F69300BAD006 /* YZWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9085ACE11B02F69300BAD006 /* YZWViewController.m */; };
+		90886C851B182DB70003783C /* UITableView+ChangeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 90886C841B182DB70003783C /* UITableView+ChangeLine.m */; };
+		90886C891B18351B0003783C /* MainColecthionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90886C871B18351B0003783C /* MainColecthionTableViewCell.m */; };
+		90886C8A1B18351B0003783C /* MainColecthionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90886C881B18351B0003783C /* MainColecthionTableViewCell.xib */; };
+		90886C8E1B184CB40003783C /* ShowImageItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90886C8C1B184CB40003783C /* ShowImageItemCollectionViewCell.m */; };
+		90886C8F1B184CB40003783C /* ShowImageItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90886C8D1B184CB40003783C /* ShowImageItemCollectionViewCell.xib */; };
 		909B98DE1AFC89F100A35B59 /* HBPlanBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */; };
 		909B98E11AFCA39C00A35B59 /* HBPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909B98E01AFCA39C00A35B59 /* HBPersonInfoViewController.m */; };
 		909B98E31AFCFFD800A35B59 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 909B98E21AFCFFD800A35B59 /* mapapi.bundle */; };
@@ -241,6 +253,20 @@
 		300803BB64C875047F723B81 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C7B38ACE064102BC461FB95 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		90138FC31AF8A5B4006ADBA1 /* HBType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBType.h; sourceTree = "<group>"; };
+		901BD5461B180F2A00F88AAB /* HBCheckMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBCheckMainViewController.h; sourceTree = "<group>"; };
+		901BD5471B180F2A00F88AAB /* HBCheckMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBCheckMainViewController.m; sourceTree = "<group>"; };
+		903294931B171B99006096E0 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
+		903294941B171B99006096E0 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
+		903294951B171B99006096E0 /* FSCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCell.h; sourceTree = "<group>"; };
+		903294961B171B99006096E0 /* FSCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCell.m; sourceTree = "<group>"; };
+		903294971B171B99006096E0 /* FSCalendarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarHeader.h; sourceTree = "<group>"; };
+		903294981B171B99006096E0 /* FSCalendarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarHeader.m; sourceTree = "<group>"; };
+		903294991B171B99006096E0 /* NSCalendar+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+FSExtension.h"; sourceTree = "<group>"; };
+		9032949A1B171B99006096E0 /* NSCalendar+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+FSExtension.m"; sourceTree = "<group>"; };
+		9032949B1B171B99006096E0 /* NSDate+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FSExtension.h"; sourceTree = "<group>"; };
+		9032949C1B171B99006096E0 /* NSDate+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FSExtension.m"; sourceTree = "<group>"; };
+		9032949D1B171B99006096E0 /* UIView+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FSExtension.h"; sourceTree = "<group>"; };
+		9032949E1B171B99006096E0 /* UIView+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FSExtension.m"; sourceTree = "<group>"; };
 		904C65701B0F21E40005DBEC /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PgySDK.framework; path = HBPSLoanManagerTests/PgySDK.framework; sourceTree = "<group>"; };
 		904C65731B14375C0005DBEC /* KKGestureLockPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockPreviewView.h; sourceTree = "<group>"; };
 		904C65741B14375C0005DBEC /* KKGestureLockPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockPreviewView.m; sourceTree = "<group>"; };
@@ -269,6 +295,14 @@
 		9085ACDF1B02F69300BAD006 /* UIColor+ChangeWithString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ChangeWithString.m"; sourceTree = "<group>"; };
 		9085ACE01B02F69300BAD006 /* YZWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZWViewController.h; sourceTree = "<group>"; };
 		9085ACE11B02F69300BAD006 /* YZWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZWViewController.m; sourceTree = "<group>"; };
+		90886C831B182DB60003783C /* UITableView+ChangeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+ChangeLine.h"; sourceTree = "<group>"; };
+		90886C841B182DB70003783C /* UITableView+ChangeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ChangeLine.m"; sourceTree = "<group>"; };
+		90886C861B18351B0003783C /* MainColecthionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainColecthionTableViewCell.h; sourceTree = "<group>"; };
+		90886C871B18351B0003783C /* MainColecthionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainColecthionTableViewCell.m; sourceTree = "<group>"; };
+		90886C881B18351B0003783C /* MainColecthionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainColecthionTableViewCell.xib; sourceTree = "<group>"; };
+		90886C8B1B184CB30003783C /* ShowImageItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImageItemCollectionViewCell.h; sourceTree = "<group>"; };
+		90886C8C1B184CB40003783C /* ShowImageItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImageItemCollectionViewCell.m; sourceTree = "<group>"; };
+		90886C8D1B184CB40003783C /* ShowImageItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowImageItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		909B98DC1AFC89F100A35B59 /* HBPlanBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPlanBaseViewController.h; sourceTree = "<group>"; };
 		909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBPlanBaseViewController.m; sourceTree = "<group>"; };
 		909B98DF1AFCA39C00A35B59 /* HBPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPersonInfoViewController.h; sourceTree = "<group>"; };
@@ -728,6 +762,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		903294921B171B99006096E0 /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				903294931B171B99006096E0 /* FSCalendar.h */,
+				903294941B171B99006096E0 /* FSCalendar.m */,
+				903294951B171B99006096E0 /* FSCalendarCell.h */,
+				903294961B171B99006096E0 /* FSCalendarCell.m */,
+				903294971B171B99006096E0 /* FSCalendarHeader.h */,
+				903294981B171B99006096E0 /* FSCalendarHeader.m */,
+				903294991B171B99006096E0 /* NSCalendar+FSExtension.h */,
+				9032949A1B171B99006096E0 /* NSCalendar+FSExtension.m */,
+				9032949B1B171B99006096E0 /* NSDate+FSExtension.h */,
+				9032949C1B171B99006096E0 /* NSDate+FSExtension.m */,
+				9032949D1B171B99006096E0 /* UIView+FSExtension.h */,
+				9032949E1B171B99006096E0 /* UIView+FSExtension.m */,
+			);
+			path = FSCalendar;
+			sourceTree = "<group>";
+		};
 		904C65721B14375C0005DBEC /* KKGestureLockView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1183,6 +1236,7 @@
 		9963EFA01AAD507600AA1B63 /* LibFrame */ = {
 			isa = PBXGroup;
 			children = (
+				903294921B171B99006096E0 /* FSCalendar */,
 				904C65931B1472A40005DBEC /* AFViewShaker */,
 				904C657C1B1471650005DBEC /* LockView */,
 				904C65721B14375C0005DBEC /* KKGestureLockView */,
@@ -1267,6 +1321,14 @@
 				994EAB7D1AAEE5DD002FB5ED /* HBCheckDetailViewController.h */,
 				994EAB7E1AAEE5DD002FB5ED /* HBCheckDetailViewController.m */,
 				994EAB7F1AAEE5DD002FB5ED /* HBCheckDetailViewController.xib */,
+				901BD5461B180F2A00F88AAB /* HBCheckMainViewController.h */,
+				901BD5471B180F2A00F88AAB /* HBCheckMainViewController.m */,
+				90886C861B18351B0003783C /* MainColecthionTableViewCell.h */,
+				90886C871B18351B0003783C /* MainColecthionTableViewCell.m */,
+				90886C881B18351B0003783C /* MainColecthionTableViewCell.xib */,
+				90886C8B1B184CB30003783C /* ShowImageItemCollectionViewCell.h */,
+				90886C8C1B184CB40003783C /* ShowImageItemCollectionViewCell.m */,
+				90886C8D1B184CB40003783C /* ShowImageItemCollectionViewCell.xib */,
 				99E32CF01AB01C9E00BD61D9 /* HBRepeatListViewController.h */,
 				99E32CF11AB01C9E00BD61D9 /* HBRepeatListViewController.m */,
 			);
@@ -1450,6 +1512,8 @@
 				990F43371AD3D3A8004B2378 /* HBSignInTool.m */,
 				9984A97E1AD765EF00C43CDD /* UIImage+WatercColour.h */,
 				9984A97F1AD765EF00C43CDD /* UIImage+WatercColour.m */,
+				90886C831B182DB60003783C /* UITableView+ChangeLine.h */,
+				90886C841B182DB70003783C /* UITableView+ChangeLine.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1688,8 +1752,10 @@
 				9963EFF91AAD5B5700AA1B63 /* dobuleArrowRight@2x.png in Resources */,
 				282415891AE8C88900935146 /* LoanPersonageController.xib in Resources */,
 				2824156C1AE89E0E00935146 /* HBPersonageCarPlanController.xib in Resources */,
+				90886C8A1B18351B0003783C /* MainColecthionTableViewCell.xib in Resources */,
 				282415941AE8FFB100935146 /* HBinspectViewController.xib in Resources */,
 				282415761AE89E9800935146 /* HBPersonPlanViewController.xib in Resources */,
+				90886C8F1B184CB40003783C /* ShowImageItemCollectionViewCell.xib in Resources */,
 				9963F0061AAD5B5700AA1B63 /* DSLCalendarDaySelection.png in Resources */,
 				99938DEB1ACAA78800B46EB9 /* HBCTextFeildTableViewCell.xib in Resources */,
 				9963F0021AAD5B5700AA1B63 /* DSLCalendarDaySelection-middle.png in Resources */,
@@ -1779,6 +1845,7 @@
 				9963F04A1AAD84AC00AA1B63 /* HBPlanViewController.m in Sources */,
 				99E32CF61AB034BD00BD61D9 /* HBCheckCalendarCell.m in Sources */,
 				995E193F1AC7BC6C0035AAC5 /* UIImage+FixOrientation.m in Sources */,
+				903294A21B171B99006096E0 /* NSCalendar+FSExtension.m in Sources */,
 				9963F0221AAD6DC600AA1B63 /* HBRequest.m in Sources */,
 				9963EFF51AAD5B5700AA1B63 /* DSLCalendarMonthView.m in Sources */,
 				99938DD61ACAA77400B46EB9 /* HBCFirstViewController.m in Sources */,
@@ -1804,12 +1871,16 @@
 				282415751AE89E9800935146 /* HBPersonPlanViewController.m in Sources */,
 				994938231AB7CDDD007FAFD8 /* SVProgressHUD.m in Sources */,
 				9963F0091AAD5B5700AA1B63 /* MBProgressHUD.m in Sources */,
+				90886C891B18351B0003783C /* MainColecthionTableViewCell.m in Sources */,
 				9963A2831AB28E9100C3678E /* FMDatabaseQueue.m in Sources */,
 				996342801ADA5E7B00687242 /* HBPersonalVehiclesDailyMortgageChecksViewController.m in Sources */,
 				996B870E1ABC1B7E005FF4BD /* HBAllCheckViewController.m in Sources */,
 				994E00D41AB419E100037B6A /* HBDraftBoxViewController.m in Sources */,
 				9901CD5A1ABE61C500F92AFD /* ZipArchive.mm in Sources */,
 				904C658B1B1471650005DBEC /* GestureLockZoomView.m in Sources */,
+				903294A11B171B99006096E0 /* FSCalendarHeader.m in Sources */,
+				90886C8E1B184CB40003783C /* ShowImageItemCollectionViewCell.m in Sources */,
+				903294A41B171B99006096E0 /* UIView+FSExtension.m in Sources */,
 				904C65881B1471650005DBEC /* DefaultLockViewController.m in Sources */,
 				991B54FA1AB91E3300F069FC /* TemplateModel.m in Sources */,
 				904C658D1B1471650005DBEC /* GestureSetPasswordController.m in Sources */,
@@ -1824,6 +1895,7 @@
 				9085ACE21B02F69300BAD006 /* DetailsViewController.m in Sources */,
 				9935914E1AD91E37008FF498 /* HBIndividualCommercialFirstTrackingViewController.m in Sources */,
 				99938DE51ACAA78800B46EB9 /* ReportTableViewCell.m in Sources */,
+				901BD5491B180F2A00F88AAB /* HBCheckMainViewController.m in Sources */,
 				9963A2821AB28E9100C3678E /* FMDatabasePool.m in Sources */,
 				994EAB791AAEB99A002FB5ED /* HBBaseSearchTableViewController.m in Sources */,
 				996B87111ABC1B91005FF4BD /* HBAllCheckNextViewController.m in Sources */,
@@ -1836,6 +1908,7 @@
 				9963F0381AAD7E1200AA1B63 /* HBLoginViewController.m in Sources */,
 				993591421AD8CCF1008FF498 /* STAlertView.m in Sources */,
 				9963EFF21AAD5B5700AA1B63 /* DSLCalendarDayView.m in Sources */,
+				903294A31B171B99006096E0 /* NSDate+FSExtension.m in Sources */,
 				994E00CE1AB3DB4B00037B6A /* HBSignInController.m in Sources */,
 				9963F02C1AAD74B100AA1B63 /* DateUtils.m in Sources */,
 				9963F00A1AAD5B5700AA1B63 /* MyMD5.m in Sources */,
@@ -1845,6 +1918,7 @@
 				282415881AE8C88900935146 /* LoanPersonageController.m in Sources */,
 				990F43381AD3D3A8004B2378 /* HBSignInTool.m in Sources */,
 				282415611AE8976700935146 /* HBPersonageCarController.m in Sources */,
+				903294A01B171B99006096E0 /* FSCalendarCell.m in Sources */,
 				9984A9841AD7B48F00C43CDD /* HBPPFirstViewController.m in Sources */,
 				9984A9871AD7B4AE00C43CDD /* HBPPNextViewController.m in Sources */,
 				9963F02D1AAD74B100AA1B63 /* MathUtils.m in Sources */,
@@ -1861,6 +1935,7 @@
 				9085ACE51B02F69300BAD006 /* YZWViewController.m in Sources */,
 				996342761ADA5E0C00687242 /* HBIndividualCommercialCreditDailyCheckViewController.m in Sources */,
 				994E00DF1AB44E1F00037B6A /* DBManager.m in Sources */,
+				9032949F1B171B99006096E0 /* FSCalendar.m in Sources */,
 				9963427A1ADA5E0C00687242 /* HBICRepaymentConditionViewController.m in Sources */,
 				9963EF7D1AAD4DD800AA1B63 /* main.m in Sources */,
 				99E32CFA1AB03D2C00BD61D9 /* HBCheckCaledarViewController.m in Sources */,
@@ -1871,6 +1946,7 @@
 				9901CD571ABE61C500F92AFD /* mztools.c in Sources */,
 				996342791ADA5E0C00687242 /* HBICRepaymentConditionNextViewController.m in Sources */,
 				9963F01E1AAD67A100AA1B63 /* HBBaseViewController.m in Sources */,
+				90886C851B182DB70003783C /* UITableView+ChangeLine.m in Sources */,
 				993E6F281AB850A8003A02DF /* MyPickerViewForTf.m in Sources */,
 				99E32CF21AB01C9E00BD61D9 /* HBRepeatListViewController.m in Sources */,
 				9085ACE41B02F69300BAD006 /* UIColor+ChangeWithString.m in Sources */,
@@ -1933,8 +2009,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1976,8 +2052,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2002,8 +2078,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2023,7 +2099,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
@@ -2035,8 +2111,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2055,7 +2131,7 @@
 					"$(PROJECT_DIR)/HBPSLoanManager",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};

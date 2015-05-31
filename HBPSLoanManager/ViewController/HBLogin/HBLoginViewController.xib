@@ -37,6 +37,19 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubf-Xd-Szf">
+                            <rect key="frame" x="133" y="527" width="55" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="2kI-QR-6id"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Didot-Italic" family="Didot" pointSize="11"/>
+                            <state key="normal" title="忘记密码？">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="forgotPassword:" destination="-1" eventType="touchUpInside" id="Hch-eN-3mT"/>
+                            </connections>
+                        </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wc0-s4-NV9">
                             <rect key="frame" x="41" y="294" width="238" height="45"/>
                             <constraints>
@@ -74,13 +87,6 @@
                                 <action selector="reset:" destination="-1" eventType="touchUpInside" id="g5B-Ej-0Uu"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubf-Xd-Szf">
-                            <rect key="frame" x="133" y="436" width="55" height="26"/>
-                            <fontDescription key="fontDescription" name="Didot-Italic" family="Didot" pointSize="11"/>
-                            <state key="normal" title="忘记密码？">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -92,7 +98,6 @@
                         <constraint firstItem="mxi-Ex-asi" firstAttribute="top" secondItem="Epj-lF-KW0" secondAttribute="top" id="F4S-5D-JNH"/>
                         <constraint firstItem="cZ4-Pm-R69" firstAttribute="top" secondItem="Wc0-s4-NV9" secondAttribute="bottom" constant="40" id="FKN-YL-DDN"/>
                         <constraint firstItem="cZ4-Pm-R69" firstAttribute="centerY" secondItem="gfr-MB-BPB" secondAttribute="centerY" id="ILo-Q2-dsm"/>
-                        <constraint firstItem="ubf-Xd-Szf" firstAttribute="top" secondItem="cZ4-Pm-R69" secondAttribute="bottom" constant="22" id="S0R-qY-CH1"/>
                         <constraint firstItem="cZ4-Pm-R69" firstAttribute="trailing" secondItem="mxi-Ex-asi" secondAttribute="centerX" constant="-10" id="T3W-XK-dmx"/>
                         <constraint firstAttribute="bottom" secondItem="mxi-Ex-asi" secondAttribute="bottom" id="VcJ-98-FQA"/>
                         <constraint firstAttribute="trailing" secondItem="mxi-Ex-asi" secondAttribute="trailing" id="b7I-G2-3sY"/>
@@ -100,6 +105,7 @@
                         <constraint firstItem="vEH-Rd-JgL" firstAttribute="bottom" secondItem="mxi-Ex-asi" secondAttribute="centerY" constant="-10" id="itj-Ly-k20"/>
                         <constraint firstItem="Wc0-s4-NV9" firstAttribute="top" secondItem="mxi-Ex-asi" secondAttribute="centerY" constant="10" id="ng7-OC-aaX"/>
                         <constraint firstItem="ubf-Xd-Szf" firstAttribute="centerX" secondItem="mxi-Ex-asi" secondAttribute="centerX" id="zKG-eL-Jga"/>
+                        <constraint firstAttribute="bottom" secondItem="ubf-Xd-Szf" secondAttribute="bottom" constant="15" id="zyT-UG-hjx"/>
                     </constraints>
                 </view>
             </subviews>

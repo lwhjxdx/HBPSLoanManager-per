@@ -19,8 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableViewForResult:CGRectZero];
-    self.tableView.scrollEnabled = NO;
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(kValueTopBarHeight, 0, 0, 0));
+    }];
+    
+    self.tableView.scrollEnabled = YES;
     self.titleLabel.text = _titleString;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 64;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

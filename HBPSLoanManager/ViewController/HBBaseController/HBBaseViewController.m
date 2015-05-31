@@ -7,6 +7,7 @@
 //
 
 #import "HBBaseViewController.h"
+
 @interface HBBaseViewController ()
 {
     UIAlertView *al;
@@ -21,7 +22,16 @@
     self.view.backgroundColor = RGBACOLOR(238, 238, 238, 1);
 
 }
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
 
 //加载 导航条（系统导航条隐藏）
 -(void)loadNavigationBarView{

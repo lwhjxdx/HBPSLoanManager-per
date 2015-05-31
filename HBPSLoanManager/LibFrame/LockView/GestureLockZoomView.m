@@ -45,7 +45,7 @@
         view.layer.borderColor = [UIColor colorWithRed:0.933 green:0.525 blue:0.032 alpha:1.000].CGColor;
         view.layer.borderWidth = 0.3f;
         view.backgroundColor = [UIColor clearColor];
-        view.layer.cornerRadius = CGRectGetWidth(self.bounds)/6.f;
+        view.layer.cornerRadius = CGRectGetWidth(view.frame)/2.f;
         view.layer.masksToBounds = YES;
     }
 }

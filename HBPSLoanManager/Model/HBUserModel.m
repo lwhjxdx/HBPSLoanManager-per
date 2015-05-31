@@ -64,9 +64,11 @@ static NSArray *keyArray = nil;
     return [HBUserModel getValueString:kLocationInfo];
 }
 
-
-+ (NSString *)getUserId{
++ (NSString*)getUserImageId{
     return  [HBUserModel getValueString:@"soleid"];
+}
++ (NSString *)getUserId{
+    return  [HBUserModel getValueString:@"userEmpno"];
 }
 
 

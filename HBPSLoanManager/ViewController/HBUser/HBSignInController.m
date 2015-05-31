@@ -289,13 +289,13 @@
 //初始化
 - (void)initMapTableView{
     [UIView animateWithDuration:0.3 animations:^{
-        _mapView.frame = CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH,( kSCREEN_HEIGHT - kTopBarHeight)/3);
+        _mapView.frame = CGRectMake(0, kValueTopBarHeight, kSCREEN_WIDTH,( kSCREEN_HEIGHT - kValueTopBarHeight)/3);
         [_mapView setCenterCoordinate:_userLocationPoint animated:YES];
     }];
    
     
     
-    tableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0, kTopBarHeight +( kSCREEN_HEIGHT - kTopBarHeight)/3, kSCREEN_WIDTH,( kSCREEN_HEIGHT - kTopBarHeight)*2/3) style:(UITableViewStyleGrouped)];
+    tableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0, kValueTopBarHeight +( kSCREEN_HEIGHT - kValueTopBarHeight)/3, kSCREEN_WIDTH,( kSCREEN_HEIGHT - kValueTopBarHeight)*2/3) style:(UITableViewStyleGrouped)];
     tableView1.dataSource = self;
     tableView1.delegate = self;
     [self.view addSubview:tableView1];

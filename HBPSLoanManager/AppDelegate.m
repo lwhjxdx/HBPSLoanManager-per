@@ -11,6 +11,8 @@
 #import "BMKMapView.h"
 #import "HBUserModel.h"
 #import "MobClick.h"
+#import "NSUserDefaults+Setting.h"
+#import "DefaultLockViewController.h"
 #import <PgySDK/PgyManager.h>
 //手机端异常信息请求
 void uncaughtExceptionHandler(NSException *exception)
@@ -88,7 +90,80 @@ void uncaughtExceptionHandler(NSException *exception)
     [BMKMapView didForeGround];//当应用恢复前台状态时调用，回复地图的渲染和opengl相关的操作
 
 }
+/**
+ *  判断用户是否登录
+ */
+- (void)isLogin
+{
+    //判断是否登录，不登陆也就不用管啦
+    if ([HBUserModel getUserId]) {
+        [self judgeGesPassWord];
+    }else {
+        [self logoutWithTimeout];
+    }
+    [NSUserDefaults goBackTimerMakeCurrentDate];
+}
 
+-(void)judgeGesPassWord
+{
+    if ([HBUserModel getUserId])
+    {
+        //这里涉及到是否开启密码锁的问题
+        if ([NSUserDefaults acquireGestureBool])
+        {
+            //判断手势密码错误次数，
+            if (![NSUserDefaults judgeGestureRecordWrongNumber])
+            {
+                //判断记录的时间问题，如果超时，那么推出，没超过，不用管
+                if ([NSUserDefaults judgeBackGroundTimer:YES])
+                {
+                    if (!_window.rootViewController.presentedViewController)
+                    {
+                        [_window.rootViewController presentViewController:[[DefaultLockViewController alloc]init] animated:YES completion:nil];
+                    }
+                    [NSUserDefaults changeGestureRecordWrongNumber:@0];
+                }
+            }else{
+                [self deleteUserInfo];
+                [self loginAction];
+            }
+        }else{
+            //这里是需要判断在没有设定手势密码的情况下是否超时，不超时不需处理
+            if ([NSUserDefaults judgeBackGroundTimer:NO]) {
+                //超时，退出重新登录
+                [self deleteUserInfo];
+                [self loginAction];
+            }
+            [NSUserDefaults changeGestureRecordWrongNumber:@0];
+        }
+    }else{
+        [self loginAction];
+    }
+}
+
+
+
+
+-(void)logoutWithTimeout
+{
+    if ([NSUserDefaults judgeBackGroundTimer:NO]) {
+        //超时，退出重新登录
+        [self deleteUserInfo];
+        [self loginAction];
+    }else{
+        if (![HBUserModel getUserId]) {
+            [self loginAction];
+        }
+    }
+}
+-(void)deleteUserInfo
+{
+    
+}
+-(void)loginAction
+{
+    
+}
 - (void)applicationWillTerminate:(UIApplication *)application {
 
     

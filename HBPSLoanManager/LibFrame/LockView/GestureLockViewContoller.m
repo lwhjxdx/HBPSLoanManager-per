@@ -42,12 +42,12 @@
     [_zoomLockView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.top.equalTo(self.view.mas_top).offset(87);
-        make.size.equalTo(_lockView).multipliedBy(56.f/480.f);
+        make.size.mas_equalTo(CGSizeMake(all_screen_width(40), all_screen_width(40)));
     }];
     [self.view addSubview:self.numLabel];
     [_numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(_zoomLockView.mas_bottom).offset(13);
+        make.top.equalTo(_zoomLockView.mas_bottom).offset(5);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
     }];

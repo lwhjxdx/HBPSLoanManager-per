@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITableView+ChangeLine.h"
 
 #import "ZipTool.h"
 
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) UIButton *homeButton;
 
 @property (nonatomic, strong) UITableView *baseTableView;
+@property (nonatomic, strong) NSDate *dataString;
 
 
 //设置tabbar显示与隐藏

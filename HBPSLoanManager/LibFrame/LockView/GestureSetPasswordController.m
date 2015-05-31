@@ -34,7 +34,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.titleLabel.text = @"手势设置";
+    self.titleLabel.text = @"安全设置";
     [self.view addSubview:self.tableView];
     
 }
@@ -49,15 +49,16 @@
 
 -(NSInteger)sectionNumber
 {
-    return [NSUserDefaults acquireGestureBool]?2:1;;
+    return [NSUserDefaults acquireGestureBool]?2:1;
 }
 
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        UITableView *tab = [[UITableView alloc]initWithFrame:CGRectMake(0, kValueTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT-kValueTopBarHeight) style:UITableViewStyleGrouped];
+        UITableView *tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT-kValueTopBarHeight) style:UITableViewStyleGrouped];
         tab.dataSource = self;
         tab.delegate   = self;
+//        tab.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
         self.tableView = tab;
     }
     return _tableView;
@@ -115,6 +116,7 @@
         [self.navigationController pushViewController:[[GestureLockViewContoller alloc] init] animated:YES];
     }
 }
+
 
 #pragma mark ----------------switch Action----
 
