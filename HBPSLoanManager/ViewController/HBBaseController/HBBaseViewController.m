@@ -61,7 +61,7 @@
 
 
     //Title头信息
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake((kSCREEN_WIDTH-240)/2,FromStatusBarHeight+5, 240, 35)];
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0,FromStatusBarHeight+5, kSCREEN_WIDTH, 35)];
     label.font=[UIFont systemFontOfSize:20];
     label.numberOfLines = 1;
     label.adjustsFontSizeToFitWidth = YES;
@@ -77,7 +77,7 @@
     label.center = CGPointMake(_mBaseNavigationBarView.center.x, label.center.y);
     //返回按钮
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(10,FromStatusBarHeight+5,60,30);
+    button.frame = CGRectMake(10,FromStatusBarHeight+5,44,30);
     button.showsTouchWhenHighlighted = YES;
     [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [button setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 30)];
@@ -99,7 +99,9 @@
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:self.homeButton]];
 //    [self.mBaseNavigationBarView addSubview:self.homeButton];
     
-    
+    if (self.navigationController.viewControllers.count < 2) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.backButton];
+    }
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopBarHeight-1, kSCREEN_WIDTH, 1)];
     [lineView setBackgroundColor:RGBACOLOR(197, 197, 197, 1)];
     [self.mBaseNavigationBarView addSubview:lineView];
@@ -169,18 +171,11 @@
 //        [self.homeButton addTarget:self action:@selector(popToRootViewController) forControlEvents:UIControlEventTouchUpInside];
     }
 }
-
-//- (void)popToRootViewController
-//{
-//}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    if ([self.navigationController.viewControllers count] == 1) {
-//        [self setTabbarViewHide:NO];
-//    }else{
-//        [self setTabbarViewHide:YES];
-//    }
+
+
     
 
 }

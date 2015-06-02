@@ -48,12 +48,20 @@
         subtitleLabel.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:subtitleLabel];
         self.subtitleLabel = subtitleLabel;
-        
         _backgroundLayer = [CAShapeLayer layer];
         _backgroundLayer.backgroundColor = [UIColor clearColor].CGColor;
         _backgroundLayer.hidden = YES;
         [self.contentView.layer insertSublayer:_backgroundLayer atIndex:0];
-        
+        [_subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.lessThanOrEqualTo(self.contentView.mas_centerX).priority(1000);
+            make.right.lessThanOrEqualTo(self.contentView.mas_right).priority(700);
+            make.bottom.equalTo(self.contentView.mas_centerY).offset((MIN(self.bounds.size.height*5.0/6.0,self.bounds.size.width)) / 2 - 3);
+//            make.size.mas_equalTo(CGSizeMake(30, 12));
+            make.height.equalTo(@12);
+            make.width.greaterThanOrEqualTo(@30);
+        }];
+        _subtitleLabel.layer.cornerRadius = 5.f;
+        _subtitleLabel.layer.masksToBounds = YES;
         _eventLayer = [CAShapeLayer layer];
         _eventLayer.backgroundColor = [UIColor clearColor].CGColor;
         _eventLayer.fillColor = [UIColor cyanColor].CGColor;
@@ -105,6 +113,7 @@
     group.duration = kAnimationDuration;
     group.animations = @[zoomOut, zoomIn];
     [_backgroundLayer addAnimation:group forKey:@"bounce"];
+    [self.subtitleLabel.layer addAnimation:group forKey:@"rudoll"];
     [self configureCell];
 //    self.isFirst = YES;
 }
@@ -128,7 +137,7 @@
     _subtitleLabel.text = _subtitle;
     _titleLabel.textColor = [self colorForCurrentStateInDictionary:_titleColors];
     _subtitleLabel.textColor = [self colorForCurrentStateInDictionary:_subtitleColors];
-   
+    
     _backgroundLayer.fillColor = [self colorForCurrentStateInDictionary:_backgroundColors].CGColor;
     
     CGFloat titleHeight = [_titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
@@ -141,14 +150,25 @@
                                        self.fs_width,
                                        titleHeight);
         
-        _subtitleLabel.frame = CGRectMake(0,
-                                          _titleLabel.fs_bottom - (_titleLabel.fs_height-_titleLabel.font.pointSize),
-                                          self.fs_width,
-                                          subtitleHeight);
-    } else {
+//        _subtitleLabel.frame = CGRectMake(0,
+//                                          _titleLabel.fs_bottom - (_titleLabel.fs_height-_titleLabel.font.pointSize) + 5,
+//                                          self.fs_width,
+//                                          subtitleHeight);
+    }
+    else {
         _titleLabel.frame = CGRectMake(0, 0, self.fs_width, floor(self.contentView.fs_height*5.0/6.0));
         _subtitleLabel.hidden = YES;
     }
+    
+//    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.contentView.mas_centerX);
+//        make.centerY.equalTo(self.contentView.mas_centerY);
+//        make.size.mas_equalTo(CGSizeMake(self.fs_width, floor(self.contentView.fs_height*5.0/6.0)));
+//    }];
+    
+    
+    _subtitleLabel.backgroundColor = [self colorForCurrentStateInDictionary:_backgroundColors];
+
     _backgroundLayer.hidden = !self.isSelected && !self.isToday ;
    
     _backgroundLayer.path = _cellStyle == FSCalendarCellStyleCircle ?

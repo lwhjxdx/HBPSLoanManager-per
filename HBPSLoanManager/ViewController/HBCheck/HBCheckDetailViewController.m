@@ -168,7 +168,7 @@
         
         [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
         
-    } failBlock:^(NSError *error) {
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         
     }];
     
@@ -353,7 +353,7 @@
         [self pushHBinspectViewController:_dictData];
 //        NSLog(@"HBCheckDetailViewController->requestFromNetWorkingWithFirstChecked->customerDicWithData:%@",_dictData);
         
-    } failBlock:^(NSError *error) {
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         [self handleDataFirst:nil];
         
     }];
@@ -389,14 +389,14 @@
     }
     [HBRequest RequestDataJointStr:kfindGetParperInfo parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         [self handleData:nil];
-        
     }];
     if (_checkType!=CheckTypeXiaoqiyefaren) {
         [HBRequest RequestDataJointStr:@"/customerAction/getLoanInfo.do" parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
             [self handleData:receiveJSON[@"tCustomInfo"]];
-        } failBlock:^(NSError *error) {
+        } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
+            
             [self handleData:nil];
             
         }];
@@ -472,22 +472,22 @@
 //        planNoString = planNoList[0][@"checkTypeName"];
 //        planNoTypeString = planNoList[0][@"checkType"];
         self.planNoLable.text = @"全部";
-    } failBlock:^(NSError *error) {
-
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
+        
     }];
 }
 
 -(NSString*)starStringfromDate
 {
     NSDateComponents *com = [self ca];
-    return [NSString stringWithFormat:@"%@-%@-%@",@(com.year),@(com.month),@01];
+    return [NSString stringWithFormat:@"%@-%02zd-%02zd",@(com.year),com.month,01];
 }
 -(NSString*)endStringfromDate
 {
     NSCalendar *calenar = [NSCalendar currentCalendar];
     NSRange ra = [calenar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:[NSDate date]];
     NSDateComponents *com = [self ca];
-    return [NSString stringWithFormat:@"%@-%@-%@",@(com.year),@(com.month),@(ra.length)];
+    return [NSString stringWithFormat:@"%@-%02zd-%02zd",@(com.year),com.month,ra.length];
 }
 - (NSDateComponents*)ca{
     NSCalendar *calenar = [NSCalendar currentCalendar];

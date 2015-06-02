@@ -34,9 +34,7 @@
 - (void)requestFromNetWorking{
     [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:[self makeParms] successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
 }
 
 - (NSMutableDictionary *)makeParms{

@@ -184,9 +184,7 @@
         NSMutableArray *tempArr =[NSMutableArray arrayWithArray: [receiveJSON[@"dueNUM"] componentsSeparatedByString:@","]];
         [tempArr insertObject:@"全部" atIndex:0];
         receiptNoList = tempArr;
-    } failBlock:^(NSError *error) {
-
-    }];
+    } failBlock:nil];
     if (_planType==PlanTypeXiaoqiyefaren) {
         return;
     }
@@ -214,9 +212,7 @@
             [self.topTableView reloadData];
         }
 
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
 }
 //tableView 基础设置在基类里面设置好，子类只用复写填写数据的相关方法
 #pragma mark - tableview delegate
@@ -342,7 +338,7 @@
         [self.refreshControl endRefreshing];
         [self cellClicked: [self handleDataToJump:receiveJSON withDic:dic]];
         
-    } failBlock:^(NSError *error) {
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         [self.refreshControl endRefreshing];
     }];
 }
@@ -549,7 +545,7 @@
     [HBRequest RequestDataNoWaittingJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self.refreshControl endRefreshing];
         [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         [self.refreshControl endRefreshing];
         [self.thisTableView reloadData];
     }];

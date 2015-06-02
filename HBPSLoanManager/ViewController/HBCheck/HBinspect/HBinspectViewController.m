@@ -81,9 +81,7 @@
     }
     [HBRequest RequestDataJointStr:kInsertIndexCheckModel parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
 
     
 }

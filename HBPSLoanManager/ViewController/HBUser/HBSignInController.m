@@ -97,9 +97,7 @@
                 [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
 
             }
-        } failBlock:^(NSError *error) {
-            
-        }];
+        } failBlock:nil];
 
 }
 -(void)setIsShowNextItem:(BOOL)isShowNextItem
@@ -255,9 +253,7 @@
         }
         
         [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
     
     
     

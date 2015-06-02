@@ -11,7 +11,7 @@
 #import "NSDate+FSExtension.h"
 #import "Masonry.h"
 #import "MainColecthionTableViewCell.h"
-
+#import "MJRefresh.h"
 #define kPink [UIColor colorWithRed:0.166 green:0.217 blue:0.776 alpha:1.000]
 #define kBlue [UIColor colorWithRed:31/255.0 green:119/255.0 blue:219/255.0 alpha:1.0]
 #define kBlueText [UIColor colorWithRed:14/255.0 green:69/255.0 blue:221/255.0 alpha:1.0]
@@ -20,11 +20,11 @@
 @property (nonatomic, strong) FSCalendar            *calendar;
 @property (strong, nonatomic) NSCalendar            *currentCalendar;
 @property (assign, nonatomic) NSInteger             theme;
-@property (assign, nonatomic) BOOL                  lunar;
 @property (copy,   nonatomic) NSDate                *selectedDate;
 @property (assign, nonatomic) NSUInteger            firstWeekday;
 @property (strong, nonatomic) UIView                *tableViewHead;
 @property (strong, nonatomic) NSArray               *itemArr;
+@property (strong, nonatomic) NSArray               *showStatusArr;
 @end
 
 @implementation HBCheckMainViewController
@@ -37,21 +37,22 @@
                                  @{@"title":@"小企业法人授信贷款业务",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"HBCompanyPlanViewController"},
                                  @{@"title":@"个人商务贷款",@"image":@"icon_grswdk",@"nextVC":@"HBPersonPlanViewController"},
                                  @{@"title":@"个人经营性车辆贷款",@"image":@"icon_grjyxcldk",@"nextVC":@"HBPersonageCarPlanController"},
-                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
-                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
+//                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
+//                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
                                  ];
     }else{
         self.itemArr         = @[
                                  @{@"title":@"小企业法人授信贷款业务",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"LoanLegalViewController"},
                                  @{@"title":@"个人商务贷款",@"image":@"icon_grswdk",@"nextVC":@"LoanPersonageController"},
                                  @{@"title":@"个人经营性车辆贷款",@"image":@"icon_grjyxcldk",@"nextVC":@"LoanPersonageCarController"},
-                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
-                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
+//                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
+//                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
                                  ];
     }
     self.dataString = [NSDate dateWithTimeIntervalSinceNow:8*3600];
     [self settingBaseTableView];
 }
+#pragma mark - setting tableView
 - (void)settingBaseTableView
 {
     UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
@@ -66,6 +67,54 @@
         make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     self.baseTableView = tableView;
+    __weak typeof(self) weakSelf = self;
+    
+    // 添加传统的下拉刷新
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    [self.baseTableView addLegendHeaderWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    
+    // 马上进入刷新状态
+    [self.baseTableView.legendHeader beginRefreshing];
+}
+-(void)loadNewData
+{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+//    });
+    NSMutableDictionary *postDic = [self makeParamsWithDate:nil];
+    
+    
+    [HBRequest RequestDataNoWaittingJointStr:kGetcheckPlanCalendar parameterDic:postDic successfulBlock:^(NSDictionary *receiveJSON) {
+        //        // 刷新表格
+        self.showStatusArr = receiveJSON[@"checkPlanList"];
+        [self.calendar reloadData];
+        //        // 拿到当前的下拉刷新控件，结束刷新状态
+        [self.baseTableView.header endRefreshing];
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
+        
+    }];
+}
+
+- (void)requestFromNetWorkingGettingPlanWithDate:(NSString*)dateStr{
+    NSMutableDictionary *dic = [self makeParamsWithDate:dateStr];
+    [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
+        
+    }];
+}
+- (NSMutableDictionary *)makeParamsWithDate:(NSString*)dateString{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
+    [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
+    [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
+    if (dateString) {
+        [dic setObject:dateString forKey:@"beginTime"];
+        [dic setObject:dateString forKey:@"endTime"];
+    }
+    return dic;
 }
 #pragma mark - tableViewDatasourse
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,10 +146,8 @@
 {
     return (_itemArr.count / 3 + ((_itemArr.count % 3 == 0)?0:1)) * 120.f;
 }
-#pragma mark - tableViewDelegate
 
-
-
+#pragma mark FSCaledar setting
 -(UIView *)tableViewHead
 {
     if (!_tableViewHead) {
@@ -141,29 +188,51 @@
 
 
 
-
+-(NSRange)rangeWithString:(NSString*)string WithText:(NSString*)searchText
+{
+    NSUInteger searchOptions = NSCaseInsensitiveSearch;
+    NSString *storeleString = string;
+    NSRange storeleRange = NSMakeRange(0, storeleString.length);
+    NSRange foundleRange = [storeleString rangeOfString:searchText options:searchOptions range:storeleRange];
+    return foundleRange;
+}
 #pragma mark - FSCalendarDataSource
 
 - (NSString *)calendar:(FSCalendar *)calendarView subtitleForDate:(NSDate *)date
 {
-//    if (date.fs_day == 3)
-//    {
-//        return @"延误";
-//    }else if(date.fs_day == 8){
-//        return @"完成";
-//    }
+    NSString *dateString = [date fs_stringWithFormat:@"yyyy-MM-dd"];
+    for (int i = 0; i < _showStatusArr.count; i++) {
+        NSRange range = [self rangeWithString:_showStatusArr[i][@"checkEndTime"] WithText:dateString];
+        if (range.length>0) {
+            if ([_showStatusArr[i][@"status"] isEqualToString:@"3"]) {
+                return [NSString stringWithFormat:@"完成%@",_showStatusArr[i][@"statusCount"]];
+            }else if([_showStatusArr[i][@"status"] isEqualToString:@"2"]){
+                return [NSString stringWithFormat:@"未完成%@",_showStatusArr[i][@"statusCount"] ];
+            }else if([_showStatusArr[i][@"status"] isEqualToString:@"1"]){
+                return [NSString stringWithFormat:@"延误%@",_showStatusArr[i][@"statusCount"]];
+            }
+        }
+    }
+    
     return nil;
 }
 -(FSCalendarCellSelectStlye)calendar:(FSCalendar *)calendar calendarCellSelectStlye:(NSDate *)date
 {
-    if (date.fs_day == 6) {
-        return FSCalendarCellSelectStlyeFinished;
-    }else if(date.fs_day == 11){
-        return FSCalendarCellSelectStlyeUnfinished;
-    }else if(date.fs_day == 28){
-        return FSCalendarCellSelectStlyeDelay;
+    NSString *dateString = [date fs_stringWithFormat:@"yyyy-MM-dd"];
+    for (int i = 0; i < _showStatusArr.count; i++) {
+        NSRange range = [self rangeWithString:_showStatusArr[i][@"checkEndTime"] WithText:dateString];
+        if (range.length>0) {
+            if ([_showStatusArr[i][@"status"] isEqualToString:@"3"]) {
+                return FSCalendarCellSelectStlyeFinished;
+            }else if([_showStatusArr[i][@"status"] isEqualToString:@"2"]){
+                return FSCalendarCellSelectStlyeUnfinished;
+            }else if([_showStatusArr[i][@"status"] isEqualToString:@"1"]){
+                return FSCalendarCellSelectStlyeDelay;
+            }
+        }
     }
-    else return 300;
+    
+    return 300;
 }
 - (BOOL)calendar:(FSCalendar *)calendarView hasEventForDate:(NSDate *)date
 {
@@ -175,6 +244,7 @@
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date
 {
+//    NSString *dateString = [date fs_stringWithFormat:@"yyyy-MM-dd"];
     
     BOOL shouldSelect = date.fs_day != 33;
     if (!shouldSelect) {
@@ -191,6 +261,7 @@
 {
     self.dataString =date;
     NSLog(@"did select date %@",[date fs_stringWithFormat:@"yyyy/MM/dd"]);
+    [self requestFromNetWorkingGettingPlanWithDate:[date fs_stringWithFormat:@"yyyy-MM-dd"]];
 }
 
 - (void)calendarCurrentMonthDidChange:(FSCalendar *)calendar
@@ -204,59 +275,62 @@
 
 - (void)setTheme:(NSInteger)theme
 {
-    if (_theme != theme) {
-        _theme = theme;
-        switch (theme) {
-            case 0:
-            {
-                [_calendar setWeekdayTextColor:kBlueText];
-                [_calendar setHeaderTitleColor:kBlueText];
-                [_calendar setEventColor:[kBlueText colorWithAlphaComponent:0.75]];
-                [_calendar setSelectionColor:kBlue];
-                [_calendar setHeaderDateFormat:@"MMMM年yyyy月"];
-                [_calendar setMinDissolvedAlpha:0.2];
-                [_calendar setTodayColor:kPink];
-                [_calendar setCellStyle:FSCalendarCellStyleCircle];
-                break;
-            }
-            case 1:
-            {
-                [_calendar setWeekdayTextColor:[UIColor blackColor]];
-                [_calendar setHeaderTitleColor:[UIColor darkGrayColor]];
-                [_calendar setEventColor:[UIColor greenColor]];
-                [_calendar setSelectionColor:[UIColor colorWithRed:0.163 green:0.576 blue:1.000 alpha:1.000]];
-                [_calendar setHeaderDateFormat:@"yyyy年MM月"];
-                [_calendar setMinDissolvedAlpha:1.0];
-                [_calendar setTodayColor:[UIColor blueColor]];
-                [_calendar setCellStyle:FSCalendarCellStyleCircle];
-                break;
-            }
-            case 2:
-            {
-                [_calendar setWeekdayTextColor:[UIColor redColor]];
-                [_calendar setHeaderTitleColor:[UIColor redColor]];
-                [_calendar setEventColor:[UIColor greenColor]];
-                [_calendar setSelectionColor:[UIColor blueColor]];
-                [_calendar setHeaderDateFormat:@"yyyy年MM月"];
-                [_calendar setMinDissolvedAlpha:1.0];
-                [_calendar setCellStyle:FSCalendarCellStyleRectangle];
-                [_calendar setTodayColor:[UIColor orangeColor]];
-                break;
-            }
-            default:
-                break;
-        }
-        
-    }
+    _theme = theme;
+    [_calendar setWeekdayTextColor:[UIColor blackColor]];
+    [_calendar setHeaderTitleColor:[UIColor darkGrayColor]];
+    [_calendar setEventColor:[UIColor greenColor]];
+    [_calendar setSelectionColor:[UIColor colorWithRed:0.163 green:0.576 blue:1.000 alpha:1.000]];
+    [_calendar setHeaderDateFormat:@"yyyy年MM月"];
+    [_calendar setMinDissolvedAlpha:1.0];
+    [_calendar setTodayColor:[UIColor blueColor]];
+    [_calendar setCellStyle:FSCalendarCellStyleCircle];
+//    
+//    if (_theme != theme) {
+//        _theme = theme;
+//        switch (theme) {
+//            case 0:
+//            {
+//                [_calendar setWeekdayTextColor:kBlueText];
+//                [_calendar setHeaderTitleColor:kBlueText];
+//                [_calendar setEventColor:[kBlueText colorWithAlphaComponent:0.75]];
+//                [_calendar setSelectionColor:kBlue];
+//                [_calendar setHeaderDateFormat:@"MMMM年yyyy月"];
+//                [_calendar setMinDissolvedAlpha:0.2];
+//                [_calendar setTodayColor:kPink];
+//                [_calendar setCellStyle:FSCalendarCellStyleCircle];
+//                break;
+//            }
+//            case 1:
+//            {
+//                [_calendar setWeekdayTextColor:[UIColor blackColor]];
+//                [_calendar setHeaderTitleColor:[UIColor darkGrayColor]];
+//                [_calendar setEventColor:[UIColor greenColor]];
+//                [_calendar setSelectionColor:[UIColor colorWithRed:0.163 green:0.576 blue:1.000 alpha:1.000]];
+//                [_calendar setHeaderDateFormat:@"yyyy年MM月"];
+//                [_calendar setMinDissolvedAlpha:1.0];
+//                [_calendar setTodayColor:[UIColor blueColor]];
+//                [_calendar setCellStyle:FSCalendarCellStyleCircle];
+//                break;
+//            }
+//            case 2:
+//            {
+//                [_calendar setWeekdayTextColor:[UIColor redColor]];
+//                [_calendar setHeaderTitleColor:[UIColor redColor]];
+//                [_calendar setEventColor:[UIColor greenColor]];
+//                [_calendar setSelectionColor:[UIColor blueColor]];
+//                [_calendar setHeaderDateFormat:@"yyyy年MM月"];
+//                [_calendar setMinDissolvedAlpha:1.0];
+//                [_calendar setCellStyle:FSCalendarCellStyleRectangle];
+//                [_calendar setTodayColor:[UIColor orangeColor]];
+//                break;
+//            }
+//            default:
+//                break;
+//        }
+//        
+//    }
 }
 
-- (void)setLunar:(BOOL)lunar
-{
-    if (_lunar != lunar) {
-        _lunar = lunar;
-        [_calendar reloadData];
-    }
-}
 
 - (void)setFlow:(FSCalendarFlow)flow
 {

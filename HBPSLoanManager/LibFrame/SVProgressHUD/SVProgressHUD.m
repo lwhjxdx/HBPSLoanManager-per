@@ -165,9 +165,9 @@ CGFloat SVProgressHUDRingThickness = 6;
 }
 
 + (void)dismiss {
-    if ([self isVisible]) {
+//    if ([[self class] isVisible]) {
         [[self sharedView] dismiss];
-    }
+//    }
 }
 
 

@@ -10,7 +10,7 @@
 #import "DetailsViewController.h"
 #import "UIColor+ChangeWithString.h"
 #import "Masonry.h"
-#import <PgySDK/PgyManager.h>
+#import "HBPSCheckManager.h"
 #import "GestureSetPasswordController.h"
 
 @interface YZWViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
@@ -150,19 +150,18 @@
     if (indexPath.section==1) {
         if (indexPath.row==0) {
             [SVProgressHUD show];
-
-            [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateReturnId:)];
+            [[HBPSCheckManager sharManager] checkUpdateWithSelfAlertWithStatus:YES];
         }else{
-            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc]init];
-            [self pushViewController:vc animated:YES];
-            return;
-#warning 测试手势密码页面
-//            [SVProgressHUD show];
-//            if (!_visonInfo) {
-//                [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(gettingVersion:)];
-//            }else{
-//                [self gettingVersion:_visonInfo];
-//            }
+//            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc]init];
+//            [self pushViewController:vc animated:YES];
+//            return;
+//#warning 测试手势密码页面
+            [SVProgressHUD show];
+            if (!_visonInfo) {
+                [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(gettingVersion:)];
+            }else{
+                [self gettingVersion:_visonInfo];
+            }
         }
     }
 }
@@ -181,23 +180,23 @@
  
 
 }
--(void)updateReturnId:(id)dic
-{
-    if (!dic) {
-        [SVProgressHUD showSuccessWithStatus:@"当前版本为最新版本，无需更新"];
-    }else{
-        self.visonInfo = dic;
-        [SVProgressHUD showSuccessWithStatus:@"检测完成"];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"版本更新" message:@"当前版本低于最新版本，现在就去更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"更新", nil];
-        [alert show];
-    }
-}
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_visonInfo[@"appUrl"]]];
-    }
-}
+//-(void)updateReturnId:(id)dic
+//{
+//    if (!dic) {
+//        [SVProgressHUD showSuccessWithStatus:@"当前版本为最新版本，无需更新"];
+//    }else{
+//        self.visonInfo = dic;
+//        [SVProgressHUD showSuccessWithStatus:@"检测完成"];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"版本更新" message:@"当前版本低于最新版本，现在就去更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"更新", nil];
+//        [alert show];
+//    }
+//}
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 1) {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_visonInfo[@"appUrl"]]];
+//    }
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

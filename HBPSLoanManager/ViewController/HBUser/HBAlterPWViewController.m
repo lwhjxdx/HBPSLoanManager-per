@@ -167,9 +167,7 @@
     }
     [HBRequest RequestDataJointStr:kModifyPwdURL parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
     
 }
 //配置密码修改参数

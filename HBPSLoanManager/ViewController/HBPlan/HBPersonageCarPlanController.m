@@ -52,9 +52,7 @@
     [HBRequest RequestDataJointStr:kFindCustInfo parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
         
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
     
     
 }

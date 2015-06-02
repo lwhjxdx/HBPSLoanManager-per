@@ -66,9 +66,7 @@
         }
         
         [self loadDataWithJson:receiveJSON];
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
     
     
     

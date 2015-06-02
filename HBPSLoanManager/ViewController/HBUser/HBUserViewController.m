@@ -8,13 +8,13 @@
 
 #import "HBUserViewController.h"
 #import "HBLoginViewController.h"
-#import "HBAlterPWViewController.h"
 #import "UpDataHeaderPicView.h"
 #import "UIImageView+WebCache.h"
 #import "HBSignInController.h"
 #import "HBLocusViewController.h"
 #import "HBDraftBoxViewController.h"
 #import "YZWViewController.h"
+#import "GestureSetPasswordController.h"
 
 @interface HBUserViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -62,9 +62,7 @@
         [HBRequest uploadHeader:kFileUploadURL withParams:di successfulBlock:^(NSDictionary *receiveJSON) {
             [self handleHeaderPicData:receiveJSON];
             
-        } failBlock:^(NSError *error) {
-            
-        } isNoSession:NO];
+        } failBlock:nil isNoSession:NO];
     }];
     upView.image = self.photoImageView.image;
     [upView sd_setImageWithURL:[NSURL URLWithString:[HBUserModel getHeadImagePath]] placeholderImage:[UIImage imageNamed:@"photo"]];
@@ -99,9 +97,7 @@
 - (void)updataHeaderString:(NSMutableDictionary *)dic{
     [HBRequest RequestDataJointStr:kUpdateUserUrl parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self showAlterView:receiveJSON[@"respMsg"]];
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
 }
 
 //界面tableview
@@ -163,7 +159,7 @@
     
     titleArray = @[@"草稿箱",
                    @"活动轨迹",
-                   @"密码修改",
+                   @"安全设置",
                    @"关于"
                    ];
     
@@ -231,7 +227,7 @@
         case 2:
         {
             //修改密码
-            HBAlterPWViewController *vc = [[HBAlterPWViewController alloc] init];
+            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc] init];
             [self pushViewController:vc animated:YES];
         }
             break;
@@ -262,9 +258,7 @@
     }
     [HBRequest RequestDataJointStr:kLoginOutURL parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
-    } failBlock:^(NSError *error) {
-        
-    }];
+    } failBlock:nil];
     
 }
 

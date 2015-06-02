@@ -12,6 +12,7 @@
 #import "NSDate+FSExtension.h"
 #import "NSCalendar+FSExtension.h"
 #import "FSCalendarCell.h"
+#import "RKDropdownAlert.h"
 
 #define kWeekHeight roundf(self.fs_height/9)
 #define kBlueText   [UIColor colorWithRed:14/255.0  green:69/255.0  blue:221/255.0    alpha:1.0]
@@ -264,21 +265,9 @@
     if (cell.cellSelectStyle > 400) {
         cell.selected = YES;
     }
-    if (!cell.isPlaceholder) {
-        switch (cell.cellSelectStyle) {
-            case FSCalendarCellSelectStlyeDelay:
-                cell.subtitle = @"延迟";
-                break;
-            case FSCalendarCellSelectStlyeUnfinished:
-                cell.subtitle = @"未完成";
-                break;
-            case FSCalendarCellSelectStlyeFinished:
-                cell.subtitle = @"完成";
-                break;
-            default:
-                break;
-        }
-    }    
+    if (cell.isPlaceholder) {
+        cell.subtitle = nil;
+    }
     [cell configureCell];
     return cell;
 }
@@ -291,15 +280,29 @@
     } else {
         [cell showAnimation];
         _selectedDate = [self dateForIndexPath:indexPath];
-
         [self didSelectDate:_selectedDate];
+
+//        if (cell.subtitleLabel.hidden) {
+//            [SVProgressHUD showSuccessWithStatus:@"该日期没有检查计划"];
+//        }
+//        else{
+//            [self didSelectDate:_selectedDate];
+//        }
+
     }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCalendarCell *cell = (FSCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    return [self shouldSelectDate:cell.date] && ![[collectionView indexPathsForSelectedItems] containsObject:indexPath];
+    
+    if (cell.subtitleLabel.hidden) {
+        [RKDropdownAlert title:@"该日期没有检查计划" time:1];
+//        [SVProgressHUD showSuccessWithStatus:@"该日期没有检查计划"];
+        return NO;
+    }
+    return [self shouldSelectDate:cell.date] ;
+
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -444,9 +447,32 @@
     if (_header != header) {
         _header = header;
         _topBorderLayer.hidden = header != nil;
+        [_header.nextMouth addTarget:self action:@selector(nextMouthAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_header.befoureMouth addTarget:self action:@selector(befoureMouthAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
+-(void)nextMouthAction:(UIButton*)btn
+{
+    
+    [self resetDateWithNum:1];
+}
+-(void)befoureMouthAction:(UIButton*)btn
+{
+    [self resetDateWithNum:-1];
+}
+-(void)resetDateWithNum:(int)num
+{
+    NSDate *date;
+    if (_currentMonth) {
+        date = _currentMonth;
+    }else{
+        date = _selectedDate;
+    }
+     date = [[date copy] fs_dateByAddingMonths:num];
+    
+    [self scrollToDate:date animate:YES];
 
+}
 - (void)setHeaderTitleFont:(UIFont *)font
 {
     if (_headerTitleFont != font) {

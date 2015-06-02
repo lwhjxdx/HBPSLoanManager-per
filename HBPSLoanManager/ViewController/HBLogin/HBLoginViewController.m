@@ -36,7 +36,7 @@
 - (void)littleAdjust{
     [HBUserModel clearUserInfo];
     self.mBaseNavigationBarView.hidden = YES;
-    [self.hbBGImageView setImage:[UIImage imageNamed:@"Default-568"]];
+//    [self.hbBGImageView setImage:[UIImage imageNamed:@"Default-568"]];
     [self.hbBGImageView setContentMode:(UIViewContentModeScaleToFill)];
     
     self.userNameTextField.backgroundColor = [UIColor whiteColor];
@@ -118,10 +118,7 @@
             
             [self handleDataFromNet:receiveJSON];
             
-        } failBlock:^(NSError *error) {
-            
-            
-        }];
+        } failBlock:nil];
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:@"medbri" forKey:@"userId"];
         

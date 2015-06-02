@@ -12,8 +12,6 @@
 //接口宏定义
 
 #define PAT_   YES
-//生产环境
-
 #define LogInfo 1
 
 #if LogInfo
@@ -55,6 +53,8 @@
 #define kQueryReportBaseInfo @"reportAction/queryReportBaseInfo.do"
 //贷款情况查询
 
+#define kGetcheckPlanCalendar  @"checkPlanAction/checkPlanCalendar.do"
+//获取检查计划日历数据
 
 #define kGetCheckPlanList  @"checkPlanAction/getCheckPlanListForConNo.do"
 //获取检查计划列表   userNo  checked

@@ -9,6 +9,7 @@
 #import "GestureSetPasswordController.h"
 #import "GestureLockViewContoller.h"
 #import "NSUserDefaults+Setting.h"
+#import "HBAlterPWViewController.h"
 
 @interface GestureSetPasswordController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -49,7 +50,7 @@
 
 -(NSInteger)sectionNumber
 {
-    return [NSUserDefaults acquireGestureBool]?2:1;
+    return [NSUserDefaults acquireGestureBool]?3:2;
 }
 
 -(UITableView *)tableView
@@ -100,20 +101,25 @@
         cell.accessoryView = self.switchView;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    if (indexPath.section==1) {
+    }else if (indexPath.section==1) {
         cell.textLabel.text = @"修改手势密码";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
+    }else{
+        cell.textLabel.text = @"修改登陆密码";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    return nil;
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==1) {
         [self.navigationController pushViewController:[[GestureLockViewContoller alloc] init] animated:YES];
+    }else if(indexPath.section == 2){
+        [self.navigationController pushViewController:[[HBAlterPWViewController alloc] init] animated:YES];
+
     }
 }
 

@@ -134,7 +134,7 @@
     if (![[resultDic objectForKey:@"respCode"] isEqualToString:@"0000"]) {
         [SVProgressHUD showErrorWithStatus:resultDic[@"respMsg"]?resultDic[@"respMsg"]:@"数据异常"];
         if (self.failWithErrorBlock) {
-            self.failWithErrorBlock(nil);
+            self.failWithErrorBlock(nil,resultDic);
         }
 
     }
@@ -155,7 +155,7 @@
 //    NSLog(@" connection : ----->\n %@   didFailWithError----->\n %@",connection,error);
 
     if (self.failWithErrorBlock) {
-        self.failWithErrorBlock(error);
+        self.failWithErrorBlock(error,nil);
     }
     
     [[HBRequsetManager shareManager] removeAllKindConnection: connection];

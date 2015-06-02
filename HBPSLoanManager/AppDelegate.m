@@ -13,7 +13,7 @@
 #import "MobClick.h"
 #import "NSUserDefaults+Setting.h"
 #import "DefaultLockViewController.h"
-#import <PgySDK/PgyManager.h>
+#import "HBPSCheckManager.h"
 //手机端异常信息请求
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -53,7 +53,7 @@ void uncaughtExceptionHandler(NSException *exception)
 //    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:REALTIME channelId:nil];
     [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
-    [[PgyManager sharedPgyManager] checkUpdate];
+    [[HBPSCheckManager sharManager] checkUpdateWithSelfAlertWithStatus:NO];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     HBLoginViewController *root = [[HBLoginViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];

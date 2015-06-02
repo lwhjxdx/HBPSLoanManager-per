@@ -97,7 +97,7 @@
     [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
         [self handleData:receiveJSON];
 
-    } failBlock:^(NSError *error) {
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         [self handleData:nil];
     }];
 }

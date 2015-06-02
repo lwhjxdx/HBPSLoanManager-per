@@ -1,6 +1,7 @@
 PODS:
   - IQKeyboardManager (3.2.3)
   - Masonry (0.6.1)
+  - MJRefresh (1.4.6)
   - pop (1.0.7)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
@@ -9,12 +10,14 @@ PODS:
 DEPENDENCIES:
   - IQKeyboardManager (~> 3.2.3)
   - Masonry (~> 0.6.1)
+  - MJRefresh (~> 1.4.6)
   - pop (~> 1.0)
   - SDWebImage (~> 3.7.2)
 
 SPEC CHECKSUMS:
   IQKeyboardManager: 6ca5c54e3776eb54af4c7caf515833f3cd761d59
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  MJRefresh: 2eaa3fd8f67fbb86497840fb0167446f7eb61dc7
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
 

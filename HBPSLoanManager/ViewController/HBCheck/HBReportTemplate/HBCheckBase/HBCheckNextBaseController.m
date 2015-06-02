@@ -223,9 +223,7 @@
         
         //再次调用上传
         [self upDataString];
-    } failBlock:^(NSError *error) {
-        
-    } isNoSession:YES];
+    } failBlock:nil isNoSession:YES];
 }
 
 
@@ -244,8 +242,7 @@
             [self showAlterView:receiveJSON[@"respMsg"]];
             [self.navigationController popToRootViewControllerAnimated:YES];
             
-        } failBlock:^(NSError *error) {
-        }];
+        } failBlock:nil];
     }
 }
 

@@ -57,7 +57,7 @@
     _scrollDirection          = UICollectionViewScrollDirectionHorizontal;
     _minimumDate              = [NSDate fs_dateWithYear:1970 month:1 day:1];
     _maximumDate              = [NSDate fs_dateWithYear:2099 month:12 day:31];
-
+    
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     collectionViewFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     collectionViewFlowLayout.minimumInteritemSpacing = 0;
@@ -66,14 +66,35 @@
     
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_collectionViewFlowLayout];
     collectionView.scrollEnabled = NO;
-//    collectionView.userInteractionEnabled = NO;
+    collectionView.userInteractionEnabled = NO;
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.dataSource = self;
     collectionView.delegate = self;
     [self addSubview:collectionView];
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     self.collectionView = collectionView;
-    
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.backgroundColor = [UIColor whiteColor];
+    [self addSubview:leftBtn];
+    [leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        make.width.equalTo(self.mas_width).multipliedBy(0.25f);
+    }];
+    UIButton *rigthBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rigthBtn.backgroundColor = [UIColor whiteColor];
+    [leftBtn setImage:[UIImage imageNamed:@"dobuleArrowLeft"] forState:UIControlStateNormal];
+    [rigthBtn setImage:[UIImage imageNamed:@"dobuleArrowRight"] forState:UIControlStateNormal];
+    [self addSubview:rigthBtn];
+    [rigthBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        make.width.equalTo(self.mas_width).multipliedBy(0.25f);
+    }];
+    self.nextMouth = rigthBtn;
+    self.befoureMouth = leftBtn;
 }
 
 - (void)layoutSubviews

@@ -10,7 +10,7 @@
 #import "SVProgressHUD.h"
 
 typedef void (^FinishBlock)(NSDictionary * receiveJSON);
-typedef void (^FailBlock)(NSError *error);
+typedef void (^FailBlock)(NSError *error,NSDictionary * receiveJSON);
 
 
 @interface HBRequest : NSObject<NSURLConnectionDelegate>

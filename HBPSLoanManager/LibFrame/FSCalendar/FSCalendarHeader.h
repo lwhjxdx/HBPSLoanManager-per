@@ -18,7 +18,8 @@
 
 @property (weak    , nonatomic) UIColor     *titleColor;
 @property (weak    , nonatomic) UIFont      *titleFont;
-
+@property (strong  , nonatomic)UIButton     *nextMouth;
+@property (strong  , nonatomic)UIButton     *befoureMouth;
 @property (assign  , nonatomic) UICollectionViewScrollDirection scrollDirection;
 
 - (void)reloadData;

@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/ViewController/HBPlan/HBPlanViewController.m"
-            timestampString = "454500883.197103"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckMainViewController.m"
+            timestampString = "454837653.275107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-companyPlan:"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-loadNewData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/LibFrame/LockView/GestureLockZoomView.m"
-            timestampString = "454573904.735422"
+            filePath = "HBPSLoanManager/ViewController/HBPlan/HBCompanyInfoViewController.m"
+            timestampString = "454841818.092865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-setNumberArray:"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
+            landmarkName = "-makeParams"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,14 +51,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HBPSLoanManager/LibFrame/LockView/GestureLockZoomView.m"
-            timestampString = "454573988.756567"
+            filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
+            timestampString = "454842108.57702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-layoutSubviews"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "-requestFromNetWorkingGettingPlanNo"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HBCheckDetailViewController requestFromNetWorkingGettingPlanNo]"
+                  moduleName = "HBPSLoanManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
+                  timestampString = "454844743.543577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "467"
+                  endingLineNumber = "467"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__65-[HBCheckDetailViewController requestFromNetWorkingGettingPlanNo]_block_invoke"
+                  moduleName = "HBPSLoanManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBCheck/HBCheckDetailViewController.m"
+                  timestampString = "454844743.543855"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "467"
+                  endingLineNumber = "467"
+                  offsetFromSymbolStart = "43">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -68,13 +100,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HBPSLoanManager/ViewController/HBCheck/HBCheckMainViewController.m"
-            timestampString = "454749353.847315"
+            timestampString = "454843869.539516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "-calendar:didSelectDate:"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-loadNewData"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HBCheckMainViewController loadNewData]"
+                  moduleName = "HBPSLoanManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBCheck/HBCheckMainViewController.m"
+                  timestampString = "454844743.546018"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[HBCheckMainViewController loadNewData]_block_invoke"
+                  moduleName = "HBPSLoanManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mc700/Downloads/HBPSLoanManager-per/HBPSLoanManager/ViewController/HBCheck/HBCheckMainViewController.m"
+                  timestampString = "454844743.546468"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "43">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

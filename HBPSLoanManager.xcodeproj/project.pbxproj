@@ -61,6 +61,8 @@
 		909B98EB1AFD0FAC00A35B59 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */; };
 		909B98ED1AFD0FC000A35B59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */; };
 		909B98EF1AFD0FD100A35B59 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */; };
+		90B1661D1B1C05D300FF92D8 /* HBPSCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B1661C1B1C05D300FF92D8 /* HBPSCheckManager.m */; };
+		90B166211B1C60A000FF92D8 /* RKDropdownAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B166201B1C60A000FF92D8 /* RKDropdownAlert.m */; };
 		90E5C4461B0B15D50086FA66 /* HaveDelImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E5C4451B0B15D50086FA66 /* HaveDelImageView.m */; };
 		90ED4B091AFB7A9D00898882 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90ED4B061AFB7A9C00898882 /* libMobClickLibrary.a */; };
 		9901CD561ABE61C500F92AFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9901CD4B1ABE61C500F92AFD /* ioapi.c */; };
@@ -313,6 +315,10 @@
 		909B98EA1AFD0FAC00A35B59 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		909B98EC1AFD0FC000A35B59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		909B98EE1AFD0FD100A35B59 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		90B1661B1B1C05D300FF92D8 /* HBPSCheckManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPSCheckManager.h; sourceTree = "<group>"; };
+		90B1661C1B1C05D300FF92D8 /* HBPSCheckManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBPSCheckManager.m; sourceTree = "<group>"; };
+		90B1661F1B1C60A000FF92D8 /* RKDropdownAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDropdownAlert.h; sourceTree = "<group>"; };
+		90B166201B1C60A000FF92D8 /* RKDropdownAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDropdownAlert.m; sourceTree = "<group>"; };
 		90E5C4441B0B15D50086FA66 /* HaveDelImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaveDelImageView.h; sourceTree = "<group>"; };
 		90E5C4451B0B15D50086FA66 /* HaveDelImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaveDelImageView.m; sourceTree = "<group>"; };
 		90ED4B061AFB7A9C00898882 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -864,8 +870,19 @@
 				9085ACDF1B02F69300BAD006 /* UIColor+ChangeWithString.m */,
 				9085ACE01B02F69300BAD006 /* YZWViewController.h */,
 				9085ACE11B02F69300BAD006 /* YZWViewController.m */,
+				90B1661B1B1C05D300FF92D8 /* HBPSCheckManager.h */,
+				90B1661C1B1C05D300FF92D8 /* HBPSCheckManager.m */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		90B1661E1B1C60A000FF92D8 /* SlingshotDropdownAlert */ = {
+			isa = PBXGroup;
+			children = (
+				90B1661F1B1C60A000FF92D8 /* RKDropdownAlert.h */,
+				90B166201B1C60A000FF92D8 /* RKDropdownAlert.m */,
+			);
+			path = SlingshotDropdownAlert;
 			sourceTree = "<group>";
 		};
 		90ED4B051AFB7A9C00898882 /* UMAnalytics_Sdk_3.4.6 */ = {
@@ -1236,6 +1253,7 @@
 		9963EFA01AAD507600AA1B63 /* LibFrame */ = {
 			isa = PBXGroup;
 			children = (
+				90B1661E1B1C60A000FF92D8 /* SlingshotDropdownAlert */,
 				903294921B171B99006096E0 /* FSCalendar */,
 				904C65931B1472A40005DBEC /* AFViewShaker */,
 				904C657C1B1471650005DBEC /* LockView */,
@@ -1894,6 +1912,7 @@
 				9963A2801AB28E9100C3678E /* FMDatabase.m in Sources */,
 				9085ACE21B02F69300BAD006 /* DetailsViewController.m in Sources */,
 				9935914E1AD91E37008FF498 /* HBIndividualCommercialFirstTrackingViewController.m in Sources */,
+				90B1661D1B1C05D300FF92D8 /* HBPSCheckManager.m in Sources */,
 				99938DE51ACAA78800B46EB9 /* ReportTableViewCell.m in Sources */,
 				901BD5491B180F2A00F88AAB /* HBCheckMainViewController.m in Sources */,
 				9963A2821AB28E9100C3678E /* FMDatabasePool.m in Sources */,
@@ -1960,6 +1979,7 @@
 				9963F0401AAD848600AA1B63 /* HBCheckViewController.m in Sources */,
 				904C65921B14725B0005DBEC /* UIImage+DrawImage.m in Sources */,
 				996342771ADA5E0C00687242 /* HBIlCLocaleCollectionCheckNextViewContr.m in Sources */,
+				90B166211B1C60A000FF92D8 /* RKDropdownAlert.m in Sources */,
 				996342751ADA5E0C00687242 /* HBIClCreditDailyCheckNextViewController.m in Sources */,
 				904C65961B1472A40005DBEC /* AFViewShaker.m in Sources */,
 				9901CD591ABE61C500F92AFD /* zip.c in Sources */,
