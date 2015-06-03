@@ -15,8 +15,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-oP-9Qs">
-                        <rect key="frame" x="8" y="0.0" width="345" height="120"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="120"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="kVC-Pg-UdY">
                             <size key="itemSize" width="100" height="120"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -27,12 +27,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="GQb-oP-9Qs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6X3-cn-poD"/>
-                    <constraint firstItem="GQb-oP-9Qs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="LYW-Fh-gpa"/>
+                    <constraint firstItem="GQb-oP-9Qs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LYW-Fh-gpa"/>
                     <constraint firstAttribute="bottom" secondItem="GQb-oP-9Qs" secondAttribute="bottom" id="fwD-zm-RAi"/>
-                    <constraint firstAttribute="trailing" secondItem="GQb-oP-9Qs" secondAttribute="trailing" constant="8" id="yFQ-NE-ocp"/>
+                    <constraint firstAttribute="trailing" secondItem="GQb-oP-9Qs" secondAttribute="trailing" id="yFQ-NE-ocp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="layoutColection" destination="kVC-Pg-UdY" id="kjZ-oU-ENz"/>
                 <outlet property="showInfoCollectionView" destination="GQb-oP-9Qs" id="qq9-mm-oTI"/>
             </connections>
             <point key="canvasLocation" x="267.5" y="132.5"/>

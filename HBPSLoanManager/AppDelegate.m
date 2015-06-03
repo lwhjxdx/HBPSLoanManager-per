@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.m
 //  HBPSLoanManager
 //
@@ -14,6 +14,7 @@
 #import "NSUserDefaults+Setting.h"
 #import "DefaultLockViewController.h"
 #import "HBPSCheckManager.h"
+#import "ViewController.h"
 //手机端异常信息请求
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -46,19 +47,11 @@ void uncaughtExceptionHandler(NSException *exception)
 @end
 
 @implementation AppDelegate
-
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [MobClick startWithAppkey:UMENG_APPKEY];
-//    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:REALTIME channelId:nil];
-    [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
-    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
-    [[HBPSCheckManager sharManager] checkUpdateWithSelfAlertWithStatus:NO];
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    HBLoginViewController *root = [[HBLoginViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
-    
-    
+/**
+ *  调用地图相关组件初始配置
+ */
+-(void)addMapAction
+{
     //百度地图相关配置
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
@@ -66,29 +59,67 @@ void uncaughtExceptionHandler(NSException *exception)
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+}
+/**
+ *  调用蒲公英检查相关组件初始配置
+ */
+-(void)addPGYAction
+{
+    [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_APP_ID];
+    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
+    [[HBPSCheckManager sharManager] checkUpdateWithSelfAlertWithStatus:NO];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [MobClick startWithAppkey:UMENG_APPKEY];
+//    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:REALTIME channelId:nil];
+
+    [self addPGYAction];
+    [self addMapAction];
+
     
-    self.window.rootViewController = nav;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    HBLoginViewController *root = [[HBLoginViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
+//    self.window.rootViewController = nav;
+    [self settingRootViewController];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
-
+#pragma mark ---settingViews
+-(void)settingRootViewController
+{
+//    MainTabarViewController *tabController = [[MainTabarViewController alloc]init];
+//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:tabController];
+    ViewController *tabbarController = [[ViewController alloc] init];
+    
+    //    [tabbarController setImageView:[HBDefaultConfigerData getTabbarImageDefult] titleArray:[HBDefaultConfigerData getTitleArray] viewControllers:[HBDefaultConfigerData getTabbarControl]];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = tabbarController;
+    self.window.rootViewController = tabbarController;
+    self.window.backgroundColor = [UIColor whiteColor];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     [BMKMapView willBackGround];//当应用即将后台时调用，停止一切调用opengl相关的操作
+    [NSUserDefaults goBackTimerMakeCurrentDate];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [NSUserDefaults goBackTimerMakeCurrentDate];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [BMKMapView didForeGround];//当应用恢复前台状态时调用，回复地图的渲染和opengl相关的操作
-
+    [self isLogin];
 }
 /**
  *  判断用户是否登录
@@ -158,15 +189,20 @@ void uncaughtExceptionHandler(NSException *exception)
 }
 -(void)deleteUserInfo
 {
-    
+    [HBUserModel clearUserInfo];
 }
 -(void)loginAction
 {
-    
+    [HBUserModel clearUserInfo];
+
+    HBLoginViewController *vc = [[HBLoginViewController alloc] init];
+//    UINavigationController *nav  = [[UINavigationController alloc] initWithRootViewController:vc];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
 }
 - (void)applicationWillTerminate:(UIApplication *)application {
 
-    
+    [NSUserDefaults goBackTimerMakeZero];
+
 }
 
 @end

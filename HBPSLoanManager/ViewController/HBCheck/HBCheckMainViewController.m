@@ -12,6 +12,7 @@
 #import "Masonry.h"
 #import "MainColecthionTableViewCell.h"
 #import "MJRefresh.h"
+#import "RKDropdownAlert.h"
 #define kPink [UIColor colorWithRed:0.166 green:0.217 blue:0.776 alpha:1.000]
 #define kBlue [UIColor colorWithRed:31/255.0 green:119/255.0 blue:219/255.0 alpha:1.0]
 #define kBlueText [UIColor colorWithRed:14/255.0 green:69/255.0 blue:221/255.0 alpha:1.0]
@@ -34,11 +35,11 @@
     self.titleLabel.text = @"贷后检查计划";
     if (_mainType == MainViewControllerTypePlane) {
         self.itemArr         = @[
-                                 @{@"title":@"小企业法人授信贷款业务",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"HBCompanyPlanViewController"},
-                                 @{@"title":@"个人商务贷款",@"image":@"icon_grswdk",@"nextVC":@"HBPersonPlanViewController"},
-                                 @{@"title":@"个人经营性车辆贷款",@"image":@"icon_grjyxcldk",@"nextVC":@"HBPersonageCarPlanController"},
-//                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
-//                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
+                                 @{@"title":@"小企贷款",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"HBCompanyPlanViewController"},
+                                 @{@"title":@"个商贷款",@"image":@"icon_grswdk",@"nextVC":@"HBPersonPlanViewController"},
+                                 @{@"title":@"个商车贷",@"image":@"icon_grjyxcldk",@"nextVC":@"HBPersonageCarPlanController"},
+                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
+                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
                                  ];
     }else{
         self.itemArr         = @[
@@ -52,6 +53,12 @@
     self.dataString = [NSDate dateWithTimeIntervalSinceNow:8*3600];
     [self settingBaseTableView];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // 马上进入刷新状态
+    [self loadNewData];
+}
 #pragma mark - setting tableView
 - (void)settingBaseTableView
 {
@@ -63,6 +70,7 @@
     tableView.tableHeaderView = self.tableViewHead;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    tableView.backgroundColor = [UIColor colorWithWhite:0.918 alpha:1.000];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -76,29 +84,33 @@
     }];
     
     // 马上进入刷新状态
-    [self.baseTableView.legendHeader beginRefreshing];
+//    [self loadNewData];
 }
 -(void)loadNewData
 {
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-//    });
     NSMutableDictionary *postDic = [self makeParamsWithDate:nil];
-    
-    
+    if (!postDic) {
+        [self.baseTableView.header endRefreshing];
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
     [HBRequest RequestDataNoWaittingJointStr:kGetcheckPlanCalendar parameterDic:postDic successfulBlock:^(NSDictionary *receiveJSON) {
         //        // 刷新表格
-        self.showStatusArr = receiveJSON[@"checkPlanList"];
-        [self.calendar reloadData];
+        weakSelf.showStatusArr = receiveJSON[@"checkPlanList"];
+        [weakSelf.calendar reloadData];
         //        // 拿到当前的下拉刷新控件，结束刷新状态
-        [self.baseTableView.header endRefreshing];
+        [weakSelf.baseTableView.header endRefreshing];
     } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
-        
+        [weakSelf.baseTableView.header endRefreshing];
     }];
 }
 
 - (void)requestFromNetWorkingGettingPlanWithDate:(NSString*)dateStr{
     NSMutableDictionary *dic = [self makeParamsWithDate:dateStr];
+    if (!dic) {
+        return;
+    }
     [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
 
     } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
@@ -107,6 +119,9 @@
 }
 - (NSMutableDictionary *)makeParamsWithDate:(NSString*)dateString{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (![HBUserModel getUserId]) {
+        return nil;
+    }
     [dic setObject:[HBUserModel getUserId] forKey:@"userNo"];
     [dic setObject:[HBUserModel getRoleName] forKey:@"roleName"];
     [dic setObject:[HBUserModel getUserInstitution] forKey:@"userInstitution"];
@@ -117,16 +132,17 @@
     return dic;
 }
 #pragma mark - tableViewDatasourse
+//由于界面修改，去掉相关界面，只好返回0行0列
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 0;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MainColecthionTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:NSStringFromClass([MainColecthionTableViewCell class])];
     MainColecthionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MainColecthionTableViewCell class]) forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+   cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
     cell.itemArr = _itemArr;
     __weak HBCheckMainViewController *weekSelf = self;
     cell.selecBlock = ^(NSDictionary *dic,NSInteger index){
@@ -144,7 +160,7 @@
 //}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (_itemArr.count / 3 + ((_itemArr.count % 3 == 0)?0:1)) * 120.f;
+    return (_itemArr.count / numItemOfRow + ((_itemArr.count % numItemOfRow == 0)?0:1)) * itemHeigth;
 }
 
 #pragma mark FSCaledar setting
@@ -163,6 +179,7 @@
         [headTable addSubview:self.calendar];
         _calendar.header = head;
         self.theme = 1;
+        headTable.backgroundColor = [UIColor whiteColor];
         self.tableViewHead = headTable;
     }
     return _tableViewHead;
@@ -243,16 +260,17 @@
 #pragma mark - FSCalendarDelegate
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date
-{
-//    NSString *dateString = [date fs_stringWithFormat:@"yyyy-MM-dd"];
-    
-    BOOL shouldSelect = date.fs_day != 33;
+{    
+    BOOL shouldSelect = NO;
+    NSString *dateString = [date fs_stringWithFormat:@"yyyy-MM-dd"];
+    for (int i = 0; i < _showStatusArr.count; i++) {
+        NSRange range = [self rangeWithString:_showStatusArr[i][@"checkEndTime"] WithText:dateString];
+        if (range.length>0) {
+            shouldSelect = YES;
+        }
+    }
     if (!shouldSelect) {
-        [[[UIAlertView alloc] initWithTitle:@"FSCalendar"
-                                    message:[NSString stringWithFormat:@"FSCalendar delegate forbid %@  to be selected",[date fs_stringWithFormat:@"yyyy/MM/dd"]]
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil, nil] show];
+        [RKDropdownAlert title:[NSString stringWithFormat:@"%@无检查计划",[date fs_stringWithFormat:@"yyyy年MM月dd"]] time:1.f];
     }
     return shouldSelect;
 }
@@ -271,7 +289,7 @@
 
 
 
-#pragma mark - Setter
+#pragma mark - FSCaleder Setter
 
 - (void)setTheme:(NSInteger)theme
 {

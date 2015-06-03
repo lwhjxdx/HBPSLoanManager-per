@@ -225,9 +225,9 @@
 
 /* Begin PBXFileReference section */
 		12EEF1302DEB5FE180BBC9C4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		282415541AE894AE00935146 /* LegalPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalPersonViewController.h; path = ../HBPlan/LegalPersonViewController.h; sourceTree = "<group>"; };
-		282415551AE894AE00935146 /* LegalPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalPersonViewController.m; path = ../HBPlan/LegalPersonViewController.m; sourceTree = "<group>"; };
-		282415561AE894AE00935146 /* LegalPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LegalPersonViewController.xib; path = ../HBPlan/LegalPersonViewController.xib; sourceTree = "<group>"; };
+		282415541AE894AE00935146 /* LegalPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalPersonViewController.h; sourceTree = "<group>"; };
+		282415551AE894AE00935146 /* LegalPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalPersonViewController.m; sourceTree = "<group>"; };
+		282415561AE894AE00935146 /* LegalPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LegalPersonViewController.xib; sourceTree = "<group>"; };
 		282415591AE8961300935146 /* HBPersonageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HBPersonageViewController.h; path = ../HBPlan/HBPersonageViewController.h; sourceTree = "<group>"; };
 		2824155A1AE8961300935146 /* HBPersonageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HBPersonageViewController.m; path = ../HBPlan/HBPersonageViewController.m; sourceTree = "<group>"; };
 		2824155B1AE8961300935146 /* HBPersonageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HBPersonageViewController.xib; path = ../HBPlan/HBPersonageViewController.xib; sourceTree = "<group>"; };
@@ -462,9 +462,9 @@
 		994E00DB1AB44D0300037B6A /* HBReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBReportModel.m; sourceTree = "<group>"; };
 		994E00DD1AB44E1F00037B6A /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		994E00DE1AB44E1F00037B6A /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
-		994EAB721AAE83C7002FB5ED /* HBCompanyPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HBCompanyPlanViewController.h; path = ../HBPlan/HBCompanyPlanViewController.h; sourceTree = "<group>"; };
-		994EAB731AAE83C7002FB5ED /* HBCompanyPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HBCompanyPlanViewController.m; path = ../HBPlan/HBCompanyPlanViewController.m; sourceTree = "<group>"; };
-		994EAB741AAE83C7002FB5ED /* HBCompanyPlanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HBCompanyPlanViewController.xib; path = ../HBPlan/HBCompanyPlanViewController.xib; sourceTree = "<group>"; };
+		994EAB721AAE83C7002FB5ED /* HBCompanyPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBCompanyPlanViewController.h; sourceTree = "<group>"; };
+		994EAB731AAE83C7002FB5ED /* HBCompanyPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBCompanyPlanViewController.m; sourceTree = "<group>"; };
+		994EAB741AAE83C7002FB5ED /* HBCompanyPlanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBCompanyPlanViewController.xib; sourceTree = "<group>"; };
 		994EAB771AAEB99A002FB5ED /* HBBaseSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBBaseSearchTableViewController.h; sourceTree = "<group>"; };
 		994EAB781AAEB99A002FB5ED /* HBBaseSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBBaseSearchTableViewController.m; sourceTree = "<group>"; };
 		994EAB7A1AAEC9C9002FB5ED /* HBCompanyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBCompanyInfoViewController.h; sourceTree = "<group>"; };
@@ -680,12 +680,6 @@
 		282415771AE8BD5500935146 /* HBLegalPerson */ = {
 			isa = PBXGroup;
 			children = (
-				282415541AE894AE00935146 /* LegalPersonViewController.h */,
-				282415551AE894AE00935146 /* LegalPersonViewController.m */,
-				282415561AE894AE00935146 /* LegalPersonViewController.xib */,
-				994EAB721AAE83C7002FB5ED /* HBCompanyPlanViewController.h */,
-				994EAB731AAE83C7002FB5ED /* HBCompanyPlanViewController.m */,
-				994EAB741AAE83C7002FB5ED /* HBCompanyPlanViewController.xib */,
 			);
 			name = HBLegalPerson;
 			path = ../HBLegalPerson;
@@ -859,6 +853,68 @@
 				904C65951B1472A40005DBEC /* AFViewShaker.m */,
 			);
 			path = AFViewShaker;
+			sourceTree = "<group>";
+		};
+		905C103A1B1E9D7100E7E3BA /* mainView */ = {
+			isa = PBXGroup;
+			children = (
+				901BD5461B180F2A00F88AAB /* HBCheckMainViewController.h */,
+				901BD5471B180F2A00F88AAB /* HBCheckMainViewController.m */,
+				90886C861B18351B0003783C /* MainColecthionTableViewCell.h */,
+				90886C871B18351B0003783C /* MainColecthionTableViewCell.m */,
+				90886C881B18351B0003783C /* MainColecthionTableViewCell.xib */,
+				90886C8B1B184CB30003783C /* ShowImageItemCollectionViewCell.h */,
+				90886C8C1B184CB40003783C /* ShowImageItemCollectionViewCell.m */,
+				90886C8D1B184CB40003783C /* ShowImageItemCollectionViewCell.xib */,
+			);
+			name = mainView;
+			path = ../HBCheck;
+			sourceTree = "<group>";
+		};
+		905C103B1B1E9E8100E7E3BA /* palnMain */ = {
+			isa = PBXGroup;
+			children = (
+				909B98DC1AFC89F100A35B59 /* HBPlanBaseViewController.h */,
+				909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */,
+				994EAB7A1AAEC9C9002FB5ED /* HBCompanyInfoViewController.h */,
+				994EAB7B1AAEC9C9002FB5ED /* HBCompanyInfoViewController.m */,
+			);
+			name = palnMain;
+			sourceTree = "<group>";
+		};
+		905C103C1B1E9EE100E7E3BA /* NoUsing */ = {
+			isa = PBXGroup;
+			children = (
+				282415771AE8BD5500935146 /* HBLegalPerson */,
+				282415541AE894AE00935146 /* LegalPersonViewController.h */,
+				282415551AE894AE00935146 /* LegalPersonViewController.m */,
+				282415561AE894AE00935146 /* LegalPersonViewController.xib */,
+				994EAB721AAE83C7002FB5ED /* HBCompanyPlanViewController.h */,
+				994EAB731AAE83C7002FB5ED /* HBCompanyPlanViewController.m */,
+				994EAB741AAE83C7002FB5ED /* HBCompanyPlanViewController.xib */,
+				282415781AE8BD5500935146 /* HBPersonage */,
+				282415791AE8BD5500935146 /* HBPersonCar */,
+				9963F0471AAD84AC00AA1B63 /* HBPlanViewController.h */,
+				9963F0481AAD84AC00AA1B63 /* HBPlanViewController.m */,
+				9963F0491AAD84AC00AA1B63 /* HBPlanViewController.xib */,
+				909B98DF1AFCA39C00A35B59 /* HBPersonInfoViewController.h */,
+				909B98E01AFCA39C00A35B59 /* HBPersonInfoViewController.m */,
+				99E32CF31AB034BD00BD61D9 /* HBCheckCalendarCell.h */,
+				99E32CF41AB034BD00BD61D9 /* HBCheckCalendarCell.m */,
+				99E32CF51AB034BD00BD61D9 /* HBCheckCalendarCell.xib */,
+				99E32CF81AB03D2C00BD61D9 /* HBCheckCaledarViewController.h */,
+				99E32CF91AB03D2C00BD61D9 /* HBCheckCaledarViewController.m */,
+				994AEDB71AB126B4004438E8 /* HBCheckCalenderMoreViewController.h */,
+				994AEDB81AB126B4004438E8 /* HBCheckCalenderMoreViewController.m */,
+				994AEDB91AB126B4004438E8 /* HBCheckCalenderMoreViewController.xib */,
+				994AEDBC1AB13090004438E8 /* HBCheckCalenderMoreCell.h */,
+				994AEDBD1AB13090004438E8 /* HBCheckCalenderMoreCell.m */,
+				994AEDBE1AB13090004438E8 /* HBCheckCalenderMoreCell.xib */,
+				994938271AB7F0D9007FAFD8 /* HBPlanComInfoCell.h */,
+				994938281AB7F0D9007FAFD8 /* HBPlanComInfoCell.m */,
+				994938291AB7F0D9007FAFD8 /* HBPlanComInfoCell.xib */,
+			);
+			name = NoUsing;
 			sourceTree = "<group>";
 		};
 		9085ACD91B02F69300BAD006 /* About */ = {
@@ -1339,14 +1395,6 @@
 				994EAB7D1AAEE5DD002FB5ED /* HBCheckDetailViewController.h */,
 				994EAB7E1AAEE5DD002FB5ED /* HBCheckDetailViewController.m */,
 				994EAB7F1AAEE5DD002FB5ED /* HBCheckDetailViewController.xib */,
-				901BD5461B180F2A00F88AAB /* HBCheckMainViewController.h */,
-				901BD5471B180F2A00F88AAB /* HBCheckMainViewController.m */,
-				90886C861B18351B0003783C /* MainColecthionTableViewCell.h */,
-				90886C871B18351B0003783C /* MainColecthionTableViewCell.m */,
-				90886C881B18351B0003783C /* MainColecthionTableViewCell.xib */,
-				90886C8B1B184CB30003783C /* ShowImageItemCollectionViewCell.h */,
-				90886C8C1B184CB40003783C /* ShowImageItemCollectionViewCell.m */,
-				90886C8D1B184CB40003783C /* ShowImageItemCollectionViewCell.xib */,
 				99E32CF01AB01C9E00BD61D9 /* HBRepeatListViewController.h */,
 				99E32CF11AB01C9E00BD61D9 /* HBRepeatListViewController.m */,
 			);
@@ -1376,32 +1424,9 @@
 		9963EFA81AAD507600AA1B63 /* HBPlan */ = {
 			isa = PBXGroup;
 			children = (
-				282415771AE8BD5500935146 /* HBLegalPerson */,
-				282415781AE8BD5500935146 /* HBPersonage */,
-				282415791AE8BD5500935146 /* HBPersonCar */,
-				9963F0471AAD84AC00AA1B63 /* HBPlanViewController.h */,
-				9963F0481AAD84AC00AA1B63 /* HBPlanViewController.m */,
-				9963F0491AAD84AC00AA1B63 /* HBPlanViewController.xib */,
-				909B98DC1AFC89F100A35B59 /* HBPlanBaseViewController.h */,
-				909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */,
-				994EAB7A1AAEC9C9002FB5ED /* HBCompanyInfoViewController.h */,
-				994EAB7B1AAEC9C9002FB5ED /* HBCompanyInfoViewController.m */,
-				909B98DF1AFCA39C00A35B59 /* HBPersonInfoViewController.h */,
-				909B98E01AFCA39C00A35B59 /* HBPersonInfoViewController.m */,
-				99E32CF31AB034BD00BD61D9 /* HBCheckCalendarCell.h */,
-				99E32CF41AB034BD00BD61D9 /* HBCheckCalendarCell.m */,
-				99E32CF51AB034BD00BD61D9 /* HBCheckCalendarCell.xib */,
-				99E32CF81AB03D2C00BD61D9 /* HBCheckCaledarViewController.h */,
-				99E32CF91AB03D2C00BD61D9 /* HBCheckCaledarViewController.m */,
-				994AEDB71AB126B4004438E8 /* HBCheckCalenderMoreViewController.h */,
-				994AEDB81AB126B4004438E8 /* HBCheckCalenderMoreViewController.m */,
-				994AEDB91AB126B4004438E8 /* HBCheckCalenderMoreViewController.xib */,
-				994AEDBC1AB13090004438E8 /* HBCheckCalenderMoreCell.h */,
-				994AEDBD1AB13090004438E8 /* HBCheckCalenderMoreCell.m */,
-				994AEDBE1AB13090004438E8 /* HBCheckCalenderMoreCell.xib */,
-				994938271AB7F0D9007FAFD8 /* HBPlanComInfoCell.h */,
-				994938281AB7F0D9007FAFD8 /* HBPlanComInfoCell.m */,
-				994938291AB7F0D9007FAFD8 /* HBPlanComInfoCell.xib */,
+				905C103A1B1E9D7100E7E3BA /* mainView */,
+				905C103B1B1E9E8100E7E3BA /* palnMain */,
+				905C103C1B1E9EE100E7E3BA /* NoUsing */,
 			);
 			path = HBPlan;
 			sourceTree = "<group>";
@@ -2029,8 +2054,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2072,8 +2097,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2098,8 +2123,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2119,7 +2144,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
@@ -2131,8 +2156,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2151,7 +2176,7 @@
 					"$(PROJECT_DIR)/HBPSLoanManager",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};

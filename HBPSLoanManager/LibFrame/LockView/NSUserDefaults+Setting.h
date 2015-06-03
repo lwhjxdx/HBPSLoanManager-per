@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #define messagePushNumber               9
-#define loginGoBackTimerByGesture      (1*60)
-#define loginGoBackTimerOutGesture     (10*60)
+#define timeTest 60
+/**
+ *  进入后台弹输入手势密码时间
+ */
+#define loginGoBackTimerByGesture      (15*timeTest)
+#define loginGoBackTimerOutGesture     (15*timeTest)
 #define gestureWrongNumber              5
 
 

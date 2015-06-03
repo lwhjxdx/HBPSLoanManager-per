@@ -83,7 +83,7 @@ alpha:(a)])
 
 
 
-
+#define kMainColor [UIColor colorWithRed:0.086 green:0.337 blue:0.192 alpha:1.000]
 
 
 //默认配置参数

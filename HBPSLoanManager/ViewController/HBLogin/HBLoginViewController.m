@@ -176,11 +176,10 @@
 
 - (void)bulitTabbarController{
 
-    ViewController *tabbarController = [[ViewController alloc] init];
-    
-//    [tabbarController setImageView:[HBDefaultConfigerData getTabbarImageDefult] titleArray:[HBDefaultConfigerData getTitleArray] viewControllers:[HBDefaultConfigerData getTabbarControl]];
-    
-    [UIApplication sharedApplication].keyWindow.rootViewController = tabbarController;
+//    ViewController *tabbarController = [[ViewController alloc] init];
+//    
+//    [UIApplication sharedApplication].keyWindow.rootViewController = tabbarController;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -211,13 +210,13 @@
 - (void)keyBordShow:(NSNotification *)notifitcation{
     
     //计算键盘弹出的高度
-    int y = [[notifitcation.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey ] CGRectValue].size.height;
-    //执行动画
-    CGPoint p = centPoint;
-    p.y -= y/2;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.contentView.center = CGPointMake(kSCREEN_WIDTH/2, p.y);
-    }];
+//    int y = [[notifitcation.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey ] CGRectValue].size.height;
+//    //执行动画
+//    CGPoint p = centPoint;
+//    p.y -= y/2;
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.contentView.center = CGPointMake(kSCREEN_WIDTH/2, p.y);
+//    }];
 }
 - (IBAction)forgotPassword:(UIButton *)sender {
 }

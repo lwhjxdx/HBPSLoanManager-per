@@ -26,7 +26,7 @@
 @end
 
 @implementation HBUserViewController
-
+#pragma mark - init view
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -37,96 +37,87 @@
     [self littleAdjust];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
-//界面微调 调整界面
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (isFirst) {
+        [self initTableView];
+    }
+    isFirst = NO;
+    if (upView) {
+        [upView sd_setImageWithURL:[NSURL URLWithString:[HBUserModel getHeadImagePath]] placeholderImage:[UIImage imageNamed:@"photo"]];
+    }
+    
+}
+/**
+ *  界面微调 调整界面
+ */
 - (void)littleAdjust{
-    
+
     //替换 self.photoImageView 为 UpDataHeaderPicView 控件
-    self.photoImageView.layer.cornerRadius = self.photoImageView.frame.size.width/2;
+    self.photoImageView.layer.cornerRadius  = self.photoImageView.frame.size.width/2;
     self.photoImageView.layer.masksToBounds = YES;
-    self.photoImageView.layer.borderWidth = 5;
-    self.photoImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    CGRect rect = self.photoImageView.frame;
-    upView = [[UpDataHeaderPicView alloc] initWithFrame:rect upImage:^(NSData *headerData) {
-        
+    self.photoImageView.layer.borderWidth   = 5;
+    self.photoImageView.layer.borderColor   = [UIColor whiteColor].CGColor;
+
+    CGRect rect                             = self.photoImageView.frame;
+    upView                                  = [[UpDataHeaderPicView alloc] initWithFrame:rect upImage:^(NSData *headerData) {
+
         //选中图片上传
-        
-        NSMutableDictionary *di = [NSMutableDictionary dictionary];
+
+    NSMutableDictionary *di                 = [NSMutableDictionary dictionary];
         [di setObject:headerData forKey:@"fileName"];
         [di setObject:@"1"
                forKey:@"uploadType"];
         [HBRequest uploadHeader:kFileUploadURL withParams:di successfulBlock:^(NSDictionary *receiveJSON) {
             [self handleHeaderPicData:receiveJSON];
-            
+
         } failBlock:nil isNoSession:NO];
     }];
-    upView.image = self.photoImageView.image;
+    upView.image                            = self.photoImageView.image;
     [upView sd_setImageWithURL:[NSURL URLWithString:[HBUserModel getHeadImagePath]] placeholderImage:[UIImage imageNamed:@"photo"]];
-    upView.center = CGPointMake((kSCREEN_WIDTH)/2, rect.origin.y + rect.size.width/2);
-    upView.layer.cornerRadius = self.photoImageView.frame.size.width/2;
-    upView.layer.masksToBounds = YES;
-    upView.layer.borderWidth = 2;
-    upView.layer.borderColor = [UIColor whiteColor].CGColor;
+    upView.center                           = CGPointMake((kSCREEN_WIDTH)/2, rect.origin.y + rect.size.width/2);
+    upView.layer.cornerRadius               = self.photoImageView.frame.size.width/2;
+    upView.layer.masksToBounds              = YES;
+    upView.layer.borderWidth                = 2;
+    upView.layer.borderColor                = [UIColor whiteColor].CGColor;
     [[self.photoImageView superview] addSubview:upView];
     [self.photoImageView removeFromSuperview];
-    
-    self.nameLabel.text = [HBUserModel getRealname];
-    
-    self.loginButton.layer.cornerRadius =  5 ;
-    self.loginButton.layer.masksToBounds = YES;
+
+    self.nameLabel.text                     = [HBUserModel getRealname];
+
+    self.loginButton.layer.cornerRadius     = 5 ;
+    self.loginButton.layer.masksToBounds    = YES;
 }
 
-//处理上传头像返回的数据
-- (void)handleHeaderPicData:(NSDictionary *)dic{
-
-    NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
-    [paramDic setObject:dic[@"uploadResult"] forKey:@"userPictureUrl"];
-    [HBUserModel setHeadImagePath:dic[@"uploadResult"]];
-    
-    [upView sd_setImageWithURL:[NSURL URLWithString:[HBUserModel getHeadImagePath]] placeholderImage:upView.image];
-    [self updataHeaderString:paramDic];
-
-}
-
-
-//将头像路径上传到服务器
-- (void)updataHeaderString:(NSMutableDictionary *)dic{
-    [HBRequest RequestDataJointStr:kUpdateUserUrl parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-        [self showAlterView:receiveJSON[@"respMsg"]];
-    } failBlock:nil];
-}
-
+#pragma mark - setting tableView
 //界面tableview
 - (void)initTableView{
-    
-    CGRect rect = self.subTempView.frame;
-    self.subTempView.frame = rect;
-    rect.origin = CGPointMake(0, 0);
-    rect.size.width = kSCREEN_WIDTH;
-    rect.size.height = 400;
+
+    CGRect rect                            = self.subTempView.frame;
+    self.subTempView.frame                 = rect;
+    rect.origin                            = CGPointMake(0, 0);
+    rect.size.width                        = kSCREEN_WIDTH;
+    rect.size.height                       = 400;
     //rect.size.height = imageViewArray.count * 60 + 80;
     //rect.size.height = rect.size.height*kSCREEN_HEIGHT/568.0;
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:rect style:(UITableViewStylePlain)];
-    tableView.dataSource  = self;
-    tableView.delegate = self;
-    tableView.backgroundColor = [UIColor whiteColor];
+
+    UITableView *tableView                 = [[UITableView alloc] initWithFrame:rect style:(UITableViewStylePlain)];
+    tableView.dataSource                   = self;
+    tableView.delegate                     = self;
+    tableView.backgroundColor              = [UIColor whiteColor];
     tableView.showsVerticalScrollIndicator = NO;
     [self.subTempView addSubview:tableView];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.subTempView);
     }];
-    UIView *footerView = [[UIView alloc] init];
-    footerView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 130);
-    footerView.backgroundColor = [UIColor clearColor];
+    UIView *footerView                     = [[UIView alloc] init];
+    footerView.frame                       = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 130);
+    footerView.backgroundColor             = [UIColor clearColor];
 //    footerView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f].CGColor;
 //    footerView.layer.borderWidth = 0.5f;
-    UIView *lineView = [[UIView alloc]init];
-    lineView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
+    UIView *lineView                       = [[UIView alloc]init];
+    lineView.backgroundColor               = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
     [footerView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(footerView.mas_left);
@@ -135,17 +126,17 @@
         make.height.equalTo(@0.5);
     }];
     UIButton *logoutBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    logoutBtn.frame = CGRectMake((CGRectGetWidth(footerView.frame) - 260) * 0.5, 60, 260, 40);
-    logoutBtn.exclusiveTouch = YES;
+    logoutBtn.frame                        = CGRectMake((CGRectGetWidth(footerView.frame) - 260) * 0.5, 60, 260, 40);
+    logoutBtn.exclusiveTouch               = YES;
     [logoutBtn setTitle:@"登出" forState:UIControlStateNormal];
     [logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    logoutBtn.backgroundColor = kColorWith16RGB(0x005E39);
-    logoutBtn.layer.cornerRadius =  5 ;
-    logoutBtn.layer.masksToBounds = YES;
+    logoutBtn.backgroundColor              = kColorWith16RGB(0x005E39);
+    logoutBtn.layer.cornerRadius           = 5 ;
+    logoutBtn.layer.masksToBounds          = YES;
     [logoutBtn addTarget:self action:@selector(loginOutClick:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:logoutBtn];
-    
-    tableView.tableFooterView = footerView;    
+
+    tableView.tableFooterView              = footerView;
 }
 
 
@@ -165,35 +156,24 @@
     
 }
 
-
+#pragma mark - tableView datasourse
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return imageViewArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IDE"];
-    
-    if (cell == nil) {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@"IDE"];
+    static NSString *tableCell = @"cellIDUSERINFO";
+    UITableViewCell *cell      = [tableView dequeueReusableCellWithIdentifier:tableCell];
+
+    if (!cell) {
+
+    cell                       = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:tableCell];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
-//    cell.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 50);
-//    for (UIView *view in [cell.contentView subviews]) {
-//        [view removeFromSuperview];
-//    }
-//    
-//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 20, 25, 25)];
-//    imageView.image = imageViewArray[indexPath.row];
-//    [cell.contentView addSubview:imageView];
-    cell.imageView.image = imageViewArray[indexPath.row];
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, kSCREEN_WIDTH - 100, 25)];
-    cell.textLabel.text = titleArray[indexPath.row];
-//    [cell.contentView addSubview:label];
-//    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.imageView.image       = imageViewArray[indexPath.row];
+    cell.textLabel.text        = titleArray[indexPath.row];
+    cell.accessoryType         = UITableViewCellAccessoryDisclosureIndicator;
+    cell.backgroundColor       = [UIColor whiteColor];
     return cell;
 }
 
@@ -201,26 +181,26 @@
        return 60;
 }
 
-
+#pragma mark - delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:
         {
-            HBDraftBoxViewController *vc = [[HBDraftBoxViewController alloc] init];
+            HBDraftBoxViewController *vc     = [[HBDraftBoxViewController alloc] init];
             [self pushViewController:vc animated:YES];
         }
             break;
         case 1:
         {
             //活动轨迹
-            HBLocusViewController *vc = [[HBLocusViewController alloc] init];
+            HBLocusViewController *vc        = [[HBLocusViewController alloc] init];
             [self pushViewController:vc animated:YES];
         }
             break;
         case 3:
         {
             //签到
-            YZWViewController *vc = [[YZWViewController alloc] init];
+            YZWViewController *vc            = [[YZWViewController alloc] init];
             [self pushViewController:vc animated:YES];
         }
             break;
@@ -235,7 +215,7 @@
             break;
     }
 }
-
+#pragma mark - other action
 - (IBAction)nameClicked:(id)sender {
     //修改密码
 //    HBAlterPWViewController *vc  = [[HBAlterPWViewController alloc] init];
@@ -272,19 +252,38 @@
 - (void)handleData:(NSDictionary *)jsonDic{
     
     if (jsonDic) {
-        HBLoginViewController *vc = [[HBLoginViewController alloc] init];
-        UINavigationController *nav  = [[UINavigationController alloc] initWithRootViewController:vc];
-        [UIApplication sharedApplication].keyWindow.rootViewController  = nav;
         [HBUserModel clearUserInfo];
+        HBLoginViewController *vc = [[HBLoginViewController alloc] init];
+        //    UINavigationController *nav  = [[UINavigationController alloc] initWithRootViewController:vc];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    if (isFirst) {
-        [self initTableView];
-    }
-    isFirst = NO;
+#pragma mark - setting head Image
+/**
+ *  处理上传头像返回的数据
+ *
+ *  @param dic 请求需要上传数据
+ */
+- (void)handleHeaderPicData:(NSDictionary *)dic{
+    
+    NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
+    [paramDic setObject:dic[@"uploadResult"] forKey:@"userPictureUrl"];
+    [HBUserModel setHeadImagePath:dic[@"uploadResult"]];
+    
+    [upView sd_setImageWithURL:[NSURL URLWithString:[HBUserModel getHeadImagePath]] placeholderImage:upView.image];
+    [self updataHeaderString:paramDic];
+    
 }
 
+
+//将头像路径上传到服务器
+- (void)updataHeaderString:(NSMutableDictionary *)dic{
+    [HBRequest RequestDataJointStr:kUpdateUserUrl parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+        [self showAlterView:receiveJSON[@"respMsg"]];
+    } failBlock:nil];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
 @end

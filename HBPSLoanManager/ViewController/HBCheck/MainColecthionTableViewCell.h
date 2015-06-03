@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+//每行显示item个数
+#define numItemOfRow 4
+//每行item的高度
+#define itemHeigth   100
 typedef void(^SelectItemBlock)(NSDictionary *dic,NSInteger selectIndex);
+
 @interface MainColecthionTableViewCell : UITableViewCell
 @property(nonatomic,strong)NSArray *itemArr;
 @property(nonatomic,copy)SelectItemBlock selecBlock;

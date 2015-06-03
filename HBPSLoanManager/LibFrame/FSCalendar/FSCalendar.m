@@ -295,12 +295,13 @@
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCalendarCell *cell = (FSCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    
-    if (cell.subtitleLabel.hidden) {
-        [RKDropdownAlert title:@"该日期没有检查计划" time:1];
-//        [SVProgressHUD showSuccessWithStatus:@"该日期没有检查计划"];
-        return NO;
+    if (cell.placeholder) {
+        return YES;
     }
+//    if (cell.subtitleLabel.hidden) {
+//        [RKDropdownAlert title:@"该日期无检查计划" backgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] delegate:nil];
+//        return NO;
+//    }
     return [self shouldSelectDate:cell.date] ;
 
 }
@@ -387,11 +388,11 @@
 {
     selectedDate = [selectedDate fs_daysFrom:_minimumDate] < 0 ? [NSDate fs_dateWithYear:_minimumDate.fs_year month:_minimumDate.fs_month day:selectedDate.fs_day] : selectedDate;
     selectedDate = [selectedDate fs_daysFrom:_maximumDate] > 0 ? [NSDate fs_dateWithYear:_maximumDate.fs_year month:_maximumDate.fs_month day:selectedDate.fs_day] : selectedDate;
-    NSIndexPath *selectedIndexPath = [self indexPathForDate:selectedDate];
-    if ([self collectionView:_collectionView shouldSelectItemAtIndexPath:selectedIndexPath]) {
-        [_collectionView selectItemAtIndexPath:selectedIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-        [self collectionView:_collectionView didSelectItemAtIndexPath:selectedIndexPath];
-    }
+//    NSIndexPath *selectedIndexPath = [self indexPathForDate:selectedDate];
+//    if ([self collectionView:_collectionView shouldSelectItemAtIndexPath:selectedIndexPath]) {
+//        [_collectionView selectItemAtIndexPath:selectedIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+//        [self collectionView:_collectionView didSelectItemAtIndexPath:selectedIndexPath];
+//    }
     if (!_collectionView.tracking && !_collectionView.decelerating && ![_currentMonth fs_isEqualToDateForMonth:selectedDate]) {
         [self scrollToDate:selectedDate animate:animate];
     }

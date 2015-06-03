@@ -31,7 +31,9 @@
     if (!dicKey) {
         dicKey = [NSMutableDictionary dictionary];
     }
-    [dicKey setValue:dic forKey:[HBUserModel getUserId]];
+    if ([HBUserModel getUserId]) {
+        [dicKey setValue:dic forKey:[HBUserModel getUserId]];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:dicKey forKey:settingKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -50,15 +52,18 @@
 
 +(NSDictionary*)acquireDcitionary
 {
-    return [[NSUserDefaults standardUserDefaults] dictionaryForKey:settingKey][[HBUserModel getUserId]];
+    if ([HBUserModel getUserId]) {
+        return [[NSUserDefaults standardUserDefaults] dictionaryForKey:settingKey][[HBUserModel getUserId]];
+    }
+    return @{};
 }
 
 +(NSDictionary*)acquireTimerOrNumberDictionary
 {
     return [[NSUserDefaults standardUserDefaults] dictionaryForKey:settingKey];
 }
-#pragma mark -------------设定消息推送开启提醒计数
-
+//#pragma mark -------------设定消息推送开启提醒计数
+//
 //NSString * const pushRecordNumber = @"pushRecordNumbder";
 //+(void)detectionPushMessage
 //{
@@ -160,6 +165,7 @@ NSString *const goToBackGroundTimer = @"goToBackGroundTimer";
 
 +(void)changeBackGroundtimerByTimer:(NSTimeInterval)timer
 {
+    
     [NSUserDefaults changeUserDefalutTimerOrNumber:goToBackGroundTimer andValue:[NSString stringWithFormat:@"%f",timer]];
 }
 
@@ -203,11 +209,11 @@ NSString *const gesturePassword = @"gesturePassword";
 
 +(void)deleteGesturePassword
 {
-    NSMutableDictionary *dicKey = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:settingKey]];
+//    NSMutableDictionary *dicKey = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:settingKey]];
 //    if ([UserBase currentUserBase].telephone) {
-    [[NSUserDefaults standardUserDefaults] setObject:dicKey forKey:settingKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:settingKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self changeGestureBool:NO];
+//    [self changeGestureBool:NO];
 
 //    }
 }

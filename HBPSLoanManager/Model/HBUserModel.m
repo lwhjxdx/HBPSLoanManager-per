@@ -8,6 +8,7 @@
 
 #import "HBUserModel.h"
 #import "NSString+Encrypt3DESandBase64.h"
+#import "NSUserDefaults+Setting.h"
 
 #define kEncryptKey @"encryptKey"
 
@@ -108,6 +109,8 @@ static NSArray *keyArray = nil;
         [userDefault removeObjectForKey:kLocationInfo];
     }
     [userDefault synchronize];
+    [NSUserDefaults deleteGesturePassword];
+
 }
 
 

@@ -225,14 +225,15 @@
 
 -(void)goBackToHomeLogin:(UIButton*)btn
 {
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        [NSUserDefaults deleteGesturePassword];
-//        [UserBase deleteUserBase];
-//        LoginViewController *login = [[LoginViewController alloc]init];
-//        [login showSelf];
-//    }];
-
-
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [NSUserDefaults deleteGesturePassword];
+        [HBUserModel clearUserInfo];
+        HBLoginViewController *vc = [[HBLoginViewController alloc] init];
+//        UINavigationController *nav  = [[UINavigationController alloc] initWithRootViewController:vc];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:NO completion:^{
+        }];
+    }];
 }
 
 @end

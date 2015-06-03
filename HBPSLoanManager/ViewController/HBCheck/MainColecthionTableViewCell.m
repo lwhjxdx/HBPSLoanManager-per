@@ -10,6 +10,8 @@
 #import "ShowImageItemCollectionViewCell.h"
 
 @interface MainColecthionTableViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *layoutColection;
 @property (strong, nonatomic) IBOutlet UICollectionView *showInfoCollectionView;
 @end
 @implementation MainColecthionTableViewCell
@@ -21,6 +23,7 @@
 
     self.showInfoCollectionView.delegate = self;
     self.showInfoCollectionView.dataSource = self;
+    self.layoutColection.itemSize = CGSizeMake(kSCREEN_WIDTH / numItemOfRow, itemHeigth);
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([ShowImageItemCollectionViewCell class]) bundle:[NSBundle mainBundle]];
     [self.showInfoCollectionView registerNib:nib forCellWithReuseIdentifier:NSStringFromClass([ShowImageItemCollectionViewCell class])];
 }
