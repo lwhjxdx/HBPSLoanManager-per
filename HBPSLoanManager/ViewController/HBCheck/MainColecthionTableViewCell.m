@@ -40,14 +40,6 @@
 {
     
     ShowImageItemCollectionViewCell *cell = (ShowImageItemCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ShowImageItemCollectionViewCell class]) forIndexPath:indexPath];
-    
-//    //图片名称
-//    NSString *imageToLoad = [NSString stringWithFormat:@"%d.png", indexPath.row];
-//    //加载图片
-//    cell.imageView.image = [UIImage imageNamed:imageToLoad];
-//    //设置label文字
-//    cell.label.text = [NSString stringWithFormat:@"{%ld,%ld}",(long)indexPath.row,(long)indexPath.section];
-    
     cell.iconImage.image = [UIImage imageNamed:_itemArr[indexPath.item][@"image"]];
     cell.titleLable.text = _itemArr[indexPath.item][@"title"];
     return cell;

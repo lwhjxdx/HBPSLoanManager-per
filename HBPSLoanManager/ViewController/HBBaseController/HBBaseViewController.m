@@ -87,13 +87,10 @@
 
     [self.mBaseNavigationBarView addSubview:self.backButton];
     
-    UIButton* homebutton = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton* homebutton = [UIButton buttonWithType:UIButtonTypeCustom];
     homebutton.showsTouchWhenHighlighted = YES;//showsTouchWhenHighlighted 按钮按下会发光
     homebutton.frame = CGRectMake(kSCREEN_WIDTH-44,FromStatusBarHeight, 44, 44);
     homebutton.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, -30);
-    [homebutton addTarget:self action:@selector(homeBtnEvents:) forControlEvents:UIControlEventTouchUpInside];
-//    [homebutton setImage:[UIImage imageNamed:@"icon_preson"] forState:UIControlStateNormal];
-//    homebutton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     self.homeButton=homebutton;
     self.homeButton.hidden =YES;
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:self.homeButton]];
@@ -105,6 +102,8 @@
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopBarHeight-1, kSCREEN_WIDTH, 1)];
     [lineView setBackgroundColor:RGBACOLOR(197, 197, 197, 1)];
     [self.mBaseNavigationBarView addSubview:lineView];
+    [self.homeButton addTarget:self action:@selector(homeBtnEvents:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 
@@ -113,7 +112,7 @@
 }
 
 
-- (void)homeBtnEvents:(id)sender{
+- (void)homeBtnEvents:(UIButton*)btn{
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -166,9 +165,7 @@
                                                          forBarMetrics:UIBarMetricsDefault];
     if ([self.navigationController.viewControllers count] >= 3 && self.homeButton.hidden && !_homeButton.titleLabel.text) {
         [self.homeButton setImage:[UIImage imageNamed:@"MCEN_ico_main"] forState:UIControlStateNormal];
-//        [self.homeButton setTitle:@"主页" forState:UIControlStateNormal];
         self.homeButton.hidden = NO;
-//        [self.homeButton addTarget:self action:@selector(popToRootViewController) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 - (void)viewDidAppear:(BOOL)animated

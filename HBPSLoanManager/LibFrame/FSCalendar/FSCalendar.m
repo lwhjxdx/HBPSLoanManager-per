@@ -130,11 +130,12 @@
     collectionView.showsVerticalScrollIndicator = NO;
     collectionView.delaysContentTouches = NO;
     collectionView.canCancelContentTouches = YES;
+//    collectionView.scrollEnabled = NO;
     [collectionView registerClass:[FSCalendarCell class] forCellWithReuseIdentifier:@"cell"];
     [self addSubview:collectionView];
     self.collectionView = collectionView;
     
-    _currentDate = [NSDate date];
+    _currentDate = [NSDate dateWithTimeIntervalSinceNow:8 * 3600];
     _currentMonth = [_currentDate copy];
     
     _backgroundColors = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -146,7 +147,7 @@
     _backgroundColors[@(FSCalendarCellStateWeekend)]       = kBlue;
     _backgroundColors[@(FSCalendarCellSelectStlyeDelay)]   = [UIColor redColor];
     _backgroundColors[@(FSCalendarCellSelectStlyeUnfinished)]   = [UIColor orangeColor];
-    _backgroundColors[@(FSCalendarCellSelectStlyeFinished)]   = [UIColor colorWithRed:0.018 green:0.227 blue:0.037 alpha:1.000];
+    _backgroundColors[@(FSCalendarCellSelectStlyeFinished)]   = KMainColor;
     
     
     _titleColors = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -325,11 +326,18 @@
     CGFloat scrollOffset = MAX(scrollView.contentOffset.x/scrollView.fs_width,
                                scrollView.contentOffset.y/scrollView.fs_height);
     NSDate *currentMonth = [_minimumDate fs_dateByAddingMonths:round(scrollOffset)];
+    NSDate *cuDate = [NSDate dateWithTimeIntervalSinceNow:8*3600];
+    if (cuDate.fs_month - currentMonth.fs_month > 2||currentMonth.fs_month - cuDate.fs_month > 2) {
+        [self scrollToDate:_currentMonth];
+        return;
+    }
+
     if (![_currentMonth fs_isEqualToDateForMonth:currentMonth]) {
         _currentMonth = [currentMonth copy];
         [self currentMonthDidChange];
     }
     _header.scrollOffset = scrollOffset;
+
 }
 
 #pragma mark - Setter & Getter
@@ -732,11 +740,21 @@
 
 - (void)scrollToDate:(NSDate *)date
 {
+ 
     [self scrollToDate:date animate:NO];
 }
 
 - (void)scrollToDate:(NSDate *)date animate:(BOOL)animate
 {
+    NSDate *cuDate = [NSDate dateWithTimeIntervalSinceNow:8*3600];
+        if (cuDate.fs_month - date.fs_month > 2||date.fs_month - cuDate.fs_month > 2) {
+            return;
+        }
+//        if (date.fs_month - cuDate.fs_month > 2) {
+//            return;
+//        }
+
+    
     _supressEvent = !animate;
     date = [date fs_daysFrom:_minimumDate] < 0 ? [NSDate fs_dateWithYear:_minimumDate.fs_year month:_minimumDate.fs_month day:date.fs_day] : date;
     date = [date fs_daysFrom:_maximumDate] > 0 ? [NSDate fs_dateWithYear:_maximumDate.fs_year month:_maximumDate.fs_month day:date.fs_day] : date;

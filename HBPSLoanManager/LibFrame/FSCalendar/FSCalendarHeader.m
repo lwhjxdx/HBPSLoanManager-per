@@ -116,7 +116,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"[_maximumDate fs_monthsFrom:_minimumDate]=======%ld",[_maximumDate fs_monthsFrom:_minimumDate]);
+    NSLog(@"[_maximumDate fs_monthsFrom:_minimumDate]=======%ld",(long)(long)[_maximumDate fs_monthsFrom:_minimumDate]);
     return [_maximumDate fs_monthsFrom:_minimumDate] + 1;
 }
 
@@ -144,7 +144,7 @@
 {
     NSDate *date = [_minimumDate fs_dateByAddingMonths:indexPath.item + 1];
     NSInteger index = [_minimumDate fs_month];
-    NSLog(@"indexPath====%@index==%lddate==%@",indexPath,index,date);
+    NSLog(@"indexPath====%@index==%lddate==%@",indexPath,(long)index,date);
     
 }
 #pragma mark - Setter & Getter

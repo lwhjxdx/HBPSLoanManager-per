@@ -13,6 +13,9 @@
 #import "MainColecthionTableViewCell.h"
 #import "MJRefresh.h"
 #import "RKDropdownAlert.h"
+#import "PlanListViewController.h"
+#import "TableInfoTableViewCell.h"
+
 #define kPink [UIColor colorWithRed:0.166 green:0.217 blue:0.776 alpha:1.000]
 #define kBlue [UIColor colorWithRed:31/255.0 green:119/255.0 blue:219/255.0 alpha:1.0]
 #define kBlueText [UIColor colorWithRed:14/255.0 green:69/255.0 blue:221/255.0 alpha:1.0]
@@ -33,23 +36,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"贷后检查计划";
-    if (_mainType == MainViewControllerTypePlane) {
-        self.itemArr         = @[
-                                 @{@"title":@"小企贷款",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"HBCompanyPlanViewController"},
-                                 @{@"title":@"个商贷款",@"image":@"icon_grswdk",@"nextVC":@"HBPersonPlanViewController"},
-                                 @{@"title":@"个商车贷",@"image":@"icon_grjyxcldk",@"nextVC":@"HBPersonageCarPlanController"},
-                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
-                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
-                                 ];
-    }else{
-        self.itemArr         = @[
-                                 @{@"title":@"小企业法人授信贷款业务",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"LoanLegalViewController"},
-                                 @{@"title":@"个人商务贷款",@"image":@"icon_grswdk",@"nextVC":@"LoanPersonageController"},
-                                 @{@"title":@"个人经营性车辆贷款",@"image":@"icon_grjyxcldk",@"nextVC":@"LoanPersonageCarController"},
+//    if (_mainType == MainViewControllerTypePlane) {
+//        self.itemArr         = @[
+//                                 @{@"title":@"小企贷款",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"HBCompanyPlanViewController"},
+//                                 @{@"title":@"个商贷款",@"image":@"icon_grswdk",@"nextVC":@"HBPersonPlanViewController"},
+//                                 @{@"title":@"个商车贷",@"image":@"icon_grjyxcldk",@"nextVC":@"HBPersonageCarPlanController"},
 //                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
 //                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
-                                 ];
-    }
+//                                 ];
+//    }else{
+//        self.itemArr         = @[
+//                                 @{@"title":@"小企业法人授信贷款业务",@"image":@"icon_xqyfrsxdkyw",@"nextVC":@"LoanLegalViewController"},
+//                                 @{@"title":@"个人商务贷款",@"image":@"icon_grswdk",@"nextVC":@"LoanPersonageController"},
+//                                 @{@"title":@"个人经营性车辆贷款",@"image":@"icon_grjyxcldk",@"nextVC":@"LoanPersonageCarController"},
+////                                 @{@"title":@"三农贷款",@"image":@"icon_sndk",@"nextVC":@""},
+////                                 @{@"title":@"消费贷款",@"image":@"icon_xfdk",@"nextVC":@""}
+//                                 ];
+//    }
+    self.itemArr = @[@{title:@"绿色表示完成的计划，数字表示完成计划的条数",titleColor:kMainColor},
+                     @{title:@"橘色表示未完成的计划，数字表示未完成计划的条数",titleColor:[UIColor orangeColor]},
+                     @{title:@"红色表示延误的计划，数字表示延误划的条数",titleColor:[UIColor redColor]}
+                     ];
+    
     self.dataString = [NSDate dateWithTimeIntervalSinceNow:8*3600];
     [self settingBaseTableView];
 }
@@ -112,10 +120,17 @@
         return;
     }
     [HBRequest RequestDataJointStr:kGetCheckPlanList parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-
+        [self pushNextVCWithReceiveJSON:receiveJSON];
     } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
         
     }];
+}
+- (void)pushNextVCWithReceiveJSON:(NSDictionary*)receiveJSON
+{
+    PlanListViewController *vc = [[PlanListViewController alloc]init];
+    vc.listArray = receiveJSON[@"checkPlanList"];
+    [self pushViewController:vc animated:YES];
+    
 }
 - (NSMutableDictionary *)makeParamsWithDate:(NSString*)dateString{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -136,22 +151,26 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 0;
+//    return _itemArr.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MainColecthionTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:NSStringFromClass([MainColecthionTableViewCell class])];
-    MainColecthionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MainColecthionTableViewCell class]) forIndexPath:indexPath];
+    [tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TableInfoTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:NSStringFromClass([TableInfoTableViewCell class])];
+    TableInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TableInfoTableViewCell class]) forIndexPath:indexPath];
    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
-    cell.itemArr = _itemArr;
-    __weak HBCheckMainViewController *weekSelf = self;
-    cell.selecBlock = ^(NSDictionary *dic,NSInteger index){
-        HBBaseViewController *vc = [[NSClassFromString(dic[@"nextVC"]) alloc]init];
-        vc.dataString = self.dataString;
-        if (vc) {
-            [weekSelf pushViewController:vc animated:YES];
-        }
-    };
+    
+//    cell.itemArr = _itemArr;
+//    __weak HBCheckMainViewController *weekSelf = self;
+//    cell.selecBlock = ^(NSDictionary *dic,NSInteger index){
+//        HBBaseViewController *vc = [[NSClassFromString(dic[@"nextVC"]) alloc]init];
+//        vc.dataString = self.dataString;
+//        if (vc) {
+//            [weekSelf pushViewController:vc animated:YES];
+//        }
+//    };
+
+    [cell changeValueWithDic:_itemArr[indexPath.row]];
     return cell;
 }
 //-(void)pushNextViewController:(UIViewController *)vc
@@ -160,7 +179,8 @@
 //}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (_itemArr.count / numItemOfRow + ((_itemArr.count % numItemOfRow == 0)?0:1)) * itemHeigth;
+    return 44;
+//    return (_itemArr.count / numItemOfRow + ((_itemArr.count % numItemOfRow == 0)?0:1)) * itemHeigth;
 }
 
 #pragma mark FSCaledar setting
@@ -302,51 +322,7 @@
     [_calendar setMinDissolvedAlpha:1.0];
     [_calendar setTodayColor:[UIColor blueColor]];
     [_calendar setCellStyle:FSCalendarCellStyleCircle];
-//    
-//    if (_theme != theme) {
-//        _theme = theme;
-//        switch (theme) {
-//            case 0:
-//            {
-//                [_calendar setWeekdayTextColor:kBlueText];
-//                [_calendar setHeaderTitleColor:kBlueText];
-//                [_calendar setEventColor:[kBlueText colorWithAlphaComponent:0.75]];
-//                [_calendar setSelectionColor:kBlue];
-//                [_calendar setHeaderDateFormat:@"MMMM年yyyy月"];
-//                [_calendar setMinDissolvedAlpha:0.2];
-//                [_calendar setTodayColor:kPink];
-//                [_calendar setCellStyle:FSCalendarCellStyleCircle];
-//                break;
-//            }
-//            case 1:
-//            {
-//                [_calendar setWeekdayTextColor:[UIColor blackColor]];
-//                [_calendar setHeaderTitleColor:[UIColor darkGrayColor]];
-//                [_calendar setEventColor:[UIColor greenColor]];
-//                [_calendar setSelectionColor:[UIColor colorWithRed:0.163 green:0.576 blue:1.000 alpha:1.000]];
-//                [_calendar setHeaderDateFormat:@"yyyy年MM月"];
-//                [_calendar setMinDissolvedAlpha:1.0];
-//                [_calendar setTodayColor:[UIColor blueColor]];
-//                [_calendar setCellStyle:FSCalendarCellStyleCircle];
-//                break;
-//            }
-//            case 2:
-//            {
-//                [_calendar setWeekdayTextColor:[UIColor redColor]];
-//                [_calendar setHeaderTitleColor:[UIColor redColor]];
-//                [_calendar setEventColor:[UIColor greenColor]];
-//                [_calendar setSelectionColor:[UIColor blueColor]];
-//                [_calendar setHeaderDateFormat:@"yyyy年MM月"];
-//                [_calendar setMinDissolvedAlpha:1.0];
-//                [_calendar setCellStyle:FSCalendarCellStyleRectangle];
-//                [_calendar setTodayColor:[UIColor orangeColor]];
-//                break;
-//            }
-//            default:
-//                break;
-//        }
-//        
-//    }
+
 }
 
 

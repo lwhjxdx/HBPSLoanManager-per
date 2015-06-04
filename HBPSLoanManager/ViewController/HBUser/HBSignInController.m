@@ -12,23 +12,21 @@
 #import "BMKGeocodeSearch.h"
 #import "BMKPointAnnotation.h"
 #import "HBCheckBaseViewController.h"
+#import "STAlertView.h"
 
 @interface HBSignInController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
     UITableView *tableView1;
-    
-    
-    
-    
     CLLocationCoordinate2D _userLocationPoint;
     NSString *addressString;
-    
     NSMutableArray *_dataArray;
     BOOL isQiandao;
 }
 @property(nonatomic,strong)BMKMapView *mapView;
 @property(nonatomic,strong)BMKLocationService *locService;
 @property(nonatomic,strong)BMKGeoCodeSearch* geocodesearch;
+@property(nonatomic,strong)UITextField* locationErrorResionTextField;
+@property(nonatomic,strong)NSString* locationErrorResionString;
 @end
 
 @implementation HBSignInController
@@ -57,7 +55,7 @@
     [self.homeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.homeButton.frame = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
     [self.homeButton setImage:nil forState:UIControlStateNormal];
-    self.homeButton.hidden = YES;
+    self.homeButton.hidden = NO;
 //    [self.homeButton addTarget:self action:@selector(nextIemAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mBaseNavigationBarView addSubview:self.homeButton];
     [self setTabbarViewHide:YES];
@@ -77,28 +75,71 @@
     if (!dic) {
         return;
     }
+    [self pushNextWithLocationDic:[dic copy]];
+//
+//    if (self.pushNextDic) {
+//        HBCheckBaseViewController *vc;
+//        vc = [[[self.classString class] alloc] init];
+//        vc.userDic = self.pushNextDic;
+//        [self pushViewController:vc animated:YES];
+//        
+//    }else{
+//        [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
+//        
+//    }
+    
 //    if (!isQiandao) {
 //        [SVProgressHUD showErrorWithStatus:@"请先签到"];
 //        return;
 //    }
 
-        [HBRequest RequestDataJointStr:kSignInURL1 parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-            if (![receiveJSON[@"respCode"] isEqualToString:@"0000"]) {
-                return ;
-            }
-//            [receiveJSON isMemberOfClass:<#(__unsafe_unretained Class)#>]
-            if (self.pushNextDic) {
-                HBCheckBaseViewController *vc;
-                vc = [[[self.classString class] alloc] init];
-                vc.userDic = self.pushNextDic;
-                [self pushViewController:vc animated:YES];
-                
-            }else{
-                [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
+//        [HBRequest RequestDataJointStr:kSignInURL1 parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
+//            if (![receiveJSON[@"respCode"] isEqualToString:@"0000"]) {
+//                return ;
+//            }
+////            [receiveJSON isMemberOfClass:<#(__unsafe_unretained Class)#>]
+//            if (self.pushNextDic) {
+//                HBCheckBaseViewController *vc;
+//                vc = [[[self.classString class] alloc] init];
+//                vc.userDic = self.pushNextDic;
+//                [self pushViewController:vc animated:YES];
+//                
+//            }else{
+//                [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
+//
+//            }
+//        } failBlock:nil];
 
-            }
-        } failBlock:nil];
+}
+- (void)pushNextWithLocationDic:(NSDictionary*)dic
+{
+    if (!dic) {
+        return;
+    }
 
+    for (int i = 0; i < [dic allKeys].count; i++) {
+//        [self.pushNextDic setObject:dic[[dic allKeys][i]] forKey:[dic allKeys][i]];
+        [self.pushNextDic addEntriesFromDictionary:dic];
+    }
+    if (self.pushNextDic) {
+        HBCheckBaseViewController *vc;
+        vc = [[[self.classString class] alloc] init];
+        vc.userDic = self.pushNextDic;
+        [self pushViewController:vc animated:YES];
+        
+    }else{
+//        self.pushNextDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        [self pushViewController:[[[self.classString class] alloc] init] animated:YES];
+        
+    }
+}
+-(UITextField *)locationErrorResionTextField
+{
+    if (!_locationErrorResionTextField) {
+        self.locationErrorResionTextField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
+        _locationErrorResionTextField.placeholder = @"输入定位失败原因";
+    }
+    return _locationErrorResionTextField;
 }
 -(void)setIsShowNextItem:(BOOL)isShowNextItem
 {
@@ -108,6 +149,9 @@
     }else{
         self.homeButton.hidden = YES;
     }
+    
+    self.homeButton.hidden = NO;
+
 }
 - (void)configUI{
     self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, kTopBarHeight, kSCREEN_WIDTH, kSCREEN_HEIGHT -kTopBarHeight )];
@@ -181,21 +225,21 @@
     if (!_mapView) {
         return;
     }
-    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+    NSArray* array           = [NSArray arrayWithArray:_mapView.annotations];
     [_mapView removeAnnotations:array];
-    array = [NSArray arrayWithArray:_mapView.overlays];
+    array                    = [NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:array];
     [_mapView setShowsUserLocation:NO];
     [_locService stopUserLocationService];
-    _locService = nil;
+    _locService              = nil;
     if (error == 0) {
-        BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-        
-        item.coordinate = result.location;
-        item.title = result.address;
+    BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
+
+    item.coordinate          = result.location;
+    item.title               = result.address;
         item.subtitle =[NSString stringWithFormat:@"经度:%.3f     维度:%.3f",result.location.latitude,result.location.longitude];
         NSLog(@"%f",result.location.longitude);
-        addressString = result.address;
+    addressString            = result.address;
         [_mapView addAnnotation:item];
         [_mapView selectAnnotation:item animated:YES];
 
@@ -203,33 +247,33 @@
             [_mapView selectAnnotation:item animated:YES];
         });
 //        _mapView.centerCoordinate = result.location;
-        _userLocationPoint = _mapView.centerCoordinate;
+    _userLocationPoint       = _mapView.centerCoordinate;
         //定位完成 取消定位服务
-        
-        
-        UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+
+
+    UIButton *btn            = [UIButton buttonWithType:(UIButtonTypeCustom)];
         [btn setFrame:CGRectMake(kSCREEN_WIDTH - 80, kSCREEN_HEIGHT- 80, 40, 40)];
 //        btn.center = _mapView.center;
 //        [btn setTitle:@"签到" forState:(UIControlStateNormal)];
         [btn setImage:[UIImage imageNamed:@"thumb_IMG_0035_1024"] forState:UIControlStateNormal];
         [btn setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.9f]];
-        btn.layer.cornerRadius = 5.f;
-        btn.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f].CGColor;
-        btn.layer.borderWidth = 1.f;
-        btn.layer.masksToBounds = YES;
-        [btn addTarget:self action:@selector(signInClicked:) forControlEvents:(UIControlEventTouchUpInside)];
+    btn.layer.cornerRadius   = 5.f;
+    btn.layer.borderColor    = [[UIColor blackColor] colorWithAlphaComponent:0.3f].CGColor;
+    btn.layer.borderWidth    = 1.f;
+    btn.layer.masksToBounds  = YES;
+        [btn addTarget:self action:@selector(homeBtnEvents:) forControlEvents:(UIControlEventTouchUpInside)];
         [self.view addSubview:btn];
-        
+
         [self.view bringSubviewToFront:btn];
     }else{
 
         NSString *errorString;
         if (error ==  BMK_SEARCH_RESULT_NOT_FOUND) {
-            errorString = @"没有找到当前位置地理名称";
+    errorString              = @"没有找到当前位置地理名称";
         }else{
-            errorString = @"当前定位异常";
+    errorString              = @"当前定位异常";
         }
-        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:errorString  delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *al          = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:errorString  delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [al show];
     }
 }
@@ -238,7 +282,7 @@
 //签到点击事件
 - (void)signInClicked:(UIButton *)btn{
 //    btn.hidden = YES;
-    self.homeButton.hidden = !_isShowNextItem;
+//    self.homeButton.hidden = !_isShowNextItem;
     [self requestFromNetWorking];
     
 }
@@ -270,7 +314,28 @@
         [dic setObject:addressString forKey:@"address"];
     }
     [dic setObject:[HBUserModel getUserId] forKey:@"userId"];
+    if (!addressString) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"定位失败" message:@"请重新定位或者输入定位失败原因" delegate:self cancelButtonTitle:@"重新定位" otherButtonTitles:@"输入原因", nil];
+        _locationErrorResionTextField.backgroundColor = [UIColor redColor];
+        [alert addSubview:self.locationErrorResionTextField];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        _locationErrorResionTextField.center = alert.center;
+        [[alert textFieldAtIndex:0] setPlaceholder:@"请输入定位失败原因"];
+        [[alert textFieldAtIndex:0] setReturnKeyType:UIReturnKeyNext];
+        [alert show];
+        return nil;
+    }
     return dic;
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex == 1) {
+        NSString *string = [[alertView textFieldAtIndex:0] text];
+        if (string!=nil&&![string isEqualToString:@""]) {
+            NSDictionary *dic = @{@"errorResion":string};
+            [self pushNextWithLocationDic:dic];
+        }
+    }
 }
 
 //处理数据
@@ -392,20 +457,18 @@
     }
     [super backBtnEvents:sender];
 }
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
+
+-(void)dealloc{
     _mapView.showsUserLocation = NO;
-    _mapView.delegate = nil; // 不用时，置nil
-    _geocodesearch.delegate = nil; // 不用时，置nil
+    _mapView.delegate          = nil;// 不用时，置nil
+    _geocodesearch.delegate    = nil;// 不用时，置nil
     if (_geocodesearch != nil) {
-        _geocodesearch = nil;
+    _geocodesearch             = nil;
     }
     if (_mapView) {
-        _mapView = nil;
+    _mapView                   = nil;
     }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -427,54 +490,26 @@
     if (_dataArray == nil) {
         return nil;
     }
-    NSDictionary *dic = _dataArray[section];
-    NSString *lableString = dic[@"signDate"];
-    NSArray *dayArray = [lableString componentsSeparatedByString:@"-"];
-    
-    NSDateComponents *_comps = [[NSDateComponents alloc] init];
+    NSDictionary *dic            = _dataArray[section];
+    NSString *lableString        = dic[@"signDate"];
+    NSArray *dayArray            = [lableString componentsSeparatedByString:@"-"];
+    NSDateComponents *_comps     = [[NSDateComponents alloc] init];
     [_comps setDay:[dayArray[2] integerValue]];
     [_comps setMonth:[dayArray[1] integerValue]];
     [_comps setYear:[dayArray[0] integerValue]];
-    NSCalendar *gregorian = [[NSCalendar alloc]
+    NSCalendar *gregorian        = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate *_date = [gregorian dateFromComponents:_comps];
+    NSDate *_date                = [gregorian dateFromComponents:_comps];
     NSDateComponents *weekdayComponents =
     [gregorian components:NSWeekdayCalendarUnit fromDate:_date];
-//    NSInteger _weekday = [weekdayComponents weekday];
-    NSString *weakString;
-    switch (weekdayComponents.weekday) {
-        case 1:
-            weakString = @"周日";
-            break;
-        case 2:
-            weakString = @"周一";
-            break;
-        case 3:
-            weakString = @"周二";
-            break;
-        case 4:
-            weakString = @"周三";
-            break;
-        case 5:
-            weakString = @"周四";
-            break;
-        case 6:
-            weakString = @"周五";
-            break;
-        case 7:
-            weakString = @"周六";
-            break;
-            
-        default:
-            weakString = @"";
-            break;
-    }
+    NSArray *arr                 = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
+    NSString *weekString         = arr[weekdayComponents.weekday];
     NSMutableDictionary *dataDic = [NSMutableDictionary  dictionary];
 
     [dataDic setObject:lableString forKey:@"dateString"];
-    [dataDic setObject:weakString forKey:@"weakString"];
+    [dataDic setObject:weekString forKey:@"weakString"];
     return dataDic;
-    
+
 }
 
 

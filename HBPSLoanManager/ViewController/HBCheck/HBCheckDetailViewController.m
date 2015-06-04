@@ -149,7 +149,6 @@
 //    }
 
     [HBRequest RequestDataJointStr:kSaveVoiceCall parameterDic:dic successfulBlock:^(NSDictionary *receiveJSON) {
-#warning 语音外呼
         NSString *telphoneString ;
         if (receiveJSON[@"restCallNum"]) {
             telphoneString = [NSString stringWithFormat:@"tel:%@",receiveJSON[@"restCallNum"]];

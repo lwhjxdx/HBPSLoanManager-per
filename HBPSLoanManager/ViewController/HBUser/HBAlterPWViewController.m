@@ -18,21 +18,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backButton.hidden = NO;
-    self.titleLabel.text = @"密码修改";
+    self.titleLabel.text   = @"密码修改";
     [self littleAdjust];
     [self.homeButton setTitle:@"确定" forState:UIControlStateNormal];
         [self.homeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.homeButton.frame = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
+    self.homeButton.frame  = CGRectMake(kSCREEN_WIDTH-60,FromStatusBarHeight, 60, 44);
     self.homeButton.hidden = NO;
     [self.homeButton setImage:nil forState:UIControlStateNormal];
-//    [self.homeButton addTarget:self action:@selector(alterPWClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.mBaseNavigationBarView addSubview:self.homeButton];
-    
+
 }
--(void)homeBtnEvents:(id)sender
-{
+
+-(void)homeBtnEvents:(id)sender{
     [self alterPWClicked:sender];
 }
+
 - (void)littleAdjust{
     
     self.mBaseNavigationBarView.hidden = NO;
@@ -51,18 +51,11 @@
 
 //添加左图片 到 textField
 - (void)addLeftImageViewToTextFeild:(UITextField *)textField withLeftString:(NSString*)leftString{
-
-//    textField.backgroundColor = [UIColor whiteColor];
-////    textField.layer.cornerRadius = [leftString isEqualToString:@"新密码"]?0:5;
-//    textField.layer.masksToBounds = YES;
-//    textField.layer.borderColor = [UIColor grayColor].CGColor;
-//    textField.layer.borderWidth = 1;
     textField.delegate = self;
     UILabel *userNameImageView = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 100, 20)];
     userNameImageView.textAlignment = NSTextAlignmentCenter;
     userNameImageView.contentMode = UIViewContentModeScaleAspectFit;
     userNameImageView.text = leftString;
-//    [userNameImageView setImage:[UIImage imageNamed:@"wdzl-icon5"]];
     [textField setLeftView:userNameImageView];
     [textField setLeftViewMode:(UITextFieldViewModeAlways)];
     [textField setClearButtonMode:UITextFieldViewModeAlways];
@@ -72,7 +65,6 @@
     [super didReceiveMemoryWarning];
 
 }
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField == self.oldPWTextField) {
@@ -89,26 +81,18 @@
     [self.view endEditing:YES];
 }
 
-//判断输入字符是否是符合规则的密码
-- (BOOL) validatePassword:(NSString *)passWord
-{
-    //    NSString *passWordRegex = @"^[a-zA-Z0-9]{1,8}+$";
-    //    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
-    //    return [passWordPredicate evaluateWithObject:passWord];
-    /**
-     *  添加判断用户密码
-     */
+/**
+ *  添加判断用户密码
+ *
+ *  @param passWord 传入密码
+ *
+ *  @return 密码是否符合规则
+ */
+- (BOOL) validatePassword:(NSString *)passWord{
     BOOL isRigth;
-    NSString *allPwdRegex = @"^(?![a-zA-z]+$)(?!\\d+$)(?![!@#$%^&*]+$)[a-zA-Z\\d!!@#$%^&*.]{6,18}$";
+    NSString *allPwdRegex            = @"^(?![a-zA-z]+$)(?!\\d+$)(?![!@#$%^&*]+$)[a-zA-Z\\d!!@#$%^&*.]{6,18}$";
     NSPredicate *emailRegexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",allPwdRegex];
-    isRigth = [emailRegexPredicate evaluateWithObject:passWord];
-//    NSString *passWordRegex = @"^[a-zA-Z]{6,18}+$";
-//    NSString *passWordRegex1 = @"^[0-9]{6,18}+$";
-//    
-//    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
-//    NSPredicate *passWordPredicate1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex1];
-//    BOOL first = ![passWordPredicate1 evaluateWithObject:passWord];
-//    BOOL secend = ![passWordPredicate evaluateWithObject:passWord];
+    isRigth                          = [emailRegexPredicate evaluateWithObject:passWord];
     return isRigth;
 }
 
@@ -139,8 +123,6 @@
     return NO;
 }
 
-
-
 - (IBAction)showPWClicked:(id)sender {
     UIButton *btn = (UIButton *)sender;
     btn.selected = !btn.selected;
@@ -170,6 +152,7 @@
     } failBlock:nil];
     
 }
+
 //配置密码修改参数
 - (NSMutableDictionary *)markParams{
     NSMutableDictionary *dic;
@@ -187,11 +170,9 @@
     
     if (jsonDic) {
         [self showAlterView:jsonDic[@"respMsg"]];
-        [self.navigationController popToRootViewControllerAnimated:YES];    }
-    
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated{
     

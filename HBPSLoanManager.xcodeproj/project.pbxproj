@@ -45,6 +45,9 @@
 		904C65921B14725B0005DBEC /* UIImage+DrawImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C65911B14725B0005DBEC /* UIImage+DrawImage.m */; };
 		904C65961B1472A40005DBEC /* AFViewShaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C65951B1472A40005DBEC /* AFViewShaker.m */; };
 		904C659C1B147E950005DBEC /* NSUserDefaults+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 904C659B1B147E950005DBEC /* NSUserDefaults+Setting.m */; };
+		905C103F1B1FEA2500E7E3BA /* PlanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905C103E1B1FEA2500E7E3BA /* PlanListViewController.m */; };
+		905C10431B203F0400E7E3BA /* TableInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 905C10411B203F0400E7E3BA /* TableInfoTableViewCell.m */; };
+		905C10441B203F0400E7E3BA /* TableInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 905C10421B203F0400E7E3BA /* TableInfoTableViewCell.xib */; };
 		9085ACE21B02F69300BAD006 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9085ACDB1B02F69300BAD006 /* DetailsViewController.m */; };
 		9085ACE41B02F69300BAD006 /* UIColor+ChangeWithString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9085ACDF1B02F69300BAD006 /* UIColor+ChangeWithString.m */; };
 		9085ACE51B02F69300BAD006 /* YZWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9085ACE11B02F69300BAD006 /* YZWViewController.m */; };
@@ -291,6 +294,11 @@
 		904C65951B1472A40005DBEC /* AFViewShaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFViewShaker.m; sourceTree = "<group>"; };
 		904C659A1B147E950005DBEC /* NSUserDefaults+Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Setting.h"; sourceTree = "<group>"; };
 		904C659B1B147E950005DBEC /* NSUserDefaults+Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Setting.m"; sourceTree = "<group>"; };
+		905C103D1B1FEA2500E7E3BA /* PlanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewController.h; sourceTree = "<group>"; };
+		905C103E1B1FEA2500E7E3BA /* PlanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanListViewController.m; sourceTree = "<group>"; };
+		905C10401B203F0400E7E3BA /* TableInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableInfoTableViewCell.h; sourceTree = "<group>"; };
+		905C10411B203F0400E7E3BA /* TableInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableInfoTableViewCell.m; sourceTree = "<group>"; };
+		905C10421B203F0400E7E3BA /* TableInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableInfoTableViewCell.xib; sourceTree = "<group>"; };
 		9085ACDA1B02F69300BAD006 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		9085ACDB1B02F69300BAD006 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		9085ACDE1B02F69300BAD006 /* UIColor+ChangeWithString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ChangeWithString.h"; sourceTree = "<group>"; };
@@ -860,6 +868,9 @@
 			children = (
 				901BD5461B180F2A00F88AAB /* HBCheckMainViewController.h */,
 				901BD5471B180F2A00F88AAB /* HBCheckMainViewController.m */,
+				905C10401B203F0400E7E3BA /* TableInfoTableViewCell.h */,
+				905C10411B203F0400E7E3BA /* TableInfoTableViewCell.m */,
+				905C10421B203F0400E7E3BA /* TableInfoTableViewCell.xib */,
 				90886C861B18351B0003783C /* MainColecthionTableViewCell.h */,
 				90886C871B18351B0003783C /* MainColecthionTableViewCell.m */,
 				90886C881B18351B0003783C /* MainColecthionTableViewCell.xib */,
@@ -878,6 +889,11 @@
 				909B98DD1AFC89F100A35B59 /* HBPlanBaseViewController.m */,
 				994EAB7A1AAEC9C9002FB5ED /* HBCompanyInfoViewController.h */,
 				994EAB7B1AAEC9C9002FB5ED /* HBCompanyInfoViewController.m */,
+				905C103D1B1FEA2500E7E3BA /* PlanListViewController.h */,
+				905C103E1B1FEA2500E7E3BA /* PlanListViewController.m */,
+				994938271AB7F0D9007FAFD8 /* HBPlanComInfoCell.h */,
+				994938281AB7F0D9007FAFD8 /* HBPlanComInfoCell.m */,
+				994938291AB7F0D9007FAFD8 /* HBPlanComInfoCell.xib */,
 			);
 			name = palnMain;
 			sourceTree = "<group>";
@@ -910,9 +926,6 @@
 				994AEDBC1AB13090004438E8 /* HBCheckCalenderMoreCell.h */,
 				994AEDBD1AB13090004438E8 /* HBCheckCalenderMoreCell.m */,
 				994AEDBE1AB13090004438E8 /* HBCheckCalenderMoreCell.xib */,
-				994938271AB7F0D9007FAFD8 /* HBPlanComInfoCell.h */,
-				994938281AB7F0D9007FAFD8 /* HBPlanComInfoCell.m */,
-				994938291AB7F0D9007FAFD8 /* HBPlanComInfoCell.xib */,
 			);
 			name = NoUsing;
 			sourceTree = "<group>";
@@ -1781,6 +1794,7 @@
 			files = (
 				994938221AB7CDDD007FAFD8 /* SVProgressHUD.bundle in Resources */,
 				9963F0041AAD5B5700AA1B63 /* DSLCalendarDaySelection-right.png in Resources */,
+				905C10441B203F0400E7E3BA /* TableInfoTableViewCell.xib in Resources */,
 				9963F0411AAD848600AA1B63 /* HBCheckViewController.xib in Resources */,
 				99E32CF71AB034BD00BD61D9 /* HBCheckCalendarCell.xib in Resources */,
 				994AEDD11AB16AC6004438E8 /* HBAlterPWViewController.xib in Resources */,
@@ -1977,6 +1991,7 @@
 				9963A2B01AB3244100C3678E /* Encrypt.m in Sources */,
 				99720C281AB67A1C006A64BE /* NLSecurityManager.m in Sources */,
 				9085ACE51B02F69300BAD006 /* YZWViewController.m in Sources */,
+				905C103F1B1FEA2500E7E3BA /* PlanListViewController.m in Sources */,
 				996342761ADA5E0C00687242 /* HBIndividualCommercialCreditDailyCheckViewController.m in Sources */,
 				994E00DF1AB44E1F00037B6A /* DBManager.m in Sources */,
 				9032949F1B171B99006096E0 /* FSCalendar.m in Sources */,
@@ -2013,6 +2028,7 @@
 				9963427B1ADA5E0C00687242 /* HBPVDailyMortgageCheckNextViewController.m in Sources */,
 				99938DD71ACAA77400B46EB9 /* HBCFNextViewController.m in Sources */,
 				9984AB601ACAF4730086D1D5 /* HBCheckFirstBaseController.m in Sources */,
+				905C10431B203F0400E7E3BA /* TableInfoTableViewCell.m in Sources */,
 				9963EFF61AAD5B5700AA1B63 /* DSLCalendarRange.m in Sources */,
 				994EAB751AAE83C7002FB5ED /* HBCompanyPlanViewController.m in Sources */,
 			);
@@ -2123,8 +2139,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2144,7 +2160,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
@@ -2156,8 +2172,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan Huapeng Electronics Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2176,7 +2192,7 @@
 					"$(PROJECT_DIR)/HBPSLoanManager",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eea5eab2-4a99-4075-84e5-1ccff9f215d5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};

@@ -26,10 +26,10 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小企业法人授信业务" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l99-Xo-yy3">
-                        <rect key="frame" x="8" y="77" width="84" height="34"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小企贷款" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l99-Xo-yy3">
+                        <rect key="frame" x="0.0" y="77" width="100" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -40,9 +40,9 @@
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="l99-Xo-yy3" secondAttribute="bottom" id="Cag-Q7-sHz"/>
                 <constraint firstAttribute="centerX" secondItem="7Bq-Eh-FQw" secondAttribute="centerX" id="iCY-8c-557"/>
                 <constraint firstItem="7Bq-Eh-FQw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="22" id="itr-y0-xFm"/>
-                <constraint firstAttribute="trailing" secondItem="l99-Xo-yy3" secondAttribute="trailing" constant="8" id="tlL-za-xgN"/>
+                <constraint firstAttribute="trailing" secondItem="l99-Xo-yy3" secondAttribute="trailing" id="tlL-za-xgN"/>
                 <constraint firstItem="l99-Xo-yy3" firstAttribute="top" secondItem="7Bq-Eh-FQw" secondAttribute="bottom" constant="15" id="uoI-Se-ghe"/>
-                <constraint firstItem="l99-Xo-yy3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="xyH-yv-jsW"/>
+                <constraint firstItem="l99-Xo-yy3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xyH-yv-jsW"/>
             </constraints>
             <size key="customSize" width="100" height="120"/>
             <connections>

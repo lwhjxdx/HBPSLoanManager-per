@@ -16,13 +16,18 @@
 #import "YZWViewController.h"
 #import "GestureSetPasswordController.h"
 
+static NSString *imageName = @"imageName";
+static NSString *titleName = @"titleName";
+static NSString *className = @"className";
+
 @interface HBUserViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSArray *imageViewArray;
-    NSArray *titleArray;
+//    NSArray *imageViewArray;
+//    NSArray *titleArray;
     UpDataHeaderPicView *upView;
     BOOL isFirst;
 }
+@property(nonatomic, strong)NSArray *tableArr;
 @end
 
 @implementation HBUserViewController
@@ -43,11 +48,12 @@
     if (isFirst) {
         [self initTableView];
     }
-    isFirst = NO;
+    isFirst             = NO;
     if (upView) {
         [upView sd_setImageWithURL:[NSURL URLWithString:[HBUserModel getHeadImagePath]] placeholderImage:[UIImage imageNamed:@"photo"]];
     }
-    
+    self.nameLabel.text = [HBUserModel getRealname];
+
 }
 /**
  *  界面微调 调整界面
@@ -142,23 +148,17 @@
 
 //配置 数据
 - (void)configData{
-    imageViewArray = @[[UIImage imageNamed:@"wdzl-icon1"],
-                       [UIImage imageNamed:@"wdzl-icon2"],
-                       [UIImage imageNamed:@"wdzl-icon5"],
-                       [UIImage imageNamed:@"wdzl-icon3"]
-                       ];
-    
-    titleArray = @[@"草稿箱",
-                   @"活动轨迹",
-                   @"安全设置",
-                   @"关于"
-                   ];
-    
+#warning - 暂时不添加手势密码
+    self.tableArr = @[@{imageName:@"wdzl-icon1",titleName:@"草稿箱",className:@"HBDraftBoxViewController"},
+                      @{imageName:@"wdzl-icon2",titleName:@"活动轨迹",className:@"HBLocusViewController"},
+                      @{imageName:@"wdzl-icon5",titleName:@"修改密码",className:@"HBAlterPWViewController"},
+//                      @{imageName:@"wdzl-icon5",titleName:@"安全设置",className:@"GestureSetPasswordController"},
+                      @{imageName:@"wdzl-icon3",titleName:@"关于",className:@"YZWViewController"}];
 }
 
 #pragma mark - tableView datasourse
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return imageViewArray.count;
+    return _tableArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -170,51 +170,27 @@
     cell                       = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:tableCell];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
-    cell.imageView.image       = imageViewArray[indexPath.row];
-    cell.textLabel.text        = titleArray[indexPath.row];
+    cell.imageView.image       = [UIImage imageNamed:_tableArr[indexPath.row][imageName]];
+    cell.textLabel.text        = _tableArr[indexPath.row][titleName];
     cell.accessoryType         = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor       = [UIColor whiteColor];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-       return 60;
+       return 50;
 }
 
 #pragma mark - delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
-        case 0:
-        {
-            HBDraftBoxViewController *vc     = [[HBDraftBoxViewController alloc] init];
-            [self pushViewController:vc animated:YES];
-        }
-            break;
-        case 1:
-        {
-            //活动轨迹
-            HBLocusViewController *vc        = [[HBLocusViewController alloc] init];
-            [self pushViewController:vc animated:YES];
-        }
-            break;
-        case 3:
-        {
-            //签到
-            YZWViewController *vc            = [[YZWViewController alloc] init];
-            [self pushViewController:vc animated:YES];
-        }
-            break;
-        case 2:
-        {
-            //修改密码
-            GestureSetPasswordController *vc = [[GestureSetPasswordController alloc] init];
-            [self pushViewController:vc animated:YES];
-        }
-            break;
-        default:
-            break;
+    Class class = NSClassFromString(_tableArr[indexPath.row][className]);
+    if (!class) {
+        return;
     }
+    [self pushViewController:[[class alloc]init] animated:YES];
+
 }
+
 #pragma mark - other action
 - (IBAction)nameClicked:(id)sender {
     //修改密码

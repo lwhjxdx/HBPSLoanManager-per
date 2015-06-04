@@ -74,7 +74,6 @@
     [passwdImageView setImage:[UIImage imageNamed:@"passWord"]];
     [self.passwdTextField setLeftView:passwdImageView];
     [self.passwdTextField setLeftViewMode:(UITextFieldViewModeAlways)];
-#warning passwd
     if (PAT_) {
         //密码
 //        self.passwdTextField.text  = @"7B52009B64FD0A2A49E6D8A939753077792B0554";

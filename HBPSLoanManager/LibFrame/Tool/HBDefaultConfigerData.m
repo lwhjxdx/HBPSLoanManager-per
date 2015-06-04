@@ -61,7 +61,7 @@
     HBCheckViewController *vc2 = [[HBCheckViewController alloc] init];
     vc2.tableViewArr = @[@[@"小企业法人授信业务",@"LoanLegalViewController"],@[@"个人商务贷款",@"LoanPersonageController"],@[@"个人经营性车辆按揭贷款",@"LoanPersonageCarController"]];
     vc2.titleString = @"贷后检查报告";
-    vc2.isShowMap = NO;
+    vc2.isShowMap = YES;
     HBIntroduceViewController *vc3 = [[HBIntroduceViewController alloc] init];
     HBUserViewController *vc4 = [[HBUserViewController alloc] init];
     UINavigationController *nav1 =[[UINavigationController alloc] initWithRootViewController:vc1];
