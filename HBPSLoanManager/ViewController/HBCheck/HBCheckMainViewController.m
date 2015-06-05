@@ -173,10 +173,7 @@
     [cell changeValueWithDic:_itemArr[indexPath.row]];
     return cell;
 }
-//-(void)pushNextViewController:(UIViewController *)vc
-//{
-//    
-//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;

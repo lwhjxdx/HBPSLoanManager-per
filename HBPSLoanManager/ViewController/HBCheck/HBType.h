@@ -18,8 +18,8 @@ typedef enum : NSUInteger {
 } CheckType;
 
 typedef enum : NSUInteger {
-    PlanTypeGerenshangdai,
     PlanTypeXiaoqiyefaren,
+    PlanTypeGerenshangdai,
     PlanTypeGerenchedai,
 } PlanType;
 #endif

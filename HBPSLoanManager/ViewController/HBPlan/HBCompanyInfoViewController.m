@@ -286,7 +286,6 @@
             
         }
     }else{
-//        static NSString *cellIDE1 = @"IDE123";
         cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HBPlanComInfoCell class])];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HBPlanComInfoCell" owner:self options:nil] lastObject];

@@ -26,7 +26,7 @@
             if (valueString) {
                 [_paramDic setObject:valueString forKey:keyString];
             }else{
-                [_paramDic setObject:kDefaultValue forKey:keyString];
+                [_paramDic setObject:@"" forKey:keyString];
             }
         
         

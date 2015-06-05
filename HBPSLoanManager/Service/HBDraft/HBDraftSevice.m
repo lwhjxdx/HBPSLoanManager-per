@@ -180,11 +180,16 @@
 }
 
 
-- (void)deleteAllSeleteItem{
+- (NSInteger)deleteAllSeleteItem:(BOOL)isDelete{
+    NSInteger deletNum = 0;
     NSArray *array = [[DBManager shareManager] fetchAllSelect];
     for (HBReportModel *model in array) {
-        [self deleteModel:model];
+        if (isDelete) {
+            [self deleteModel:model];
+        }
+        deletNum++;
     }
+    return deletNum;
 }
 
 

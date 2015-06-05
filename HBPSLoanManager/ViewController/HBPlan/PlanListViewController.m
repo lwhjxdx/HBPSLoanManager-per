@@ -8,8 +8,10 @@
 
 #import "PlanListViewController.h"
 #import "HBPlanComInfoCell.h"
-
+#import "HBType.h"
+#import "HBSignInController.h"
 @interface PlanListViewController ()
+@property (nonatomic,assign)PlanType planType;
 
 @end
 
@@ -80,16 +82,147 @@
     [cell loadData:_listArray[indexPath.row]];
     
     [((HBPlanComInfoCell *)cell) setComInfoClicked:^(NSDictionary *dic) {
-//        [self requestFromNetWorkingToJump:dic];
+        [self requestFromNetWorkingToJump:dic];
     }];
 
     return cell;
 }
+- (void)requestFromNetWorkingToJump:(NSDictionary *)dic{
+    
+    NSArray *arr = @[kInsertIndexCheckModel,kQueryPersonalBaseInfo,kQueryCarBaseInfo];
+    NSString *interfaceString = arr[[dic[@"productType"] intValue] - 1];
+    self.planType =[dic[@"productType"] intValue] - 1;
+
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    [tempDic setObject:dic[@"dueNum"] forKey:@"dueNum"];
+    [tempDic setObject:dic[@"custNo"] forKey:@"custId"];
+    [tempDic setObject:dic[@"conNo"] forKey:@"conNo"];
+    [HBRequest RequestDataJointStr:interfaceString parameterDic:tempDic successfulBlock:^(NSDictionary *receiveJSON) {
+        NSLog(@"------receiveJSON------");
+        [self cellClicked:[self handleDataToJump:receiveJSON withDic:dic]];
+        
+    } failBlock:^(NSError *error, NSDictionary *receiveJSON) {
+    }];
+}
+//处理数据
+- (NSMutableDictionary *)handleDataToJump:(NSDictionary *)dic withDic:(NSDictionary *)oldDic{
+    
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary: oldDic];
+    
+    for (NSString *key in [dic allKeys]) {
+        [tempDic setObject:[dic objectForKey:key] forKey:key];
+    }
+    
+    
+    return tempDic;
+}
+- (void)cellClicked:(NSDictionary *)dic{
+    
+    NSInteger type = [dic[@"checkType"] integerValue];
+    Class className ;
+    /***************************小企业法人检查模板************************
+     //    HBLocaleCollectionCheckViewController现场催收
+     
+     //    HBPayBackCheckFirstViewController还款资金落实情况检查
+     
+     //    HBAllCheckViewController全面检查
+     
+     //    HBRoutineFirstViewController例行检查
+     
+     //    HBCFirstViewController首次检查
+     */
+    
+    
+    /*********************个商还款检查模板
+     HBIndividualCommercialFirstTrackingViewController  个商还款情况
+     
+     HBIndividualCommercialCreditDailyCheckViewController   个商贷款日常检查
+     
+     HBICRepaymentConditionViewController   个商现场催收
+     
+     HBIndividualCommercialFirstTrackingViewController个商首次跟踪检查
+     */
+    
+    
+    /*********************************个商车贷检查模板
+     HBPersonalVehiclesDailyMortgageChecksViewController个商车辆贷款日常及逾期
+     
+     HBPVehiclesDailyMortgageFirstChecksViewController个商车辆贷款首次检查
+     */
+    switch (type) {
+        case 3://例行检查
+        {
+            if (_planType == PlanTypeGerenshangdai) {
+                className = NSClassFromString(@"HBIndividualCommercialCreditDailyCheckViewController");
+            }else{
+                className = NSClassFromString(@"HBRoutineFirstViewController");
+            }
+        }
+            break;
+        case 2://首次检查
+        {
+            if (_planType == PlanTypeGerenshangdai) {
+                className = NSClassFromString(@"HBIndividualCommercialFirstTrackingViewController");
+            }else if(_planType == PlanTypeXiaoqiyefaren){
+                className = NSClassFromString(@"HBCFirstViewController");
+            }else{
+                className = NSClassFromString(@"HBPVehiclesDailyMortgageFirstChecksViewController");
+            }
+        }
+            break;
+            
+        case 4://逾期催收"
+        {
+            if (_planType == PlanTypeGerenshangdai) {
+                className = NSClassFromString(@"HBIndividualCommercialLocaleCollectionCheckViewContr");
+            }else if(_planType == PlanTypeXiaoqiyefaren){
+                className = NSClassFromString(@"HBLocaleCollectionCheckViewController");
+            }else{
+                className = NSClassFromString(@"HBPersonalVehiclesDailyMortgageChecksViewController");
+            }
+        }
+            break;
+        case 5://还款落实检查
+        {
+            if (_planType == PlanTypeXiaoqiyefaren) {
+                className = NSClassFromString(@"HBPayBackCheckFirstViewController");
+            }else{
+                className = NSClassFromString(@"HBICRepaymentConditionViewController");
+            }
+        }
+            break;
+        case 8://全面检查
+        {
+            className = NSClassFromString(@"HBAllCheckViewController");
+        }
+            break;
+            
+            break;
+        default:
+            break;
+    }
+    if (!className) {
+        if (_planType == PlanTypeGerenshangdai) {
+            className = NSClassFromString(@"HBIndividualCommercialCreditDailyCheckViewController");
+        }else{
+            className = NSClassFromString(@"HBAllCheckViewController");
+        }
+    }
+    [self pushHBSignInControllerWithDic:[NSMutableDictionary dictionaryWithDictionary:dic] withNextClass:className];
+}
 
 
-
-
-
+- (void)pushHBSignInControllerWithDic:(NSMutableDictionary*)dic withNextClass:(Class)class
+{
+    if (!class) {
+        return;
+    }
+    HBSignInController *qiandaoVC = [[HBSignInController alloc]init];
+    qiandaoVC.isShowNextItem = YES;
+    qiandaoVC.classString = class;
+    qiandaoVC.pushNextDic = dic;
+    [self pushViewController:qiandaoVC animated:YES];
+}
 
 
 

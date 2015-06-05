@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, HBDraftType) {
 - (NSMutableDictionary *)getDataFromDraft:(HBReportModel *)model;
 
 - (void)deleteModel:(HBReportModel *)model;
-- (void)deleteAllSeleteItem;
+- (NSInteger)deleteAllSeleteItem:(BOOL)isDelete;
 
 
 - (void)changeALLSelectStation:(NSString *)string;

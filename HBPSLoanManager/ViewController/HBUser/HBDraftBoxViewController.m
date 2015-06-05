@@ -152,7 +152,7 @@
 
 
 - (void)okDel{
-    [sevice deleteAllSeleteItem];
+    [sevice deleteAllSeleteItem:YES];
     [self loadData];
     [self reloadTableView];
 }
@@ -308,6 +308,10 @@
 
 //删除选中
 - (void)delReportClicked{
+    if ([sevice deleteAllSeleteItem:NO] == 0) {
+        [self showAlterView:@"请你至少选中一条计划方可删除"];
+        return;
+    }
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"确认删除" message:@"是否确认删除选中的的检查计划" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
 }
@@ -319,26 +323,12 @@
         if (alertView.tag == 100012) {
             [sevice deleteModel:tempDelModel];
             [self loadData];
-
             [self reloadTableView];
         }else{
             [self okDel];
         }
     }
 }
-
-//- (void)deleteWithSelct
-//{
-//    
-//    for (int i = 0; i<_resultsData.count; i++) {
-//        HBReportModel *model = _resultsData[i];
-//        if ([model.isSelect isEqualToString:@"NO"]) {
-//            [_resultsData removeObjectAtIndex:i];
-//        }
-//    }
-//    NSLog(@"_resultsData====%@",_resultsData);
-//    
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
